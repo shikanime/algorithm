@@ -7,32 +7,45 @@ function scoreOneAway(a: string, b: string, scores: number[]): number {
 
 function scoreOneAwayCompare(a: string, b: string, scores: number[]): number {
   if (a[0] === b[0]) {
-    return scoreOneAway(a.slice(1), b.slice(1), [1, ...scores]);
+    return scoreOneAway(a.slice(1), b.slice(1), [...scores, 1]);
   }
   return scoreOneAwayEdition(a, b, scores);
 }
 
 function scoreOneAwayEdition(a: string, b: string, scores: number[]): number {
+  const nextScores = scoreOneAwayReplace(a, b, scores);
+  if (nextScores === null) {
+    return scoreOneAwayDeletion(a, b, scores);
+  }
+  return nextScores;
+}
+
+function scoreOneAwayReplace(
+  a: string,
+  b: string,
+  scores: number[]
+): number | null {
   const next = b.indexOf(a[0]);
   if (next !== -1) {
+    const deleteIdx = scores.findIndex((x) => x !== -1);
     return scoreOneAway(
       a,
       b.slice(next),
-      scores
-        .slice(0, next)
-        .filter((x) => x !== -1)
-        .concat(scores.slice(next))
+      deleteIdx !== -1 ? scores.slice(next >= deleteIdx ? deleteIdx : next) : []
     );
   }
-  return scoreOneAwayDeletion(a, b, scores);
+  return null;
 }
 
 function scoreOneAwayDeletion(a: string, b: string, scores: number[]): number {
-  return scoreOneAway(a.slice(1), b, [-1, ...scores]);
+  return scoreOneAway(a.slice(1), b, [...scores, -1]);
 }
 
-function oneAway(a: string, b: string): boolean {
-  return scoreOneAway(a, b, []) >= b.length - 1;
+function oneAway(a: string, b: string, factor: number): boolean {
+  return scoreOneAway(a, b, []) >= b.length - factor;
 }
 
-console.log(oneAway("pale", "pppple"));
+console.assert(oneAway("pale", "ple", 1) === true, { a: "pale", b: "ple" });
+console.assert(oneAway("pales", "pale", 1) === true, { a: "pales", b: "pale" });
+console.assert(oneAway("pale", "bale", 1) === true, { a: "pale", b: "bale" });
+console.assert(oneAway("pale", "bake", 1) === false, { a: "pale", b: "bake" });
