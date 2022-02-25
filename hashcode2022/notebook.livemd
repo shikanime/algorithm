@@ -1,0 +1,268 @@
+<!-- livebook:{"persist_outputs":true} -->
+
+# Hashcode 2022
+
+## An Example
+
+```elixir
+File.touch!("a_an_example.in.txt")
+
+File.open!("a_an_example.in.txt", [:write], fn device ->
+  IO.inspect(device)
+
+  IO.write(device, """
+  3 3
+  Anna 1
+  C++ 2
+  Bob 2
+  HTML 5
+  CSS 5
+  Maria 1
+  Python 3
+  Logging 5 10 5 1
+  C++ 3
+  WebServer 7 10 7 2
+  HTML 3
+  C++ 2
+  WebChat 10 20 20 2
+  Python 3
+  HTML 3
+  """)
+end)
+```
+
+<!-- livebook:{"output":true} -->
+
+```
+#PID<0.139.0>
+```
+
+<!-- livebook:{"output":true} -->
+
+```
+:ok
+```
+
+```elixir
+defmodule Hashcode.IO do
+  defp read_line(device) do
+    device
+    |> IO.read(:line)
+    |> String.trim()
+    |> String.split(" ")
+    |> List.to_tuple()
+  end
+
+  defp read_contributor(device) do
+    {name, skills} = read_score(device)
+
+    skills =
+      0..(skills - 1)
+      |> Enum.map(fn _ -> read_score(device) end)
+      |> Map.new()
+
+    %{
+      name: name,
+      skills: skills
+    }
+  end
+
+  defp read_project_header(device) do
+    {name, budget, reward, soft_deadline, requirements} = read_line(device)
+
+    {
+      name,
+      String.to_integer(budget),
+      String.to_integer(reward),
+      String.to_integer(soft_deadline),
+      String.to_integer(requirements)
+    }
+  end
+
+  defp read_score(device) do
+    {name, requirement} = read_line(device)
+    {name, String.to_integer(requirement)}
+  end
+
+  defp read_project(device) do
+    {name, budget, reward, soft_deadline, requirements} = read_project_header(device)
+
+    requirements =
+      0..(requirements - 1)
+      |> Enum.map(fn _ -> read_score(device) end)
+      |> Map.new()
+
+    %{
+      name: name,
+      budget: budget,
+      reward: reward,
+      soft_deadline: soft_deadline,
+      requirements: requirements
+    }
+  end
+
+  defp read_header(device) do
+    {contributors, projects} = read_line(device)
+    {String.to_integer(contributors), String.to_integer(projects)}
+  end
+
+  def read(device) do
+    {contributors, projects} = read_header(device)
+
+    contributors =
+      for _ <- 0..(contributors - 1) do
+        read_contributor(device)
+      end
+
+    projects =
+      for _ <- 0..(projects - 1) do
+        read_project(device)
+      end
+
+    {contributors, projects}
+  end
+
+  def write(device, tasks) do
+    IO.write(device, format_report(tasks))
+  end
+
+  defp format_report(tasks) do
+    header = [length(tasks) |> to_string()]
+
+    body =
+      Enum.flat_map(tasks, fn {contributors, project} ->
+        [
+          project.name,
+          contributors
+          |> Enum.map(& &1.name)
+          |> Enum.intersperse(" ")
+        ]
+      end)
+
+    Enum.intersperse(header ++ body, "\n")
+  end
+end
+
+{contributors, projects} = File.open!("a_an_example.in.txt", &Hashcode.IO.read(&1))
+```
+
+<!-- livebook:{"output":true} -->
+
+```
+{[
+   %{name: "Anna", skills: %{"C++" => 2}},
+   %{name: "Bob", skills: %{"CSS" => 5, "HTML" => 5}},
+   %{name: "Maria", skills: %{"Python" => 3}}
+ ],
+ [
+   %{budget: 5, name: "Logging", requirements: %{"C++" => 3}, reward: 10, soft_deadline: 5},
+   %{
+     budget: 7,
+     name: "WebServer",
+     requirements: %{"C++" => 2, "HTML" => 3},
+     reward: 10,
+     soft_deadline: 7
+   },
+   %{
+     budget: 10,
+     name: "WebChat",
+     requirements: %{"HTML" => 3, "Python" => 3},
+     reward: 20,
+     soft_deadline: 20
+   }
+ ]}
+```
+
+```elixir
+defmodule Hashcode.Solver do
+  def eligible?(project, contributor) do
+    Enum.any?(contributor.skills, &has_skill?(project, &1))
+  end
+
+  defp has_skill?(project, {name, skill}) do
+    if requirement = Map.get(project.requirements, name) do
+      skill >= requirement
+    else
+      false
+    end
+  end
+
+  def compatiblity(project, contributor) do
+    contributor.skills
+    |> Enum.map(fn {name, skill} ->
+      if requirement = Map.get(project.requirements, name) do
+        skill - requirement
+      else
+        0
+      end
+    end)
+    |> Enum.sum()
+  end
+
+  def assign(project, contributor) do
+    requirements = Map.get(project, :requirements)
+
+    {assignments, requirements} =
+      Enum.map_reduce(contributor.skills, requirements, fn {name, skill}, requirements ->
+        case Map.get(requirements, name) do
+          nil ->
+            {{:rejected, contributor}, requirements}
+
+          requirement when requirement >= 0 ->
+            {{:assigned, contributor}, Map.put(requirements, name, skill - requirement)}
+        end
+      end)
+
+    assignments =
+      assignments
+      |> Enum.filter(fn {status, _assignment} -> status == :assigned end)
+      |> Enum.map(fn {_status, assignment} -> assignment end)
+
+    {assignments, Map.put(project, :requirements, requirements)}
+  end
+end
+
+estimations =
+  for project <- projects do
+    contributors
+    |> Enum.filter(&Hashcode.Solver.eligible?(project, &1))
+    |> Enum.sort_by(&Hashcode.Solver.compatiblity(project, &1))
+    |> Enum.flat_map_reduce(project, &Hashcode.Solver.assign(&2, &1))
+  end
+
+tasks = Enum.filter(estimations, &(length(elem(&1, 0)) > 0))
+```
+
+<!-- livebook:{"output":true} -->
+
+```
+[
+  {[%{name: "Anna", skills: %{"C++" => 2}}, %{name: "Bob", skills: %{"CSS" => 5, "HTML" => 5}}],
+   %{
+     budget: 7,
+     name: "WebServer",
+     requirements: %{"C++" => 0, "HTML" => 2},
+     reward: 10,
+     soft_deadline: 7
+   }},
+  {[%{name: "Maria", skills: %{"Python" => 3}}, %{name: "Bob", skills: %{"CSS" => 5, "HTML" => 5}}],
+   %{
+     budget: 10,
+     name: "WebChat",
+     requirements: %{"HTML" => 2, "Python" => 0},
+     reward: 20,
+     soft_deadline: 20
+   }}
+]
+```
+
+```elixir
+File.touch!("a_an_example.out.txt")
+File.open!("a_an_example.out.txt", [:write], &Hashcode.IO.write(&1, tasks))
+```
+
+<!-- livebook:{"output":true} -->
+
+```
+:ok
+```
