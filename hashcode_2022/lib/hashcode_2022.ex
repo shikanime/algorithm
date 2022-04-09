@@ -1,4 +1,78 @@
-defmodule Hashcode.IO do
+defmodule Hashcode2022 do
+  def solve do
+    {contributors, projects} =
+      File.open!(
+        "#{:code.priv_dir(:hashcode_2022)}/a_an_example.in.txt",
+        &Hashcode2022.IO.read(&1)
+      )
+
+    estimations =
+      for project <- projects do
+        contributors
+        |> Enum.filter(&Hashcode2022.eligible?(project, &1))
+        |> Enum.sort_by(&Hashcode2022.compatiblity(project, &1))
+        |> Enum.flat_map_reduce(project, &Hashcode2022.assign(&2, &1))
+      end
+
+    tasks = Enum.filter(estimations, &(length(elem(&1, 0)) > 0))
+
+    File.touch!("#{:code.priv_dir(:hashcode_2022)}/a_an_example.out.txt")
+
+    File.open!(
+      "#{:code.priv_dir(:hashcode_2022)}/a_an_example.out.txt",
+      [:write],
+      &Hashcode2022.IO.write(&1, tasks)
+    )
+  end
+
+  def eligible?(project, contributor) do
+    Enum.any?(contributor.skills, &has_skill?(project, &1))
+  end
+
+  defp has_skill?(project, {name, skill}) do
+    if requirement = Keyword.get(project.requirements, name) do
+      skill >= requirement
+    else
+      false
+    end
+  end
+
+  def compatiblity(project, contributor) do
+    contributor.skills
+    |> Enum.map(fn {name, skill} ->
+      if requirement = Keyword.get(project.requirements, name) do
+        skill - requirement
+      else
+        0
+      end
+    end)
+    |> Enum.sum()
+  end
+
+  def assign(project, contributor) do
+    requirements = Map.get(project, :requirements)
+
+    {assignments, requirements} =
+      Enum.map_reduce(contributor.skills, requirements, fn {name, skill}, requirements ->
+        case Keyword.get(requirements, name) do
+          nil ->
+            {{:rejected, contributor}, requirements}
+
+          requirement when requirement >= 0 ->
+            {{:assigned, contributor}, Keyword.put(requirements, name, skill - requirement)}
+        end
+      end)
+
+    assignments =
+      assignments
+      |> Enum.filter(fn {status, _assignment} -> status == :assigned end)
+      |> Enum.map(fn {_status, assignment} -> assignment end)
+
+    {assignments, Map.put(project, :requirements, requirements)}
+  end
+end
+
+defmodule Hashcode2022.IO do
   defp read_line(device) do
     device
     |> IO.read(:line)
@@ -96,66 +170,3 @@ defmodule Hashcode.IO do
     Enum.intersperse(header ++ body, "\n")
   end
 end
-
-defmodule Hashcode.Solver do
-  def eligible?(project, contributor) do
-    Enum.any?(contributor.skills, &has_skill?(project, &1))
-  end
-
-  defp has_skill?(project, {name, skill}) do
-    if requirement = Keyword.get(project.requirements, name) do
-      skill >= requirement
-    else
-      false
-    end
-  end
-
-  def compatiblity(project, contributor) do
-    contributor.skills
-    |> Enum.map(fn {name, skill} ->
-      if requirement = Keyword.get(project.requirements, name) do
-        skill - requirement
-      else
-        0
-      end
-    end)
-    |> Enum.sum()
-  end
-
-  def assign(project, contributor) do
-    requirements = Map.get(project, :requirements)
-
-    {assignments, requirements} =
-      Enum.map_reduce(contributor.skills, requirements, fn {name, skill}, requirements ->
-        case Keyword.get(requirements, name) do
-          nil ->
-            {{:rejected, contributor}, requirements}
-
-          requirement when requirement >= 0 ->
-            {{:assigned, contributor}, Keyword.put(requirements, name, skill - requirement)}
-        end
-      end)
-
-    assignments =
-      assignments
-      |> Enum.filter(fn {status, _assignment} -> status == :assigned end)
-      |> Enum.map(fn {_status, assignment} -> assignment end)
-
-    {assignments, Map.put(project, :requirements, requirements)}
-  end
-end
-
-{contributors, projects} = File.open!("a_an_example.in.txt", &Hashcode.IO.read(&1))
-
-estimations =
-  for project <- projects do
-    contributors
-    |> Enum.filter(&Hashcode.Solver.eligible?(project, &1))
-    |> Enum.sort_by(&Hashcode.Solver.compatiblity(project, &1))
-    |> Enum.flat_map_reduce(project, &Hashcode.Solver.assign(&2, &1))
-  end
-
-tasks = Enum.filter(estimations, &(length(elem(&1, 0)) > 0))
-
-File.touch!("a_an_example.out.txt")
-File.open!("a_an_example.out.txt", [:write], &Hashcode.IO.write(&1, tasks))
