@@ -2,7 +2,7 @@ defmodule Hashcode2022 do
   def solve do
     {contributors, projects} =
       File.open!(
-        "#{:code.priv_dir(:hashcode_2022)}/a_an_example.in.txt",
+        "#{:code.priv_dir(:hashcode2022)}/a_an_example.in.txt",
         &Hashcode2022.IO.read(&1)
       )
 
@@ -16,10 +16,10 @@ defmodule Hashcode2022 do
 
     tasks = Enum.filter(estimations, &(length(elem(&1, 0)) > 0))
 
-    File.touch!("#{:code.priv_dir(:hashcode_2022)}/a_an_example.out.txt")
+    File.touch!("#{:code.priv_dir(:hashcode2022)}/a_an_example.out.txt")
 
     File.open!(
-      "#{:code.priv_dir(:hashcode_2022)}/a_an_example.out.txt",
+      "#{:code.priv_dir(:hashcode2022)}/a_an_example.out.txt",
       [:write],
       &Hashcode2022.IO.write(&1, tasks)
     )

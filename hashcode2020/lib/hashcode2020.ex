@@ -3,7 +3,7 @@ defmodule Hashcode2020 do
 
   def solve(filename) do
     {:ok, {n_books, n_libraries, budget, _, libraries}} =
-      File.open("#{:code.priv_dir(:hashcode_2020)}/input/#{filename}", [:utf8], fn device ->
+      File.open("#{:code.priv_dir(:hashcode2020)}/input/#{filename}", [:utf8], fn device ->
         {n_books, n_libraries, budget} = Hashcode2020.IO.read_header(device)
         order = Hashcode2020.IO.read_books(device, n_books)
         libraries = Hashcode2020.IO.read_libraries(device, n_libraries)
@@ -22,7 +22,7 @@ defmodule Hashcode2020 do
     libraries = invest_libraries(libraries, budget - signup_days)
 
     File.open(
-      "#{:code.priv_dir(:hashcode_2020)}/output/#{filename}",
+      "#{:code.priv_dir(:hashcode2020)}/output/#{filename}",
       [:utf8, :write],
       &Hashcode2020.IO.put_libraries(&1, libraries)
     )

@@ -1,11 +1,11 @@
-defmodule Hashcode2022.MixProject do
+defmodule Hashcode2020.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :hashcode_2022,
+      app: :hashcode2020,
       version: "0.1.0",
-      elixir: "~> 1.12",
+      elixir: "~> 1.10",
       start_permanent: Mix.env() == :prod,
       deps: deps()
     ]
