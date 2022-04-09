@@ -6,6 +6,6 @@ pkgs.mkShell {
     pkgs.cmake
     pkgs.clang
     pkgs.elixir
-    (pkgs.python3Full.withPackages (ps: with ps; [ poetry ]))
+    (pkgs.python39.withPackages (ps: with ps; [ poetry ]))
   ];
 }
