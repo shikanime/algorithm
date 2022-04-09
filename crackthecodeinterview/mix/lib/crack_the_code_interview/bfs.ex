@@ -7,21 +7,12 @@
 # 2 3  # An edge from node 2 to node 3
 # 2    # Starting from node 2
 
-nodes = Map.new(Range.new(0, 3), &{&1, MapSet.new()})
-
-edges = [{1, 2}, {1, 3}]
-
-graph =
-  Enum.reduce(edges, nodes, fn {a, b}, acc ->
-    Map.update!(acc, a, &MapSet.put(&1, b))
-  end)
-
-defmodule Graph do
+defmodule CrackTheCodeInterview.BFS do
   def bfs(graph, entrypoint) do
     bfs(graph, %{}, entrypoint)
   end
 
-  defp bfs(graph, state, entrypoint) when map_size(graph) == 0 do
+  defp bfs(graph, state, _entrypoint) when map_size(graph) == 0 do
     state
   end
 
@@ -37,4 +28,19 @@ defmodule Graph do
   end
 end
 
-Graph.bfs(graph, 1)
+defmodule CrackTheCodeInterview.BFS.Data do
+  def read do
+    nodes = Map.new(Range.new(0, 3), &{&1, MapSet.new()})
+    edges = [{1, 2}, {1, 3}]
+
+    Enum.reduce(edges, nodes, fn {a, b}, acc ->
+      Map.update!(acc, a, &MapSet.put(&1, b))
+    end)
+  end
+end
+
+defmodule CrackTheCodeInterview.BFS.Solver do
+  def solve do
+    CrackTheCodeInterview.BFS.Data.read() |> CrackTheCodeInterview.BFS.bfs(1)
+  end
+end
