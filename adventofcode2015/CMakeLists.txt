@@ -12,3 +12,6 @@ set_property(TARGET i_was_told_there_would_be_no_math PROPERTY CXX_STANDARD 20)
 
 add_executable(i_was_told_there_would_be_no_math_part_two src/i_was_told_there_would_be_no_math_part_two.cc)
 set_property(TARGET i_was_told_there_would_be_no_math_part_two PROPERTY CXX_STANDARD 20)
+
+add_executable(perfectly_spherical_houses_in_a_vacuum src/perfectly_spherical_houses_in_a_vacuum.cc)
+set_property(TARGET perfectly_spherical_houses_in_a_vacuum PROPERTY CXX_STANDARD 20)
