@@ -57,6 +57,11 @@
     "streambuf": "cpp",
     "typeinfo": "cpp",
     "fstream": "cpp",
-    "sstream": "cpp"
-  }
+    "sstream": "cpp",
+    "set": "cpp",
+    "list": "cpp",
+    "ctime": "cpp",
+    "iomanip": "cpp"
+  },
+  "nixEnvSelector.nixFile": "${workspaceRoot}/shell.nix"
 }
