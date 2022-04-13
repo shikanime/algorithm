@@ -20,7 +20,7 @@ auto search(std::string chars) -> std::optional<T> {
 }
 
 int main(int argc, char const* argv[]) {
-  auto chars = std::string{std::istreambuf_iterator<char>(std::cin), {}};
+  auto chars = std::string{std::istreambuf_iterator<char>{std::cin}, {}};
   if (auto nonce = search<unsigned int>(chars))
     std::cout << *nonce << std::endl;
 }

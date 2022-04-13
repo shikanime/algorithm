@@ -4,8 +4,7 @@
 #include <vector>
 
 int main(int argc, char const* argv[]) {
-  auto chars = std::vector<char>{std::istream_iterator<char>(std::cin),
-                                 std::istream_iterator<char>()};
+  auto chars = std::vector<char>{std::istream_iterator<char>{std::cin}, {}};
   auto acc = std::vector<int>(chars.size());
   std::transform(std::begin(chars), std::end(chars), std::begin(acc),
                  [](char a) -> int { return a == '(' ? 1 : -1; });

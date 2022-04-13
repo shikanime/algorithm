@@ -34,8 +34,7 @@ auto visit(std::vector<char>::iterator first, std::vector<char>::iterator last,
 }
 
 int main(int argc, char const* argv[]) {
-  auto chars = std::vector<char>{std::istream_iterator<char>(std::cin),
-                                 std::istream_iterator<char>()};
+  auto chars = std::vector<char>{std::istream_iterator<char>{std::cin}, {}};
   std::vector<char> real;
   std::vector<char> robot;
   for (auto c = std::begin(chars); c != std::end(chars); ++c)
