@@ -9,3 +9,6 @@ set_property(TARGET not_quite_lisp_part_two PROPERTY CXX_STANDARD 20)
 
 add_executable(i_was_told_there_would_be_no_math src/i_was_told_there_would_be_no_math.cc)
 set_property(TARGET i_was_told_there_would_be_no_math PROPERTY CXX_STANDARD 20)
+
+add_executable(i_was_told_there_would_be_no_math_part_two src/i_was_told_there_would_be_no_math_part_two.cc)
+set_property(TARGET i_was_told_there_would_be_no_math_part_two PROPERTY CXX_STANDARD 20)
