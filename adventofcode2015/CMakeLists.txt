@@ -28,3 +28,6 @@ set_property(TARGET the_ideal_stocking_stuffer PROPERTY CXX_STANDARD 20)
 add_executable(the_ideal_stocking_stuffer_part_two src/the_ideal_stocking_stuffer_part_two.cc)
 target_link_libraries(the_ideal_stocking_stuffer_part_two OpenSSL::SSL)
 set_property(TARGET the_ideal_stocking_stuffer_part_two PROPERTY CXX_STANDARD 20)
+
+add_executable(doesn_t_he_have_intern_elves_for_this src/doesn_t_he_have_intern_elves_for_this.cc)
+set_property(TARGET doesn_t_he_have_intern_elves_for_this PROPERTY CXX_STANDARD 20)

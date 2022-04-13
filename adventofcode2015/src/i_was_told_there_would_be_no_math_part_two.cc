@@ -5,7 +5,7 @@
 #include <tuple>
 #include <vector>
 
-int main(int argc, char const *argv[]) {
+int main(int argc, char const* argv[]) {
   std::string str;
   std::vector<int> ribbon;
   while (std::getline(std::cin, str)) {
