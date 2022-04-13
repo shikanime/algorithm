@@ -8,8 +8,8 @@
 #include <vector>
 
 int main(int argc, char const *argv[]) {
-  auto chars = std::vector<char>(std::istream_iterator<char>(std::cin),
-                                 std::istream_iterator<char>());
+  auto chars = std::vector<char>{std::istream_iterator<char>(std::cin),
+                                 std::istream_iterator<char>()};
   auto houses = std::list<std::pair<int, int>>{chars.size(), {0, 0}};
   std::transform(
       chars.begin(), chars.end(), std::front_inserter(houses),
