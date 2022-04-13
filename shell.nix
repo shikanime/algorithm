@@ -7,6 +7,7 @@ pkgs.mkShell {
     pkgs.clang
     pkgs.clang-tools
     pkgs.elixir
+    pkgs.openssl
     (pkgs.python39.withPackages (ps: with ps; [ poetry ]))
   ];
 }

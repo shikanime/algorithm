@@ -24,3 +24,7 @@ find_package(OpenSSL REQUIRED)
 add_executable(the_ideal_stocking_stuffer src/the_ideal_stocking_stuffer.cc)
 target_link_libraries(the_ideal_stocking_stuffer OpenSSL::SSL)
 set_property(TARGET the_ideal_stocking_stuffer PROPERTY CXX_STANDARD 20)
+
+add_executable(the_ideal_stocking_stuffer_part_two src/the_ideal_stocking_stuffer_part_two.cc)
+target_link_libraries(the_ideal_stocking_stuffer_part_two OpenSSL::SSL)
+set_property(TARGET the_ideal_stocking_stuffer_part_two PROPERTY CXX_STANDARD 20)
