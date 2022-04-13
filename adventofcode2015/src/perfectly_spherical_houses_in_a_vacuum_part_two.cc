@@ -8,10 +8,11 @@
 #include <utility>
 #include <vector>
 
-auto visit(std::vector<char> chars) -> std::list<std::pair<int, int>> {
-  auto houses = std::list<std::pair<int, int>>{chars.size(), {0, 0}};
+auto visit(std::vector<char>::iterator first, std::vector<char>::iterator last,
+           std::list<std::pair<int, int>> &houses) {
+  houses.push_front({0, 0});
   std::transform(
-      chars.begin(), chars.end(), std::front_inserter(houses),
+      first, last, std::front_inserter(houses),
       [&houses](char c) -> std::pair<int, int> {
         switch (c) {
         case '^':
@@ -25,7 +26,6 @@ auto visit(std::vector<char> chars) -> std::list<std::pair<int, int>> {
         }
         throw std::runtime_error("invalid character");
       });
-  return houses;
 }
 
 int main(int argc, char const *argv[]) {
@@ -33,15 +33,14 @@ int main(int argc, char const *argv[]) {
                                  std::istream_iterator<char>()};
   std::vector<char> real;
   std::vector<char> robot;
-  for (auto c = std::begin(chars); c != std::end(chars); ++c) {
-    if (std::distance(std::begin(chars), c) % 2 == 0) {
+  for (auto c = std::begin(chars); c != std::end(chars); ++c)
+    if (std::distance(std::begin(chars), c) % 2 == 0)
       real.push_back(*c);
-    } else {
+    else
       robot.push_back(*c);
-    }
-  }
-  auto houses = visit(real);
-  houses.merge(visit(robot));
+  auto houses = std::list<std::pair<int, int>>{chars.size() + 2};
+  visit(std::begin(real), std::end(real), houses);
+  visit(std::begin(robot), std::end(robot), houses);
   auto res = std::set<std::pair<int, int>>(houses.begin(), houses.end());
   std::cout << res.size() << std::endl;
   return 0;
