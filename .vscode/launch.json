@@ -17,13 +17,13 @@
     },
     {
       "type": "mix_task",
-      "name": "mix (Default task)",
+      "name": "Mix",
       "request": "launch",
       "projectDir": "${workspaceRoot}"
     },
     {
       "type": "mix_task",
-      "name": "mix test",
+      "name": "Mix Test",
       "request": "launch",
       "task": "test",
       "taskArgs": [
