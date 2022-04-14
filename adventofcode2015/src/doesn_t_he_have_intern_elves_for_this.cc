@@ -4,6 +4,7 @@
 #include <numeric>
 #include <set>
 #include <vector>
+#include <string>
 
 int main(int argc, char const* argv[]) {
   int i = 0;
