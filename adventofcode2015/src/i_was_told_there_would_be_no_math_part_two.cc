@@ -7,13 +7,12 @@
 #include <tuple>
 #include <vector>
 
-auto exp_regex = std::regex("^(\\d+)x(\\d+)x(\\d+)$");
-
 int main(int argc, char const* argv[]) {
   std::string line;
   std::vector<int> ribbon;
   while (std::getline(std::cin, line)) {
     std::smatch exp_match;
+    static const auto exp_regex = std::regex("^(\\d+)x(\\d+)x(\\d+)$");
     if (std::regex_search(line, exp_match, exp_regex)) {
       auto l = std::stoi(exp_match[1]);
       auto w = std::stoi(exp_match[2]);

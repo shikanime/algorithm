@@ -2,8 +2,8 @@
 #include <iostream>
 #include <iterator>
 #include <numeric>
-#include <set>
 #include <string>
+#include <unordered_set>
 #include <vector>
 
 template <class InputIterator>
@@ -23,10 +23,11 @@ auto has_pair(InputIterator first, InputIterator last) {
 
 template <class InputIterator>
 auto has_only_valid_chars(InputIterator first, InputIterator last) {
-  std::set<std::pair<char, char>> exclude{
+  static const auto excluded_pairs = std::vector<std::pair<char, char>>{
       {'a', 'b'}, {'c', 'd'}, {'p', 'q'}, {'x', 'y'}};
-  return std::none_of(first, last, [&exclude](auto& s) {
-    return exclude.find(s) != std::end(exclude);
+  return std::none_of(first, last, [](auto& s) {
+    return std::find(std::begin(excluded_pairs), std::end(excluded_pairs), s) !=
+           std::end(excluded_pairs);
   });
 }
 
