@@ -40,17 +40,16 @@ auto window(InputIterator first, InputIterator last, OutputIterator out) {
 }
 
 int main(int argc, char const* argv[]) {
-  int i = 0;
+  unsigned int i = 0;
   std::string line;
-  while (std::getline(std::cin, line)) {
-    if (!has_enough_vowels(std::begin(line), std::end(line))) continue;
-    std::vector<std::pair<char, char>> pairs;
-    window(std::begin(line), std::end(line), std::back_inserter(pairs));
-    if (!has_pair(std::begin(pairs), std::end(pairs)) ||
-        !has_only_valid_chars(std::begin(pairs), std::end(pairs)))
-      continue;
-    i++;
-  }
+  while (std::getline(std::cin, line))
+    if (has_enough_vowels(std::begin(line), std::end(line))) {
+      std::vector<std::pair<char, char>> pairs;
+      window(std::begin(line), std::end(line), std::back_inserter(pairs));
+      if (has_pair(std::begin(pairs), std::end(pairs)) &&
+          has_only_valid_chars(std::begin(pairs), std::end(pairs)))
+        i++;
+    }
   std::cout << i << std::endl;
   return 0;
 }
