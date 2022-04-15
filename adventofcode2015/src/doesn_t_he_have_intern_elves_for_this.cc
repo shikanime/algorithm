@@ -16,18 +16,18 @@ auto has_enough_vowels(InputIterator first, InputIterator last) {
 
 template <class InputIterator>
 auto has_pair(InputIterator first, InputIterator last) {
-  return std::any_of(first, last, [](std::pair<char, char> pair) {
+  return std::any_of(first, last, [](std::pair<char, char>& pair) {
     return pair.first == pair.second;
   });
 }
 
 template <class InputIterator>
 auto has_only_valid_chars(InputIterator first, InputIterator last) {
-  static const auto excluded_pairs = std::vector<std::pair<char, char>>{
+  static const auto excluded = std::vector<std::pair<char, char>>{
       {'a', 'b'}, {'c', 'd'}, {'p', 'q'}, {'x', 'y'}};
-  return std::none_of(first, last, [](auto& s) {
-    return std::find(std::begin(excluded_pairs), std::end(excluded_pairs), s) !=
-           std::end(excluded_pairs);
+  return std::none_of(first, last, [](std::pair<char, char>& pair) {
+    auto x = std::find(std::begin(excluded), std::end(excluded), pair);
+    return x != std::end(excluded);
   });
 }
 
