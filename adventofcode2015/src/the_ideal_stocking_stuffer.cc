@@ -8,7 +8,7 @@
 #include <string>
 
 template <typename T>
-auto search(std::string chars) -> std::optional<T> {
+auto search(std::string& chars) -> std::optional<T> {
   for (T nonce = 0; nonce < std::numeric_limits<T>::max(); ++nonce) {
     auto challenge = chars + std::to_string(nonce);
     unsigned char digest[MD5_DIGEST_LENGTH] = {};
