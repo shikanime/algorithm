@@ -3,33 +3,51 @@
 #include <iterator>
 #include <numeric>
 #include <set>
-#include <vector>
 #include <string>
+#include <vector>
+
+template <class InputIterator>
+auto has_enough_vowels(InputIterator first, InputIterator last) {
+  auto vowels = std::count_if(first, last, [](char c) {
+    return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u';
+  });
+  return vowels >= 3;
+}
+
+template <class InputIterator>
+auto has_pair(InputIterator first, InputIterator last) {
+  return std::any_of(first, last, [](std::pair<char, char> pair) {
+    return pair.first == pair.second;
+  });
+}
+
+template <class InputIterator>
+auto has_only_valid_chars(InputIterator first, InputIterator last) {
+  std::set<std::pair<char, char>> exclude{
+      {'a', 'b'}, {'c', 'd'}, {'p', 'q'}, {'x', 'y'}};
+  return std::none_of(first, last, [&exclude](auto& s) {
+    return exclude.find(s) != std::end(exclude);
+  });
+}
+
+template <class InputIterator, class OutputIterator>
+auto window(InputIterator first, InputIterator last, OutputIterator out) {
+  std::transform(first, last - 1, first + 1, out,
+                 [](char a, char b) -> std::pair<char, char> {
+                   return {a, b};
+                 });
+}
 
 int main(int argc, char const* argv[]) {
   int i = 0;
-  std::string str;
-  while (std::getline(std::cin, str)) {
-    auto vowels = std::count_if(str.begin(), str.end(), [](char c) {
-      return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u';
-    });
-    if (vowels < 3) continue;
+  std::string line;
+  while (std::getline(std::cin, line)) {
+    if (!has_enough_vowels(std::begin(line), std::end(line))) continue;
     std::vector<std::pair<char, char>> pairs;
-    std::transform(str.begin(), str.end() - 1, str.begin() + 1,
-                   std::back_inserter(pairs), [](char a, char b) {
-                     return std::pair<char, char>{a, b};
-                   });
-    auto has_pair = std::any_of(
-        pairs.begin(), pairs.end(),
-        [](std::pair<char, char> pair) { return pair.first == pair.second; });
-    if (!has_pair) continue;
-    std::set<std::pair<char, char>> in{pairs.begin(), pairs.end()};
-    std::set<std::pair<char, char>> exclude{
-        {'a', 'b'}, {'c', 'd'}, {'p', 'q'}, {'x', 'y'}};
-    auto has_exclude = std::any_of(in.begin(), in.end(), [exclude](auto& s) {
-      return exclude.find(s) != exclude.end();
-    });
-    if (has_exclude) continue;
+    window(std::begin(line), std::end(line), std::back_inserter(pairs));
+    if (!has_pair(std::begin(pairs), std::end(pairs)) ||
+        !has_only_valid_chars(std::begin(pairs), std::end(pairs)))
+      continue;
     i++;
   }
   std::cout << i << std::endl;
