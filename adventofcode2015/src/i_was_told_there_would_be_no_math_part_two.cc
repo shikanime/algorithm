@@ -2,25 +2,31 @@
 #include <array>
 #include <iostream>
 #include <numeric>
+#include <regex>
+#include <string>
 #include <tuple>
 #include <vector>
-#include <string>
+
+auto exp_regex = std::regex("^(\\d+)x(\\d+)x(\\d+)$");
 
 int main(int argc, char const* argv[]) {
-  std::string str;
+  std::string line;
   std::vector<int> ribbon;
-  while (std::getline(std::cin, str)) {
-    int l, w, h;
-    if (sscanf(str.c_str(), "%dx%dx%d", &l, &w, &h) != 3)
-      throw std::runtime_error("invalid payload");
-    auto sides = std::array<int, 3>{l, w, h};
-    std::sort(sides.begin(), sides.end());
-    auto box = 2 * sides[0] + 2 * sides[1];
-    auto bow =
-        std::accumulate(sides.begin(), sides.end(), 1, std::multiplies<int>());
-    ribbon.push_back(box + bow);
+  while (std::getline(std::cin, line)) {
+    std::smatch exp_match;
+    if (std::regex_search(line, exp_match, exp_regex)) {
+      auto l = std::stoi(exp_match[1]);
+      auto w = std::stoi(exp_match[2]);
+      auto h = std::stoi(exp_match[3]);
+      auto sides = std::array<int, 3>{l, w, h};
+      std::sort(std::begin(sides), std::end(sides));
+      auto box = 2 * sides[0] + 2 * sides[1];
+      auto bow = std::accumulate(std::begin(sides), std::end(sides), 1,
+                                 std::multiplies<int>());
+      ribbon.push_back(box + bow);
+    }
   }
-  auto res = std::accumulate(ribbon.begin(), ribbon.end(), 0);
+  auto res = std::accumulate(std::begin(ribbon), std::end(ribbon), 0);
   std::cout << res << std::endl;
   return 0;
 }
