@@ -9,22 +9,26 @@
 #include <string_view>
 #include <vector>
 
+auto has_repeated_pair(std::string_view s) {
+  return std::ranges::any_of(
+      std::views::iota(0ul, s.length() - 2), [&s](auto n) {
+        return s.substr(n + 2).find(s.substr(n, 2)) != std::string::npos;
+      });
+}
+
+auto has_separated_pair(std::string_view s) {
+  auto trigrams =
+      std::views::iota(0ul, s.length()) |
+      std::views::transform([&s](auto n) { return s.substr(n, 3); });
+  return std::ranges::any_of(
+      trigrams, [](const auto& trigram) { return trigram[0] == trigram[2]; });
+}
+
 int main(int argc, char const* argv[]) {
   unsigned i = 0;
   std::string line;
   while (std::getline(std::cin, line)) {
-    auto has_repeated_pair = std::ranges::any_of(
-        std::views::iota(0ul, line.length() - 2), [&line](auto n) {
-          return line.substr(n + 2).find(line.substr(n, 2)) !=
-                 std::string::npos;
-        });
-    auto trigrams = std::views::iota(0ul, line.length()) |
-                    std::views::transform([&line](auto n) {
-                      return std::string_view{line}.substr(n, 3);
-                    });
-    auto has_separated_pair = std::ranges::any_of(
-        trigrams, [&line](const auto& s) { return s[0] == s[2]; });
-    if (has_repeated_pair && has_separated_pair) i++;
+    if (has_repeated_pair(line) && has_separated_pair(line)) i++;
   }
   std::cout << i << std::endl;
   return 0;
