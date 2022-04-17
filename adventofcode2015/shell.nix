@@ -3,7 +3,7 @@
 pkgs.mkShell {
   buildInputs = [
     pkgs.cmake
-    pkgs.clang
+    pkgs.clang_14
     pkgs.clang-tools
     pkgs.openssl
   ];
