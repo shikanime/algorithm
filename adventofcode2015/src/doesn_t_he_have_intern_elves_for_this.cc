@@ -3,7 +3,6 @@
 #include <iterator>
 #include <numeric>
 #include <string>
-#include <unordered_set>
 #include <vector>
 
 template <class InputIterator>
