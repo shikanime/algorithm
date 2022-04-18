@@ -2,6 +2,7 @@
 #include <array>
 #include <iostream>
 #include <numeric>
+#include <ranges>
 #include <regex>
 #include <string>
 #include <tuple>
@@ -18,7 +19,7 @@ int main(int argc, char const* argv[]) {
       auto w = std::stoi(exp_match[2]);
       auto h = std::stoi(exp_match[3]);
       auto sides = std::array<int, 3>{l, w, h};
-      std::sort(std::begin(sides), std::end(sides));
+      std::ranges::sort(sides);
       auto box = 2 * sides[0] + 2 * sides[1];
       auto bow = std::accumulate(std::begin(sides), std::end(sides), 1,
                                  std::multiplies<int>());

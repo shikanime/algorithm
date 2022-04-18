@@ -2,6 +2,7 @@
 #include <iostream>
 #include <iterator>
 #include <list>
+#include <ranges>
 #include <set>
 #include <tuple>
 #include <utility>
@@ -23,16 +24,15 @@ auto read(char c) -> position {
   throw std::runtime_error("invalid character");
 }
 
-auto visit(std::vector<char>::iterator first, std::vector<char>::iterator last,
-           std::list<position>& houses) {
+auto visit(std::ranges::input_range auto r, std::list<position>& houses) {
   houses.push_front({0, 0});
-  std::transform(first, last, std::front_inserter(houses),
-                 [&houses](char c) -> position {
-                   auto curr = houses.front();
-                   auto next = read(c);
-                   return {std::get<0>(curr) + std::get<0>(next),
-                           std::get<1>(curr) + std::get<1>(next)};
-                 });
+  std::ranges::transform(r, std::front_inserter(houses),
+                         [&houses](char c) -> position {
+                           auto curr = houses.front();
+                           auto next = read(c);
+                           return {std::get<0>(curr) + std::get<0>(next),
+                                   std::get<1>(curr) + std::get<1>(next)};
+                         });
 }
 
 int main(int argc, char const* argv[]) {
@@ -45,8 +45,8 @@ int main(int argc, char const* argv[]) {
     else
       robot.push_back(*c);
   auto houses = std::list<position>{real.size() + robot.size() + 2};
-  visit(std::begin(real), std::end(real), houses);
-  visit(std::begin(robot), std::end(robot), houses);
+  visit(real, houses);
+  visit(robot, houses);
   auto res = std::set<position>(std::begin(houses), std::end(houses));
   std::cout << res.size() << std::endl;
   return 0;
