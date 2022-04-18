@@ -7,7 +7,7 @@
 #include <sstream>
 #include <string>
 
-template <typename T>
+template <std::integral T>
 auto search(std::string& chars) -> std::optional<T> {
   for (T nonce = 0; nonce < std::numeric_limits<T>::max(); ++nonce) {
     auto challenge = chars + std::to_string(nonce);

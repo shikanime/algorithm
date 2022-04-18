@@ -6,22 +6,19 @@
 #include <string>
 #include <vector>
 
-template <std::ranges::input_range R>
-auto has_enough_vowels(R r) {
+auto has_enough_vowels(std::ranges::input_range auto r) {
   auto vowels = std::ranges::count_if(r, [](char c) {
     return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u';
   });
   return vowels >= 3;
 }
 
-template <std::ranges::input_range R>
-auto has_pair(R r) {
+auto has_pair(std::ranges::input_range auto r) {
   return std::ranges::any_of(
       r, [](std::pair<char, char>& pair) { return pair.first == pair.second; });
 }
 
-template <std::ranges::input_range R>
-auto has_only_valid_chars(R r) {
+auto has_only_valid_chars(std::ranges::input_range auto r) {
   static const auto excluded = std::vector<std::pair<char, char>>{
       {'a', 'b'}, {'c', 'd'}, {'p', 'q'}, {'x', 'y'}};
   return std::ranges::none_of(r, [](std::pair<char, char>& pair) {
@@ -30,8 +27,8 @@ auto has_only_valid_chars(R r) {
   });
 }
 
-template <class I, class O>
-auto window(I first, I last, O out) {
+auto window(std::input_iterator auto first, std::input_iterator auto last,
+            std::output_iterator<std::pair<char, char>> auto out) {
   std::transform(first, last - 1, first + 1, out,
                  [](char a, char b) -> std::pair<char, char> {
                    return {a, b};
