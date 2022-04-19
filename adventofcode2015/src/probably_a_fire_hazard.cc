@@ -6,6 +6,29 @@
 #include <regex>
 #include <string>
 
+enum class action { turn_on, turn_off, toggle };
+
+auto read_action(std::string s) -> action {
+  if (s == "turn on")
+    return action::turn_on;
+  else if (s == "turn off")
+    return action::turn_off;
+  else if (s == "toggle")
+    return action::toggle;
+  else
+    throw std::runtime_error("unknown instruction");
+}
+
+auto cartesian_product_view(std::ranges::input_range auto a,
+                            std::ranges::input_range auto b) {
+  return a | std::views::transform([b](const auto x) {
+           return b | std::views::transform([x](const auto y) {
+                    return std::pair{x, y};
+                  });
+         }) |
+         std::views::join;
+}
+
 int main(int argc, char const* argv[]) {
   std::array<std::array<bool, 1000>, 1000> grid{{false}};
   std::string line;
@@ -13,31 +36,32 @@ int main(int argc, char const* argv[]) {
     static const std::regex command_regex(
         "(turn on|turn off|toggle) (\\d+),(\\d+) through (\\d+),(\\d+)");
     std::smatch smatch;
-    if (std::regex_search(line, smatch, command_regex))
-      std::ranges::for_each(
-          std::views::iota(std::stoi(smatch[2]), std::stoi(smatch[4]) + 1) |
-              std::views::transform([&smatch](auto x) {
-                return std::views::iota(std::stoi(smatch[3]),
-                                        std::stoi(smatch[5]) + 1) |
-                       std::views::transform([x](auto y) {
-                         return std::pair{x, y};
-                       });
-              }) |
-              std::views::join,
-          [&grid, &smatch](auto xy) {
-            if (smatch[1] == "turn on")
-              grid[xy.first][xy.second] = true;
-            else if (smatch[1] == "turn off")
-              grid[xy.first][xy.second] = false;
-            else
-              grid[xy.first][xy.second] = !grid[xy.first][xy.second];
-          });
+    if (std::regex_search(line, smatch, command_regex)) {
+      auto ax = std::stoi(smatch[2]);
+      auto ay = std::stoi(smatch[4]);
+      auto bx = std::stoi(smatch[3]);
+      auto by = std::stoi(smatch[5]);
+      auto action = read_action(smatch[1]);
+      auto matrix = cartesian_product_view(std::views::iota(ax, ay + 1),
+                                           std::views::iota(bx, by + 1));
+      std::ranges::for_each(matrix, [&grid, &action](const auto xy) {
+        switch (action) {
+          case action::turn_on:
+            grid[xy.first][xy.second] = true;
+            break;
+          case action::turn_off:
+            grid[xy.first][xy.second] = false;
+            break;
+          case action::toggle:
+            grid[xy.first][xy.second] = !grid[xy.first][xy.second];
+            break;
+        }
+      });
+    }
   }
   auto res = std::accumulate(
-      std::begin(grid), std::end(grid), 0, [](int acc, const auto& row) {
-        return acc + std::accumulate(
-                         std::begin(row), std::end(row), 0,
-                         [](int acc, bool b) { return acc + (b ? 1 : 0); });
+      std::begin(grid), std::end(grid), 0, [](const auto acc, const auto& row) {
+        return acc + std::ranges::count(std::begin(row), std::end(row), true);
       });
   std::cout << res << std::endl;
   return 0;
