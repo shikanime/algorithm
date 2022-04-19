@@ -1,9 +1,11 @@
 { pkgs ? import <nixpkgs> { } }:
 
 pkgs.mkShell {
-  buildInputs = [
+  nativeBuildInputs = [
     pkgs.cmake
-    pkgs.clang_14
+    pkgs.gcc11
+  ];
+  buildInputs = [
     pkgs.clang-tools
     pkgs.openssl
   ];
