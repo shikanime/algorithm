@@ -1,0 +1,13 @@
+{
+    "configurations": [
+        {
+            "name": "Nix",
+            "compilerPath": "/Users/williamphetsinorath/.nix-profile/bin/clang",
+            "cStandard": "c17",
+            "cppStandard": "c++20",
+            "compileCommands": "${workspaceFolder}/build/compile_commands.json",
+            "configurationProvider": "ms-vscode.cmake-tools"
+        }
+    ],
+    "version": 4
+}
