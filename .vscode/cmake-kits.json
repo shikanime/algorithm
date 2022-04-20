@@ -1,0 +1,13 @@
+[
+  {
+    "name": "Nix",
+    "environmentVariables": {
+      "CMAKE_INCLUDE_PATH": "/nix/store/fqw67xn0va1cgfd5db78a1l0qgl5dmfr-libcxx-7.1.0-dev/include:/nix/store/n05y8pqql9xj2vcnhyxj6g10a49xssnp-libcxxabi-7.1.0-dev/include:/nix/store/cwk8jf37wfj0b03n3dgfq3zxlnaxrryp-compiler-rt-libc-7.1.0-dev/include:/nix/store/qfalmvsc182i8q521gbb6ddx4b1amnk5-openssl-1.1.1n-dev/include",
+      "CMAKE_LIBRARY_PATH": "/nix/store/gnip3437qmpa7qmz2a3gf3192hi0vwzb-libcxx-7.1.0/lib:/nix/store/02p46gkmx8rrx1ibrg3aaimlvdhs8psl-libcxxabi-7.1.0/lib:/nix/store/pv09lqj6s9kwvh5xzvd5hmad8nbvc7j3-compiler-rt-libc-7.1.0/lib:/nix/store/ar7p6nbnrzvb1rgdd2k285lb8qc624h4-openssl-1.1.1n/lib"
+    },
+    "compilers": {
+      "C": "/nix/store/wjrmqc01jk5ig3yvsgwa0r30r9zaqdr6-gcc-wrapper-11.2.0/bin/gcc",
+      "CXX": "/nix/store/wjrmqc01jk5ig3yvsgwa0r30r9zaqdr6-gcc-wrapper-11.2.0/bin/g++"
+    }
+  }
+]
