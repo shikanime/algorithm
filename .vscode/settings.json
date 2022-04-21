@@ -1,4 +1,0 @@
-{
-  "cmake.cmakePath": "/nix/store/95gspwdmzx8nhad21svagr07h8iaxcj5-cmake-3.21.2/bin/cmake",
-  "cmake.ctestPath": "/nix/store/95gspwdmzx8nhad21svagr07h8iaxcj5-cmake-3.21.2/bin/ctest"
-}
