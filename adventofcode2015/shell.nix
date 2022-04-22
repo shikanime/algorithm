@@ -6,6 +6,7 @@ let
       {
         name = "Nix";
         environmentVariables = {
+          CMAKE_MAKE_PROGRAM = "${pkgs.ninja}/bin/ninja";
           CMAKE_INCLUDE_PATH = builtins.concatStringsSep ":"
             [
               "${pkgs.libcxx.dev}/include"
@@ -16,12 +17,11 @@ let
             [
               "${pkgs.libcxx}/lib"
               "${pkgs.libcxxabi}/lib"
-              "${pkgs.openssl}/lib"
+              "${pkgs.openssl.out}/lib"
             ];
-        };
-        compilers = {
-          C = "${pkgs.gcc11}/bin/gcc";
-          CXX = "${pkgs.gcc11}/bin/g++";
+          CMAKE_C_COMPILER = "${pkgs.gcc11}/bin/gcc";
+          CMAKE_CXX_COMPILER = "${pkgs.gcc11}/bin/g++";
+          CMAKE_EXPORT_COMPILE_COMMANDS = "ON";
         };
       }
     ]);
@@ -34,10 +34,11 @@ in
 pkgs.mkShell
 {
   nativeBuildInputs = [
-    pkgs.cmake
     pkgs.gcc11
   ];
   buildInputs = [
+    pkgs.ninja
+    pkgs.cmake
     pkgs.clang-tools
     pkgs.openssl
   ];
