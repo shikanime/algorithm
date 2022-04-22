@@ -8,6 +8,8 @@
       (system: {
         adventOfCode2015 =
           import ./adventofcode2015/shell.nix { pkgs = import nixpkgs { inherit system; }; };
+        adventOfCode2019 =
+          import ./adventofcode2019/shell.nix { pkgs = import nixpkgs { inherit system; }; };
         hashcode2020 =
           import ./hashcode2020/shell.nix
             { pkgs = import nixpkgs { inherit system; }; };
