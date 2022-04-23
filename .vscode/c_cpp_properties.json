@@ -2,7 +2,12 @@
   "configurations": [
     {
       "name": "x86_64-nixos-darwin-gnu",
-      "compileCommands": "${workspaceFolder}/out/build/x86_64-nixos-darwin-gnu/compile_commands.json"
+      "compileCommands": "${workspaceFolder}/out/build/x86_64-nixos-darwin-gnu/compile_commands.json",
+      "configurationProvider": "ms-vscode.cmake-tools"
+    },
+    {
+      "name": "x86_64-nixos-linux-gnu",
+      "compileCommands": "${workspaceFolder}/out/build/x86_64-nixos-linux-gnu/compile_commands.json"
     }
   ],
   "version": 4
