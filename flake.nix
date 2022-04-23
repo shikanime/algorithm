@@ -22,7 +22,6 @@
         crackTheCodeInterviewNode =
           import ./crackthecodeinterview/node/shell.nix
             { pkgs = import nixpkgs { inherit system; }; };
-
       });
   };
 }
