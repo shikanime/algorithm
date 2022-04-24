@@ -7,8 +7,8 @@
       "description": "Sets Ninja generator, build and install directory",
       "generator": "Ninja",
       "environment": {
-        "CMAKE_INCLUDE_PATH": "/nix/store/qfalmvsc182i8q521gbb6ddx4b1amnk5-openssl-1.1.1n-dev/include",
-        "CMAKE_LIBRARY_PATH": "/nix/store/ar7p6nbnrzvb1rgdd2k285lb8qc624h4-openssl-1.1.1n/lib"
+        "CMAKE_INCLUDE_PATH": "/nix/store/p1b6adrf3mgl4xr2rahqkdq16psqxzrs-openssl-3.0.2-dev/include",
+        "CMAKE_LIBRARY_PATH": "/nix/store/6j60gjb2rf72fcymvbhsvil8yiqq826w-openssl-3.0.2/lib"
       },
       "cacheVariables": {
         "CMAKE_CXX_COMPILER": "/nix/store/wjrmqc01jk5ig3yvsgwa0r30r9zaqdr6-gcc-wrapper-11.2.0/bin/g++",
