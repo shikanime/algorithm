@@ -37,10 +37,7 @@
       "name": "x86_64-pc-windows-msvc",
       "displayName": "Visual Studio 17 2022 x86_64-pc-windows-msvc",
       "description": "Sets Vistual Studio generator, build and install directory",
-      "generator": "Visual Studio 17 2022",
-      "cacheVariables": {
-        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
-      }
+      "generator": "Visual Studio 17 2022"
     },
     {
       "name": "x86_64-apple-darwin",
@@ -50,9 +47,6 @@
       "environment": {
         "CMAKE_INCLUDE_PATH": "/usr/local/opt/openssl@3/include",
         "CMAKE_LIBRARY_PATH": "/usr/local/opt/openssl@3/lib"
-      },
-      "cacheVariables": {
-        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
       }
     },
     {
