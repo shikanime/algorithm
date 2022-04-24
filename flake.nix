@@ -1,5 +1,5 @@
 {
-  description = "My algorithms sketchbook";
+  description = "Shikanime's algorithms sketchbook";
 
   inputs.nixpkgs.url = "github:nixos/nixpkgs/release-21.11";
 

@@ -1,7 +1,7 @@
 {
   "name": "algorithm",
   "version": "0.1.0",
-  "description": "A lot of random algo things in a monorepo",
+  "description": "Shikanime's algorithms sketchbook",
   "homepage": "https://github.com/Shikanime/algorithm",
   "license": "AGPL-3.0-or-later",
   "dependencies": [
