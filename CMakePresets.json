@@ -14,7 +14,8 @@
         "CMAKE_CXX_COMPILER": "/nix/store/wjrmqc01jk5ig3yvsgwa0r30r9zaqdr6-gcc-wrapper-11.2.0/bin/g++",
         "CMAKE_C_COMPILER": "/nix/store/wjrmqc01jk5ig3yvsgwa0r30r9zaqdr6-gcc-wrapper-11.2.0/bin/gcc",
         "CMAKE_MAKE_PROGRAM": "/nix/store/d3x4xja7gyd35crf963dvqy2w8z4ycrb-ninja-1.10.2/bin/ninja",
-        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+        "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/vcpkg/scripts/buildsystems/vcpkg.cmake"
       }
     },
     {
@@ -30,14 +31,18 @@
         "CMAKE_CXX_COMPILER": "/nix/store/gk15ik5xng72y8cmaw4d9d0g5l7mdb57-gcc-wrapper-11.2.0/bin/g++",
         "CMAKE_C_COMPILER": "/nix/store/gk15ik5xng72y8cmaw4d9d0g5l7mdb57-gcc-wrapper-11.2.0/bin/gcc",
         "CMAKE_MAKE_PROGRAM": "/nix/store/xfl80hfsgi9rdd2jymq89927170y84ar-ninja-1.10.2/bin/ninja",
-        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+        "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/vcpkg/scripts/buildsystems/vcpkg.cmake"
       }
     },
     {
       "name": "x86_64-pc-windows-msvc",
       "displayName": "Visual Studio 17 2022 x86_64-pc-windows-msvc",
       "description": "Sets Vistual Studio generator, build and install directory",
-      "generator": "Visual Studio 17 2022"
+      "generator": "Visual Studio 17 2022",
+      "cacheVariables": {
+        "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/vcpkg/scripts/buildsystems/vcpkg.cmake"
+      }
     },
     {
       "name": "x86_64-apple-darwin",
@@ -47,6 +52,9 @@
       "environment": {
         "CMAKE_INCLUDE_PATH": "/usr/local/opt/openssl@3/include",
         "CMAKE_LIBRARY_PATH": "/usr/local/opt/openssl@3/lib"
+      },
+      "cacheVariables": {
+        "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/vcpkg/scripts/buildsystems/vcpkg.cmake"
       }
     },
     {
@@ -55,7 +63,8 @@
       "description": "Sets Ninja generator, build and install directory",
       "generator": "Ninja",
       "cacheVariables": {
-        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+        "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/vcpkg/scripts/buildsystems/vcpkg.cmake"
       }
     }
   ]

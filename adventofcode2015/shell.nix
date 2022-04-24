@@ -5,7 +5,7 @@ pkgs.gcc11Stdenv.mkDerivation {
   buildInputs = [
     pkgs.ninja
     pkgs.cmake
+    pkgs.conan
     pkgs.clang-tools
-    pkgs.openssl_3_0
   ];
 }
