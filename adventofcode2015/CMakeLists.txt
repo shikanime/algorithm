@@ -40,3 +40,6 @@ set_property(TARGET probably_a_fire_hazard PROPERTY CXX_STANDARD 20)
 
 add_executable(probably_a_fire_hazard_part_two src/probably_a_fire_hazard_part_two.cc)
 set_property(TARGET probably_a_fire_hazard_part_two PROPERTY CXX_STANDARD 20)
+
+add_executable(some_assembly_required src/some_assembly_required.cc)
+set_property(TARGET some_assembly_required PROPERTY CXX_STANDARD 20)
