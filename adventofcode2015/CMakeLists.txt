@@ -37,3 +37,6 @@ set_property(TARGET doesn_t_he_have_intern_elves_for_this_part_two PROPERTY CXX_
 
 add_executable(probably_a_fire_hazard src/probably_a_fire_hazard.cc)
 set_property(TARGET probably_a_fire_hazard PROPERTY CXX_STANDARD 20)
+
+add_executable(probably_a_fire_hazard_part_two src/probably_a_fire_hazard_part_two.cc)
+set_property(TARGET probably_a_fire_hazard_part_two PROPERTY CXX_STANDARD 20)
