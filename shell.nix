@@ -1,12 +1,11 @@
 { pkgs ? import <nixpkgs> { } }:
 
-pkgs.gccStdenv.mkDerivation {
-  name = "algorithm";
+pkgs.stdenv.mkDerivation {
+  name = "algorithm-shell";
   buildInputs = [
     pkgs.elixir
     pkgs.nodejs
     pkgs.opam
-    pkgs.yarn
     pkgs.zip
     pkgs.ninja
     pkgs.cmake
