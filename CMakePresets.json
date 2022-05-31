@@ -2,28 +2,6 @@
   "version": 3,
   "configurePresets": [
     {
-      "name": "msvc",
-      "displayName": "Visual Studio 17 2022",
-      "description": "Sets Vistual Studio generator, build and install directory",
-      "generator": "Visual Studio 17 2022",
-      "cacheVariables": {
-        "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/vcpkg/scripts/buildsystems/vcpkg.cmake"
-      }
-    },
-    {
-      "name": "xcode",
-      "displayName": "Xcode",
-      "description": "Sets Xcode generator, build and install directory",
-      "generator": "Xcode",
-      "environment": {
-        "CMAKE_INCLUDE_PATH": "/usr/local/opt/openssl@3/include",
-        "CMAKE_LIBRARY_PATH": "/usr/local/opt/openssl@3/lib"
-      },
-      "cacheVariables": {
-        "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/vcpkg/scripts/buildsystems/vcpkg.cmake"
-      }
-    },
-    {
       "name": "gcc",
       "displayName": "GCC",
       "description": "Sets Ninja generator, build and install directory",
