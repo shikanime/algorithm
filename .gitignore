@@ -606,3 +606,6 @@ dist
 
 # Default Build directory
 out/
+
+# Direnv
+.direnv

@@ -2,42 +2,8 @@
   "version": 3,
   "configurePresets": [
     {
-      "name": "x86_64-nixos-darwin-gnu",
-      "displayName": "GCC 11.2.0 x86_64-nixos-darwin",
-      "description": "Sets Ninja generator, build and install directory",
-      "generator": "Ninja",
-      "environment": {
-        "CMAKE_INCLUDE_PATH": "/nix/store/p1b6adrf3mgl4xr2rahqkdq16psqxzrs-openssl-3.0.2-dev/include",
-        "CMAKE_LIBRARY_PATH": "/nix/store/6j60gjb2rf72fcymvbhsvil8yiqq826w-openssl-3.0.2/lib"
-      },
-      "cacheVariables": {
-        "CMAKE_CXX_COMPILER": "/nix/store/wjrmqc01jk5ig3yvsgwa0r30r9zaqdr6-gcc-wrapper-11.2.0/bin/g++",
-        "CMAKE_C_COMPILER": "/nix/store/wjrmqc01jk5ig3yvsgwa0r30r9zaqdr6-gcc-wrapper-11.2.0/bin/gcc",
-        "CMAKE_MAKE_PROGRAM": "/nix/store/d3x4xja7gyd35crf963dvqy2w8z4ycrb-ninja-1.10.2/bin/ninja",
-        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
-        "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/vcpkg/scripts/buildsystems/vcpkg.cmake"
-      }
-    },
-    {
-      "name": "x86_64-nixos-linux-gnu",
-      "displayName": "GCC 11.2.0 x86_64-nixos-linux",
-      "description": "Sets Ninja generator, build and install directory",
-      "generator": "Ninja",
-      "environment": {
-        "CMAKE_INCLUDE_PATH": "/nix/store/m5vrj8ia4206h2v86cms3444lf9gzkvv-openssl-1.1.1n-dev/include",
-        "CMAKE_LIBRARY_PATH": "/nix/store/99y38kh3xdflni5g7gkjijb6361lm2af-openssl-1.1.1n/lib"
-      },
-      "cacheVariables": {
-        "CMAKE_CXX_COMPILER": "/nix/store/gk15ik5xng72y8cmaw4d9d0g5l7mdb57-gcc-wrapper-11.2.0/bin/g++",
-        "CMAKE_C_COMPILER": "/nix/store/gk15ik5xng72y8cmaw4d9d0g5l7mdb57-gcc-wrapper-11.2.0/bin/gcc",
-        "CMAKE_MAKE_PROGRAM": "/nix/store/xfl80hfsgi9rdd2jymq89927170y84ar-ninja-1.10.2/bin/ninja",
-        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
-        "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/vcpkg/scripts/buildsystems/vcpkg.cmake"
-      }
-    },
-    {
-      "name": "x86_64-pc-windows-msvc",
-      "displayName": "Visual Studio 17 2022 x86_64-pc-windows-msvc",
+      "name": "msvc",
+      "displayName": "Visual Studio 17 2022",
       "description": "Sets Vistual Studio generator, build and install directory",
       "generator": "Visual Studio 17 2022",
       "cacheVariables": {
@@ -45,8 +11,8 @@
       }
     },
     {
-      "name": "x86_64-apple-darwin",
-      "displayName": "Xcode x86_64-apple-darwin",
+      "name": "xcode",
+      "displayName": "Xcode",
       "description": "Sets Xcode generator, build and install directory",
       "generator": "Xcode",
       "environment": {
@@ -58,12 +24,15 @@
       }
     },
     {
-      "name": "x86_64-unknown-linux-gnu",
-      "displayName": "GCC x86_64-unknown-linux-gnu",
+      "name": "gcc",
+      "displayName": "GCC",
       "description": "Sets Ninja generator, build and install directory",
       "generator": "Ninja",
       "cacheVariables": {
         "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+        "CMAKE_MAKE_PROGRAM": "ninja",
+        "CMAKE_CXX_COMPILER": "g++",
+        "CMAKE_C_COMPILER": "gcc",
         "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/vcpkg/scripts/buildsystems/vcpkg.cmake"
       }
     }
