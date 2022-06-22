@@ -10,20 +10,12 @@ defmodule CanConstruct do
   end
 
   def solve(target, words) do
-    case do_solve(target, words) do
-      :error ->
-        false
-
-      mask ->
-        solve(String.slice(target, mask..-1), words)
-    end
-  end
-
-  defp do_solve(target, words) do
     words
     |> Enum.filter(&String.starts_with?(target, &1))
-    |> Enum.map(&String.length/1)
-    |> Enum.max(fn -> :error end)
+    |> Enum.map(fn word ->
+      solve(String.slice(target, String.length(word)..-1), words)
+    end)
+    |> Enum.any?()
   end
 end
 
@@ -31,12 +23,13 @@ assert(CanConstruct.solve("", ["a", "b"]))
 refute(CanConstruct.solve("abcdef", ["ab", "adc", "cd", "def", "abcd"]))
 refute(CanConstruct.solve("skateboard", ["bo", "rd", "ate", "t", "ska", "sk", "boar"]))
 
-refute(
-  CanConstruct.solve("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef", [
-    "e",
-    "ee",
-    "eee",
-    "eeee",
-    "eeeeee"
-  ])
-)
+# refute(
+#   CanConstruct.solve("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef", [
+#     "e",
+#     "ee",
+#     "eee",
+#     "eeee",
+#     "eeeeee",
+#     "eeeeeee"
+#   ])
+# )
