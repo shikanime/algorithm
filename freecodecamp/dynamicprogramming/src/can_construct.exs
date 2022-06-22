@@ -3,33 +3,67 @@
 import ExUnit.Assertions
 
 defmodule CanConstruct do
-  def solve(target, words)
+  def solve(target, words, memo \\ %{})
 
-  def solve("", _words) do
-    true
+  def solve("", _words, memo) do
+    {true, memo}
   end
 
-  def solve(target, words) do
-    words
-    |> Enum.filter(&String.starts_with?(target, &1))
-    |> Enum.map(fn word ->
-      solve(String.slice(target, String.length(word)..-1), words)
-    end)
-    |> Enum.any?()
+  def solve(target, words, memo) do
+    case Map.get(memo, target) do
+      nil -> do_solve(target, words, memo)
+      memoized -> {memoized, memo}
+    end
+  end
+
+  def do_solve(target, words, memo) do
+    {results, memo} =
+      words
+      |> Enum.filter(&String.starts_with?(target, &1))
+      |> Enum.map(&String.slice(target, String.length(&1)..-1))
+      |> Enum.map_reduce(memo, fn target, memo ->
+        {result, memo} = solve(target, words, memo)
+        {result, Map.put(memo, target, result)}
+      end)
+
+    {Enum.any?(results), memo}
   end
 end
 
-assert(CanConstruct.solve("", ["a", "b"]))
-refute(CanConstruct.solve("abcdef", ["ab", "adc", "cd", "def", "abcd"]))
-refute(CanConstruct.solve("skateboard", ["bo", "rd", "ate", "t", "ska", "sk", "boar"]))
+assert({true, _} = CanConstruct.solve("", ["a", "b"]))
 
-# refute(
-#   CanConstruct.solve("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef", [
-#     "e",
-#     "ee",
-#     "eee",
-#     "eeee",
-#     "eeeeee",
-#     "eeeeeee"
-#   ])
-# )
+assert(
+  {false, _} =
+    CanConstruct.solve("abcdef", [
+      "ab",
+      "adc",
+      "cd",
+      "def",
+      "abcd"
+    ])
+)
+
+assert(
+  {false, _} =
+    CanConstruct.solve("skateboard", [
+      "bo",
+      "rd",
+      "ate",
+      "t",
+      "ska",
+      "sk",
+      "boar"
+    ])
+)
+
+assert(
+  {false, _} =
+    CanConstruct.solve("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef", [
+      "e",
+      "ee",
+      "eee",
+      "eeee",
+      "eeeeee",
+      "eeeeeee"
+    ])
+)
