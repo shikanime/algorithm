@@ -1,3 +1,5 @@
+#!/usr/bin/env deno
+
 type Memo = { [key: number]: boolean };
 
 const canSum = (
