@@ -41,13 +41,23 @@ end
 assert({[[]], _} = AllConstruct.solve("", ["a", "b"]))
 
 assert(
-  {[["abc", "def"]], _} =
+  {
+    [
+      ["ab", "c", "def"],
+      ["ab", "cd", "ef"],
+      ["abc", "def"],
+      ["abcd", "ef"]
+    ],
+    _
+  } =
     AllConstruct.solve("abcdef", [
       "ab",
       "abc",
+      "c",
       "cd",
       "def",
-      "abcd"
+      "abcd",
+      "ef"
     ])
 )
 
