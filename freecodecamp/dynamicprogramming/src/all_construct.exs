@@ -22,16 +22,12 @@ defmodule AllConstruct do
       |> Enum.filter(&String.starts_with?(target, &1))
       |> Enum.map(&{&1, String.slice(target, String.length(&1)..-1)})
       |> Enum.flat_map_reduce(memo, fn {word, target}, memo ->
-        case solve(target, words, memo) do
-          {[], memo} ->
-            {[], Map.put(memo, target, [])}
+        {combinaisons, memo} = solve(target, words, memo)
 
-          {combinaisons, memo} ->
-            {
-              Enum.map(combinaisons, &[word | &1]),
-              Map.put(memo, target, combinaisons)
-            }
-        end
+        {
+          Enum.map(combinaisons, &[word | &1]),
+          Map.put(memo, target, combinaisons)
+        }
       end)
 
     {Enum.filter(results, &(length(&1) >= 1)), memo}
