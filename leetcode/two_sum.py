@@ -1,17 +1,14 @@
 class Solution:
     def twoSum(self, nums: list[int], target: int) -> list[int]:
-        if target == 0:
-            return []
-        for idx, num in enumerate(nums):
-            try:
-                solution = self.twoSum(
-                    nums[0:idx] + nums[idx + 1 :],
-                    target - num,
-                )
-            except ValueError:
-                continue
-            return [idx, *list(map(lambda x: x + 1, solution))]
-        raise ValueError("No solution")
+        memo: dict[int, int] = {}
+
+        for i, n in enumerate(nums):
+            diff = target - n
+            if diff in memo:
+                return [memo[diff], i]
+            memo[n] = i
+
+        raise Exception("No solution")
 
 
 solver = Solution()
