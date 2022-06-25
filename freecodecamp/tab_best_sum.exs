@@ -2,7 +2,7 @@
 
 import ExUnit.Assertions
 
-defmodule BestSum do
+defmodule TabBestSum do
   def solve(target, numbers) when is_number(target) do
     solve([[] | List.duplicate(nil, target)], numbers)
   end
@@ -34,10 +34,10 @@ defmodule BestSum do
   end
 end
 
-assert([7] == List.last(BestSum.solve(7, [5, 3, 4, 7])))
+assert([7] == List.last(TabBestSum.solve(7, [5, 3, 4, 7])))
 
-assert([3, 5] == List.last(BestSum.solve(8, [2, 3, 5])))
+assert([3, 5] == List.last(TabBestSum.solve(8, [2, 3, 5])))
 
-assert([4, 4] == List.last(BestSum.solve(8, [1, 4, 5])))
+assert([4, 4] == List.last(TabBestSum.solve(8, [1, 4, 5])))
 
-assert([25, 25, 25, 25] == List.last(BestSum.solve(100, [1, 2, 5, 25])))
+assert([25, 25, 25, 25] == List.last(TabBestSum.solve(100, [1, 2, 5, 25])))

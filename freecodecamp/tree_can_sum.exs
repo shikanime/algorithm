@@ -2,7 +2,7 @@
 
 import ExUnit.Assertions
 
-defmodule CanSum do
+defmodule TreeCanSum do
   def solve(target, numbers, memo \\ %{})
 
   def solve(0, _numbers, memo) do
@@ -32,8 +32,8 @@ defmodule CanSum do
   end
 end
 
-assert({true, _} = CanSum.solve(7, [2, 3]))
-assert({true, _} = CanSum.solve(7, [5, 3, 4, 7]))
-assert({false, _} = CanSum.solve(7, [2, 4]))
-assert({true, _} = CanSum.solve(8, [2, 3, 5]))
-assert({false, _} = CanSum.solve(300, [7, 14]))
+assert({true, _} = TreeCanSum.solve(7, [2, 3]))
+assert({true, _} = TreeCanSum.solve(7, [5, 3, 4, 7]))
+assert({false, _} = TreeCanSum.solve(7, [2, 4]))
+assert({true, _} = TreeCanSum.solve(8, [2, 3, 5]))
+assert({false, _} = TreeCanSum.solve(300, [7, 14]))

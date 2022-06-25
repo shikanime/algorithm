@@ -2,11 +2,11 @@
 
 import ExUnit.Assertions
 
-defmodule CountConstruct do
+defmodule TreeCanConstruct do
   def solve(target, words, memo \\ %{})
 
   def solve("", _words, memo) do
-    {1, memo}
+    {true, memo}
   end
 
   def solve(target, words, memo) do
@@ -26,17 +26,17 @@ defmodule CountConstruct do
         {result, Map.put(memo, target, result)}
       end)
 
-    {Enum.count(results, &(&1 >= 1)), memo}
+    {Enum.any?(results), memo}
   end
 end
 
-assert({1, _} = CountConstruct.solve("", ["a", "b"]))
+assert({true, _} = TreeCanConstruct.solve("", ["a", "b"]))
 
 assert(
-  {1, _} =
-    CountConstruct.solve("abcdef", [
+  {false, _} =
+    TreeCanConstruct.solve("abcdef", [
       "ab",
-      "abc",
+      "adc",
       "cd",
       "def",
       "abcd"
@@ -44,8 +44,8 @@ assert(
 )
 
 assert(
-  {0, _} =
-    CountConstruct.solve("skateboard", [
+  {false, _} =
+    TreeCanConstruct.solve("skateboard", [
       "bo",
       "rd",
       "ate",
@@ -57,24 +57,13 @@ assert(
 )
 
 assert(
-  {0, _} =
-    CountConstruct.solve("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef", [
+  {false, _} =
+    TreeCanConstruct.solve("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef", [
       "e",
       "ee",
       "eee",
       "eeee",
       "eeeeee",
       "eeeeeee"
-    ])
-)
-
-assert(
-  {2, _} =
-    CountConstruct.solve("purple", [
-      "purp",
-      "p",
-      "ur",
-      "le",
-      "purpl"
     ])
 )

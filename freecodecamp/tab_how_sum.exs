@@ -2,7 +2,7 @@
 
 import ExUnit.Assertions
 
-defmodule HowSum do
+defmodule TabHowSum do
   def solve(target, numbers) when is_number(target) do
     solve([[] | List.duplicate(nil, target)], numbers)
   end
@@ -45,5 +45,5 @@ assert(
     [5],
     [3, 3],
     [4, 3]
-  ] == HowSum.solve(7, [5, 3, 4])
+  ] == TabHowSum.solve(7, [5, 3, 4])
 )

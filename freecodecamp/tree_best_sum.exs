@@ -1,6 +1,6 @@
 #!/usr/bin/env elixir
 
-defmodule HowSum do
+defmodule TreeHowSum do
   def solve(target, numbers, memo \\ %{})
 
   def solve(0, _numbers, memo) do
@@ -19,7 +19,7 @@ defmodule HowSum do
     end
   end
 
-  def do_solve(target, numbers, memo) do
+  defp do_solve(target, numbers, memo) do
     {paths, memo} =
       numbers
       |> Enum.map(&{&1, target - &1})
@@ -36,20 +36,18 @@ defmodule HowSum do
     {
       paths
       |> Enum.reject(&(&1 == :error))
-      |> List.first(:error),
+      |> Enum.max_by(&length/1, fn -> :error end),
       memo
     }
   end
 end
 
 for {target, numbers} <- [
-      {0, [2, 3]},
-      {7, [2, 3]},
       {7, [5, 3, 4, 7]},
-      {7, [2, 4]},
       {8, [2, 3, 5]},
-      {300, [7, 14]}
+      {8, [1, 4, 5]},
+      {100, [1, 2, 5, 25]}
     ] do
-  {path, _memo} = HowSum.solve(target, numbers)
+  {path, _memo} = TreeHowSum.solve(target, numbers)
   IO.inspect(%{target: target, numbers: numbers, path: path})
 end

@@ -2,7 +2,7 @@
 
 import ExUnit.Assertions
 
-defmodule CanSum do
+defmodule TabCanSum do
   def solve(target, numbers) when is_number(target) do
     solve([true | List.duplicate(false, target)], numbers)
   end
@@ -41,5 +41,5 @@ assert(
     true,
     true,
     true
-  ] == CanSum.solve(7, [5, 3, 4])
+  ] == TabCanSum.solve(7, [5, 3, 4])
 )

@@ -2,7 +2,7 @@
 
 import ExUnit.Assertions
 
-defmodule AllConstruct do
+defmodule TreeAllConstruct do
   def solve(target, words, memo \\ %{})
 
   def solve("", _words, memo) do
@@ -34,7 +34,7 @@ defmodule AllConstruct do
   end
 end
 
-assert({[[]], _} = AllConstruct.solve("", ["a", "b"]))
+assert({[[]], _} = TreeAllConstruct.solve("", ["a", "b"]))
 
 assert(
   {
@@ -46,7 +46,7 @@ assert(
     ],
     _
   } =
-    AllConstruct.solve("abcdef", [
+    TreeAllConstruct.solve("abcdef", [
       "ab",
       "abc",
       "c",
@@ -59,7 +59,7 @@ assert(
 
 assert(
   {[], _} =
-    AllConstruct.solve("skateboard", [
+    TreeAllConstruct.solve("skateboard", [
       "bo",
       "rd",
       "ate",
@@ -72,7 +72,7 @@ assert(
 
 assert(
   {[], _} =
-    AllConstruct.solve("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef", [
+    TreeAllConstruct.solve("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef", [
       "e",
       "ee",
       "eee",
@@ -84,7 +84,7 @@ assert(
 
 assert(
   {[["purp", "le"], ["p", "ur", "p", "le"]], _} =
-    AllConstruct.solve("purple", [
+    TreeAllConstruct.solve("purple", [
       "purp",
       "p",
       "ur",
