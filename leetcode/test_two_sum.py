@@ -8,7 +8,7 @@ class Solution:
                 return [memo[diff], i]
             memo[n] = i
 
-        raise Exception("No solution")
+        raise ValueError("No solution")
 
 
 def test_solution():
