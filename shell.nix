@@ -1,5 +1,10 @@
 { pkgs ? import <nixpkgs> { } }:
 
+let
+  pythonEnv = pkgs.python3.withPackages (pypkgs: [
+    pypkgs.black
+  ]);
+in
 pkgs.stdenv.mkDerivation {
   name = "algorithm-shell";
   buildInputs = [
@@ -12,5 +17,6 @@ pkgs.stdenv.mkDerivation {
     pkgs.cmake
     pkgs.gnumake
     pkgs.clang-tools
+    pythonEnv
   ];
 }
