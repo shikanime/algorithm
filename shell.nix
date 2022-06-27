@@ -2,6 +2,7 @@
 
 let
   pythonEnv = pkgs.python3.withPackages (pypkgs: [
+    pypkgs.pip
     pypkgs.black
     pypkgs.pytest
   ]);
