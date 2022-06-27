@@ -12,5 +12,6 @@ class Solution:
         return shs == ths
 
 
-solver = Solution()
-assert solver.isAnagram("anagram", "nagaram") == True
+def test_solution():
+    solver = Solution()
+    assert solver.isAnagram("anagram", "nagaram") == True

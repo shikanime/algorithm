@@ -9,5 +9,6 @@ class Solution:
         return [prefix[i] * suffix[i + 1] for i in range(len(nums))]
 
 
-solver = Solution()
-print(solver.productExceptSelf([1, 2, 3, 4]))
+def test_solution():
+    solver = Solution()
+    assert solver.productExceptSelf([1, 2, 3, 4]) == [24, 12, 8, 6]

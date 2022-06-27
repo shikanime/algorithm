@@ -3,6 +3,7 @@
 let
   pythonEnv = pkgs.python3.withPackages (pypkgs: [
     pypkgs.black
+    pypkgs.pytest
   ]);
 in
 pkgs.stdenv.mkDerivation {

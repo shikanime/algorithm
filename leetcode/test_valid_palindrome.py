@@ -4,5 +4,6 @@ class Solution:
         return s == s[::-1]
 
 
-solver = Solution()
-print(solver.isPalindrome("A man, a plan, a canal: Panama"))
+def test_solution():
+    solver = Solution()
+    assert solver.isPalindrome("A man, a plan, a canal: Panama") == True

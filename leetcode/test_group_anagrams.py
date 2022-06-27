@@ -9,5 +9,10 @@ class Solution:
         return list(map.values())
 
 
-solver = Solution()
-print(solver.groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]))
+def test_solution():
+    solver = Solution()
+    assert solver.groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]) == [
+        ["eat", "tea", "ate"],
+        ["tan", "nat"],
+        ["bat"],
+    ]

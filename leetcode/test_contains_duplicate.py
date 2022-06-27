@@ -11,5 +11,6 @@ class Solution:
         return True
 
 
-solver = Solution()
-assert solver.containsDuplicate([1, 2, 3, 1]) == False
+def test_solution():
+    solver = Solution()
+    assert solver.containsDuplicate([1, 2, 3, 1]) == False
