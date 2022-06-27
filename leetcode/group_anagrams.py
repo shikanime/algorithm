@@ -7,12 +7,3 @@ class Solution:
         for s in strs:
             groups[hash(str(sorted(s)))].append(s)
         return list(groups.values())
-
-
-def test_solution():
-    solver = Solution()
-    assert solver.groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]) == [
-        ["eat", "tea", "ate"],
-        ["tan", "nat"],
-        ["bat"],
-    ]

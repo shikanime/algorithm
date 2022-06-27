@@ -7,8 +7,3 @@ class Solution:
         for j in range(len(suffix) - 2, -1, -1):
             suffix[j] = suffix[j + 1] * nums[j]
         return [prefix[i] * suffix[i + 1] for i in range(len(nums))]
-
-
-def test_solution():
-    solver = Solution()
-    assert solver.productExceptSelf([1, 2, 3, 4]) == [24, 12, 8, 6]

@@ -10,8 +10,3 @@ class Solution:
             tsi = ths.get(ct) or 0
             ths[ct] = tsi + 1
         return shs == ths
-
-
-def test_solution():
-    solver = Solution()
-    assert solver.isAnagram("anagram", "nagaram") == True
