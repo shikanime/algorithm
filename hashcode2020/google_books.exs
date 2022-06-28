@@ -1,31 +1,10 @@
-defmodule Hashcode2020 do
+defmodule GoogleBooks do
   require Logger
 
-  def solve(filename) do
-    {:ok, {n_books, n_libraries, budget, _, libraries}} =
-      File.open("#{:code.priv_dir(:hashcode2020)}/input/#{filename}", [:utf8], fn device ->
-        {n_books, n_libraries, budget} = Hashcode2020.IO.read_header(device)
-        order = Hashcode2020.IO.read_books(device, n_books)
-        libraries = Hashcode2020.IO.read_libraries(device, n_libraries)
-        {n_books, n_libraries, budget, order, libraries}
-      end)
-
-    Logger.debug(["Number of books: ", n_books |> to_string()])
-    Logger.debug(["Number of libraries: ", n_libraries |> to_string()])
-    Logger.debug(["Budget: ", budget |> to_string()])
-
+  def solve(budget, libraries) do
     libraries = rank_libraries(libraries, budget)
     {signup_days, libraries} = select_libraries(libraries, budget)
-
-    Logger.debug(["Starting days: ", signup_days |> to_string()])
-
-    libraries = invest_libraries(libraries, budget - signup_days)
-
-    File.open(
-      "#{:code.priv_dir(:hashcode2020)}/output/#{filename}",
-      [:utf8, :write],
-      &Hashcode2020.IO.put_libraries(&1, libraries)
-    )
+    invest_libraries(libraries, budget - signup_days)
   end
 
   defp rank_libraries(libraries, budget) do
@@ -77,7 +56,7 @@ defmodule Hashcode2020 do
   end
 end
 
-defmodule Hashcode2020.IO do
+defmodule GoogleBooks.IO do
   def read_header(device) do
     [n_books, n_libraries, n_days] = read_input(device) |> Enum.take(3)
     {n_books, n_libraries, n_days}
@@ -121,3 +100,9 @@ defmodule Hashcode2020.IO do
     IO.puts(device, libraries |> format_libraries())
   end
 end
+
+{n_books, n_libraries, budget} = GoogleBooks.IO.read_header(:stdio)
+_order = GoogleBooks.IO.read_books(:stdio, n_books)
+libraries = GoogleBooks.IO.read_libraries(:stdio, n_libraries)
+libraries = GoogleBooks.solve(budget, libraries)
+GoogleBooks.IO.put_libraries(:stdio, libraries)

@@ -1,12 +1,4 @@
-defmodule Hashcode2020.Pizza do
-  def solve do
-    n = Hashcode2020.Pizza.IO.read_header(:stdio)
-    pizzas = Hashcode2020.Pizza.IO.read_pizzas(:stdio)
-    orders = solve(pizzas, n)
-    Hashcode2020.Pizza.IO.put_types(:stdio, orders)
-    Hashcode2020.Pizza.IO.put_orders(:stdio, orders)
-  end
-
+defmodule PizzaSlices do
   def solve(pizzas, n) do
     pizzas
     |> Enum.with_index()
@@ -30,7 +22,7 @@ defmodule Hashcode2020.Pizza do
   end
 end
 
-defmodule Hashcode2020.Pizza.IO do
+defmodule PizzaSlices.IO do
   def read_header(device) do
     IO.read(device, :line)
     |> String.split()
@@ -57,3 +49,9 @@ defmodule Hashcode2020.Pizza.IO do
     |> IO.puts(device)
   end
 end
+
+n = PizzaSlices.IO.read_header(:stdio)
+pizzas = PizzaSlices.IO.read_pizzas(:stdio)
+orders = PizzaSlices.solve(pizzas, n)
+PizzaSlices.IO.put_types(:stdio, orders)
+PizzaSlices.IO.put_orders(:stdio, orders)

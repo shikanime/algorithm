@@ -1,28 +1,14 @@
-defmodule Hashcode2022 do
-  def solve do
-    {contributors, projects} =
-      File.open!(
-        "#{:code.priv_dir(:hashcode2022)}/a_an_example.in.txt",
-        &Hashcode2022.IO.read(&1)
-      )
-
+defmodule SoftwareEngineeringAtScale do
+  def solve(contributors, projects) do
     estimations =
       for project <- projects do
         contributors
-        |> Enum.filter(&Hashcode2022.eligible?(project, &1))
-        |> Enum.sort_by(&Hashcode2022.compatiblity(project, &1))
-        |> Enum.flat_map_reduce(project, &Hashcode2022.assign(&2, &1))
+        |> Enum.filter(&SoftwareEngineeringAtScale.eligible?(project, &1))
+        |> Enum.sort_by(&SoftwareEngineeringAtScale.compatiblity(project, &1))
+        |> Enum.flat_map_reduce(project, &SoftwareEngineeringAtScale.assign(&2, &1))
       end
 
-    tasks = Enum.filter(estimations, &(length(elem(&1, 0)) > 0))
-
-    File.touch!("#{:code.priv_dir(:hashcode2022)}/a_an_example.out.txt")
-
-    File.open!(
-      "#{:code.priv_dir(:hashcode2022)}/a_an_example.out.txt",
-      [:write],
-      &Hashcode2022.IO.write(&1, tasks)
-    )
+    Enum.filter(estimations, &(length(elem(&1, 0)) > 0))
   end
 
   def eligible?(project, contributor) do
@@ -72,7 +58,7 @@ defmodule Hashcode2022 do
   end
 end
 
-defmodule Hashcode2022.IO do
+defmodule SoftwareEngineeringAtScale.IO do
   defp read_line(device) do
     device
     |> IO.read(:line)
@@ -170,3 +156,7 @@ defmodule Hashcode2022.IO do
     Enum.intersperse(header ++ body, "\n")
   end
 end
+
+{contributors, projects} = SoftwareEngineeringAtScale.IO.read(:stdio)
+tasks = SoftwareEngineeringAtScale.solve(contributors, projects)
+SoftwareEngineeringAtScale.IO.write(:stdio, tasks)
