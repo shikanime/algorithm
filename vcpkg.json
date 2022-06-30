@@ -5,6 +5,7 @@
   "homepage": "https://github.com/Shikanime/algorithm",
   "license": "AGPL-3.0-or-later",
   "dependencies": [
-    "openssl"
+    "openssl",
+    "gtest"
   ]
 }

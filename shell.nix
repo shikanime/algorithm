@@ -17,6 +17,8 @@ pkgs.stdenv.mkDerivation {
     pkgs.zip
     pkgs.ninja
     pkgs.cmake
+    pkgs.clang
+    pkgs.gmock
     pkgs.gnumake
     pkgs.clang-tools
     pythonEnv

@@ -2,5 +2,6 @@
   "python.testing.pytestArgs": ["."],
   "python.testing.unittestEnabled": false,
   "python.testing.pytestEnabled": true,
-  "python.testing.unittestArgs": ["-v", "-s", "./leetcode", "-p", "*_test.py"]
+  "python.testing.unittestArgs": ["-v", "-s", "./leetcode", "-p", "*_test.py"],
+  "sonarlint.pathToCompileCommands": "${workspaceFolder}/out/build/gcc/compile_commands.json"
 }

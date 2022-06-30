@@ -19,14 +19,12 @@ set_property(TARGET perfectly_spherical_houses_in_a_vacuum PROPERTY CXX_STANDARD
 add_executable(perfectly_spherical_houses_in_a_vacuum_part_two src/perfectly_spherical_houses_in_a_vacuum_part_two.cc)
 set_property(TARGET perfectly_spherical_houses_in_a_vacuum_part_two PROPERTY CXX_STANDARD 20)
 
-find_package(OpenSSL REQUIRED)
-
 add_executable(the_ideal_stocking_stuffer src/the_ideal_stocking_stuffer.cc)
-target_link_libraries(the_ideal_stocking_stuffer OpenSSL::SSL)
+target_link_libraries(the_ideal_stocking_stuffer PRIVATE OpenSSL::SSL)
 set_property(TARGET the_ideal_stocking_stuffer PROPERTY CXX_STANDARD 20)
 
 add_executable(the_ideal_stocking_stuffer_part_two src/the_ideal_stocking_stuffer_part_two.cc)
-target_link_libraries(the_ideal_stocking_stuffer_part_two OpenSSL::SSL)
+target_link_libraries(the_ideal_stocking_stuffer_part_two PRIVATE OpenSSL::SSL)
 set_property(TARGET the_ideal_stocking_stuffer_part_two PROPERTY CXX_STANDARD 20)
 
 add_executable(doesn_t_he_have_intern_elves_for_this src/doesn_t_he_have_intern_elves_for_this.cc)
