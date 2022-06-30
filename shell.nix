@@ -20,6 +20,7 @@ pkgs.stdenv.mkDerivation {
     pkgs.clang
     pkgs.gmock
     pkgs.gnumake
+    pkgs.cmake-format
     pkgs.clang-tools
     pythonEnv
   ];
