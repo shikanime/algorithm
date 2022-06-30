@@ -3,5 +3,7 @@
   "python.testing.unittestEnabled": false,
   "python.testing.pytestEnabled": true,
   "python.testing.unittestArgs": ["-v", "-s", "./leetcode", "-p", "*_test.py"],
-  "sonarlint.pathToCompileCommands": "${workspaceFolder}/out/build/gcc/compile_commands.json"
+  "sonarlint.pathToCompileCommands": "${workspaceFolder}/out/build/gcc/compile_commands.json",
+  "C_Cpp.default.cStandard": "c17",
+  "C_Cpp.default.cppStandard": "c++20"
 }
