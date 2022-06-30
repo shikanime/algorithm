@@ -7,3 +7,4 @@ find_package(GTest REQUIRED)
 find_package(OpenSSL REQUIRED)
 
 add_subdirectory(adventofcode2015)
+add_subdirectory(leetcode)
