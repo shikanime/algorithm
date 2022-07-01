@@ -15,3 +15,13 @@ add_executable(subtree_of_another_tree subtree_of_another_tree.cc
 set_property(TARGET subtree_of_another_tree PROPERTY CXX_STANDARD 20)
 target_link_libraries(subtree_of_another_tree PRIVATE GTest::gtest_main)
 gtest_discover_tests(subtree_of_another_tree)
+
+add_executable(
+  lowest_common_ancestor_of_a_binary_search
+  lowest_common_ancestor_of_a_binary_search.cc
+  lowest_common_ancestor_of_a_binary_search_test.cc)
+set_property(TARGET lowest_common_ancestor_of_a_binary_search
+             PROPERTY CXX_STANDARD 20)
+target_link_libraries(lowest_common_ancestor_of_a_binary_search
+                      PRIVATE GTest::gtest_main)
+gtest_discover_tests(lowest_common_ancestor_of_a_binary_search)

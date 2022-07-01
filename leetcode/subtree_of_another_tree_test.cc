@@ -30,7 +30,7 @@ TEST(SubTree, NonMediumTreeSubTree) {
   auto llr = TreeNode(2, nullptr, &lllr);
   auto lll = TreeNode(1);
   auto lr = TreeNode(5);
-  auto ll = TreeNode(4,&lll, &llr);
+  auto ll = TreeNode(4, &lll, &llr);
   auto l = TreeNode(3, &ll, &lr);
 
   auto rl = TreeNode(1);
