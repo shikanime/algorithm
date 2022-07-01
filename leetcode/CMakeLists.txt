@@ -5,21 +5,18 @@ enable_testing()
 
 find_package(GTest REQUIRED)
 
-add_executable(same_tree same_tree.cc same_tree_test.cc)
+add_executable(same_tree same_tree_test.cc)
 set_property(TARGET same_tree PROPERTY CXX_STANDARD 20)
 target_link_libraries(same_tree PRIVATE GTest::gtest_main)
 gtest_discover_tests(same_tree)
 
-add_executable(subtree_of_another_tree subtree_of_another_tree.cc
-                                       subtree_of_another_tree_test.cc)
+add_executable(subtree_of_another_tree subtree_of_another_tree_test.cc)
 set_property(TARGET subtree_of_another_tree PROPERTY CXX_STANDARD 20)
 target_link_libraries(subtree_of_another_tree PRIVATE GTest::gtest_main)
 gtest_discover_tests(subtree_of_another_tree)
 
-add_executable(
-  lowest_common_ancestor_of_a_binary_search
-  lowest_common_ancestor_of_a_binary_search.cc
-  lowest_common_ancestor_of_a_binary_search_test.cc)
+add_executable(lowest_common_ancestor_of_a_binary_search
+               lowest_common_ancestor_of_a_binary_search_test.cc)
 set_property(TARGET lowest_common_ancestor_of_a_binary_search
              PROPERTY CXX_STANDARD 20)
 target_link_libraries(lowest_common_ancestor_of_a_binary_search
