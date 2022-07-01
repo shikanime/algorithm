@@ -18,7 +18,8 @@ class Solution {
     std::vector<std::vector<int>> levels{{root->val}};
     std::queue<TreeNode*> rest({root->left, root->right});
     while (!rest.empty()) {
-      std::vector<int> curr;
+      levels.emplace_back();
+      auto& curr = levels.back();
       for (auto i = rest.size(); i > 0; i--) {
         auto node = rest.front();
         rest.pop();
@@ -28,8 +29,8 @@ class Solution {
           rest.emplace(node->right);
         }
       }
-      if (!curr.empty()) {
-        levels.push_back(curr);
+      if (curr.empty()) {
+        levels.pop_back();
       }
     }
     return levels;
