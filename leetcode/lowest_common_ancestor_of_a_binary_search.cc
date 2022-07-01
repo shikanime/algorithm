@@ -2,10 +2,12 @@
 
 TreeNode* Solution::lowestCommonAncestor(TreeNode* root, TreeNode* p,
                                          TreeNode* q) {
-  if (root == nullptr) return nullptr;
-  if (p->val > root->val && q->val > root->val)
-    return lowestCommonAncestor(root->right, p, q);
-  if (root->val > p->val && root->val > q->val)
-    return lowestCommonAncestor(root->left, p, q);
-  return root;
+  while (root != nullptr)
+    if (p->val > root->val && q->val > root->val)
+      root = root->right;
+     else if (root->val > p->val && root->val > q->val)
+      root = root->left;
+     else
+      return root;
+  return nullptr;
 }
