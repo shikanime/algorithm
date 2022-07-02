@@ -4,5 +4,5 @@
 
 TEST(LowestCommonAncestorOfABinarySearch, Base) {
   auto solution = Solution();
-  EXPECT_EQ(nullptr, solution.lowestCommonAncestor(nullptr, nullptr, nullptr));
+  EXPECT_EQ(solution.lowestCommonAncestor(nullptr, nullptr, nullptr), nullptr);
 }

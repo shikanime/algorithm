@@ -4,7 +4,7 @@
 
 TEST(SubTree, Base) {
   auto solution = Solution();
-  EXPECT_EQ(true, solution.isSubtree(nullptr, nullptr));
+  EXPECT_EQ(solution.isSubtree(nullptr, nullptr), true);
 }
 
 TEST(SubTree, Normal) {
@@ -20,7 +20,7 @@ TEST(SubTree, Normal) {
   auto rr = TreeNode(2);
   auto r = TreeNode(4, &rl, &rr);
 
-  EXPECT_EQ(true, solution.isSubtree(&l, &r));
+  EXPECT_EQ(solution.isSubtree(&l, &r), true);
 }
 
 TEST(SubTree, NonMediumTreeSubTree) {
@@ -37,5 +37,5 @@ TEST(SubTree, NonMediumTreeSubTree) {
   auto rr = TreeNode(2);
   auto r = TreeNode(4, &rl, &rr);
 
-  EXPECT_EQ(false, solution.isSubtree(&l, &r));
+  EXPECT_EQ(solution.isSubtree(&l, &r), false);
 }

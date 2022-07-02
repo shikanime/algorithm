@@ -5,14 +5,14 @@
 TEST(BinaryTreeLevelOrderTraversal, Base) {
   auto solution = Solution();
   std::vector<std::vector<int>> output = {};
-  EXPECT_EQ(output, solution.levelOrder(nullptr));
+  EXPECT_EQ(solution.levelOrder(nullptr), output);
 }
 
 TEST(BinaryTreeLevelOrderTraversal, SingleEntry) {
   auto solution = Solution();
   auto input = TreeNode(0);
   std::vector<std::vector<int>> output = {{0}};
-  EXPECT_EQ(output, solution.levelOrder(&input));
+  EXPECT_EQ(solution.levelOrder(&input), output);
 }
 
 TEST(BinaryTreeLevelOrderTraversal, MultipleLevel) {
@@ -22,7 +22,7 @@ TEST(BinaryTreeLevelOrderTraversal, MultipleLevel) {
   auto ir = TreeNode(1);
   auto input = TreeNode(0, &ir, &il);
   std::vector<std::vector<int>> output = {{0}, {1, 2}, {2}};
-  EXPECT_EQ(output, solution.levelOrder(&input));
+  EXPECT_EQ(solution.levelOrder(&input), output);
 }
 
 TEST(BinaryTreeLevelOrderTraversal, DeepRightTree) {
@@ -33,7 +33,7 @@ TEST(BinaryTreeLevelOrderTraversal, DeepRightTree) {
   auto ir = TreeNode(1, &irr, nullptr);
   auto input = TreeNode(0, &ir, nullptr);
   std::vector<std::vector<int>> output = {{0}, {1}, {2}, {3}, {4}};
-  EXPECT_EQ(output, solution.levelOrder(&input));
+  EXPECT_EQ(solution.levelOrder(&input), output);
 }
 
 TEST(BinaryTreeLevelOrderTraversal, ZigZag) {
@@ -44,5 +44,5 @@ TEST(BinaryTreeLevelOrderTraversal, ZigZag) {
   auto ir = TreeNode(1, &irr, nullptr);
   auto input = TreeNode(0, &ir, nullptr);
   std::vector<std::vector<int>> output = {{0}, {1}, {2}, {3}, {4}};
-  EXPECT_EQ(output, solution.levelOrder(&input));
+  EXPECT_EQ(solution.levelOrder(&input), output);
 }

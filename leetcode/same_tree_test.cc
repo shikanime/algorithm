@@ -4,11 +4,11 @@
 
 TEST(SameTree, Base) {
   auto solution = Solution();
-  EXPECT_EQ(true, solution.isSameTree(nullptr, nullptr));
+  EXPECT_EQ(solution.isSameTree(nullptr, nullptr), true);
 }
 
 TEST(SameTree, Normal) {
   auto solution = Solution();
   auto left = TreeNode(0);
-  EXPECT_EQ(false, solution.isSameTree(&left, nullptr));
+  EXPECT_EQ(solution.isSameTree(&left, nullptr), false);
 }
