@@ -19,6 +19,7 @@ pkgs.mkShell {
     pkgs.clang
     pkgs.gmock
     pkgs.gnumake
+    pkgs.gdb
     pkgs.cmake-format
     pkgs.clang-tools
     pythonEnv
