@@ -7,8 +7,7 @@ let
     pypkgs.pytest
   ]);
 in
-pkgs.stdenv.mkDerivation {
-  name = "algorithm-shell";
+pkgs.mkShell {
   buildInputs = [
     pkgs.elixir
     pkgs.deno
