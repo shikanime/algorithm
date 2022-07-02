@@ -2,7 +2,7 @@
 
 #include <gtest/gtest.h>
 
-TEST(SubTree, Base) {
+TEST(LowestCommonAncestorOfABinarySearch, Base) {
   auto solution = Solution();
   EXPECT_EQ(nullptr, solution.lowestCommonAncestor(nullptr, nullptr, nullptr));
 }

@@ -2,20 +2,20 @@
 
 #include <gtest/gtest.h>
 
-TEST(SubTree, Base) {
+TEST(BinaryTreeLevelOrderTraversal, Base) {
   auto solution = Solution();
   std::vector<std::vector<int>> output = {};
   EXPECT_EQ(output, solution.levelOrder(nullptr));
 }
 
-TEST(SubTree, SingleEntry) {
+TEST(BinaryTreeLevelOrderTraversal, SingleEntry) {
   auto solution = Solution();
   auto input = TreeNode(0);
   std::vector<std::vector<int>> output = {{0}};
   EXPECT_EQ(output, solution.levelOrder(&input));
 }
 
-TEST(SubTree, MultipleLevel) {
+TEST(BinaryTreeLevelOrderTraversal, MultipleLevel) {
   auto solution = Solution();
   auto ilr = TreeNode(2);
   auto il = TreeNode(2, &ilr, nullptr);
@@ -25,7 +25,7 @@ TEST(SubTree, MultipleLevel) {
   EXPECT_EQ(output, solution.levelOrder(&input));
 }
 
-TEST(SubTree, DeepRightTree) {
+TEST(BinaryTreeLevelOrderTraversal, DeepRightTree) {
   auto solution = Solution();
   auto irrrr = TreeNode(4);
   auto irrr = TreeNode(3, &irrrr, nullptr);
@@ -36,7 +36,7 @@ TEST(SubTree, DeepRightTree) {
   EXPECT_EQ(output, solution.levelOrder(&input));
 }
 
-TEST(SubTree, ZigZag) {
+TEST(BinaryTreeLevelOrderTraversal, ZigZag) {
   auto solution = Solution();
   auto irlrr = TreeNode(4);
   auto irlr = TreeNode(3, &irlrr, nullptr);
