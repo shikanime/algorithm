@@ -1,6 +1,7 @@
 #include <queue>
 #include <vector>
 
+namespace {
 struct TreeNode {
   int val;
   TreeNode* left;
@@ -36,3 +37,4 @@ class Solution {
     return levels;
   }
 };
+}  // namespace

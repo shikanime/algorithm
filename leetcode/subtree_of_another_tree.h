@@ -1,5 +1,6 @@
 #include <queue>
 
+namespace {
 struct TreeNode {
   int val;
   TreeNode* left;
@@ -42,3 +43,4 @@ class Solution {
     return true;
   }
 };
+}  // namespace
