@@ -27,3 +27,8 @@ set_property(TARGET binary_tree_level_order_traversal PROPERTY CXX_STANDARD 20)
 target_link_libraries(binary_tree_level_order_traversal
                       PRIVATE GTest::gtest_main)
 gtest_discover_tests(binary_tree_level_order_traversal)
+
+add_executable(binary_tree_right_side_view binary_tree_right_side_view_test.cc)
+set_property(TARGET binary_tree_right_side_view PROPERTY CXX_STANDARD 20)
+target_link_libraries(binary_tree_right_side_view PRIVATE GTest::gtest_main)
+gtest_discover_tests(binary_tree_right_side_view)
