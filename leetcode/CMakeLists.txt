@@ -38,3 +38,8 @@ add_executable(count_good_nodes_in_binary_tree
 set_property(TARGET count_good_nodes_in_binary_tree PROPERTY CXX_STANDARD 20)
 target_link_libraries(count_good_nodes_in_binary_tree PRIVATE GTest::gtest_main)
 gtest_discover_tests(count_good_nodes_in_binary_tree)
+
+add_executable(validate_binary_search_tree validate_binary_search_tree_test.cc)
+set_property(TARGET validate_binary_search_tree PROPERTY CXX_STANDARD 20)
+target_link_libraries(validate_binary_search_tree PRIVATE GTest::gtest_main)
+gtest_discover_tests(validate_binary_search_tree)
