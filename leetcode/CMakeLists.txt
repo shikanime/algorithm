@@ -32,3 +32,9 @@ add_executable(binary_tree_right_side_view binary_tree_right_side_view_test.cc)
 set_property(TARGET binary_tree_right_side_view PROPERTY CXX_STANDARD 20)
 target_link_libraries(binary_tree_right_side_view PRIVATE GTest::gtest_main)
 gtest_discover_tests(binary_tree_right_side_view)
+
+add_executable(count_good_nodes_in_binary_tree
+               count_good_nodes_in_binary_tree_test.cc)
+set_property(TARGET count_good_nodes_in_binary_tree PROPERTY CXX_STANDARD 20)
+target_link_libraries(count_good_nodes_in_binary_tree PRIVATE GTest::gtest_main)
+gtest_discover_tests(count_good_nodes_in_binary_tree)
