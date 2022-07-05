@@ -43,3 +43,9 @@ add_executable(validate_binary_search_tree validate_binary_search_tree_test.cc)
 set_property(TARGET validate_binary_search_tree PROPERTY CXX_STANDARD 20)
 target_link_libraries(validate_binary_search_tree PRIVATE GTest::gtest_main)
 gtest_discover_tests(validate_binary_search_tree)
+
+add_executable(kth_smallest_element_in_a_bst
+               kth_smallest_element_in_a_bst_test.cc)
+set_property(TARGET kth_smallest_element_in_a_bst PROPERTY CXX_STANDARD 20)
+target_link_libraries(kth_smallest_element_in_a_bst PRIVATE GTest::gtest_main)
+gtest_discover_tests(kth_smallest_element_in_a_bst)
