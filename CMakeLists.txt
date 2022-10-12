@@ -4,4 +4,4 @@ project(algorithm)
 enable_testing()
 
 add_subdirectory(adventofcode2015)
-add_subdirectory(leetcode)
+add_subdirectory(leetcode/cpp)

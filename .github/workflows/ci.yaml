@@ -28,28 +28,6 @@ jobs:
         run: nix develop -c cmake --build out/build/gcc
       - name: Run tests
         run: nix develop -c ctest --preset default --test-dir out/build/gcc
-  test-javascript:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Set up Git repository
-        uses: actions/checkout@v3
-        with:
-          submodules: recursive
-      - name: Prepare build environment
-        uses: cachix/install-nix-action@v18
-        with:
-          extra_nix_config: system-features = nixos-test benchmark big-parallel kvm
-      - name: Connect Shikanime Nix cache
-        uses: cachix/cachix-action@v11
-        with:
-          name: shikanime
-          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
-      - name: Setup environment
-        run: nix develop -c make setup
-      - name: Install dependencies
-        run: nix develop -c npm ci
-      - name: Run tests
-        run: nix develop -c npm run test -- --ci --passWithNoTests
   test-python:
     runs-on: ubuntu-latest
     steps:
