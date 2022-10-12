@@ -45,7 +45,7 @@ jobs:
       - name: Install dependencies
         run: nix develop -c npm ci
       - name: Run tests
-        run: nix develop -c npm run test -- --passWithNoTests
+        run: nix develop -c npm run test -- --ci --passWithNoTests
   test-python:
     runs-on: ubuntu-latest
     steps:
