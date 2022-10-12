@@ -2,7 +2,7 @@
   "version": 3,
   "configurePresets": [
     {
-      "name": "gcc",
+      "name": "default",
       "displayName": "GCC",
       "description": "Sets Ninja generator, build and install directory",
       "generator": "Ninja",
@@ -12,6 +12,24 @@
         "CMAKE_CXX_COMPILER": "g++",
         "CMAKE_C_COMPILER": "gcc",
         "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/vcpkg/scripts/buildsystems/vcpkg.cmake"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "default",
+      "configurePreset": "default"
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "default",
+      "configurePreset": "default",
+      "output": {
+        "outputOnFailure": true
+      },
+      "execution": {
+        "stopOnFailure": true
       }
     }
   ]

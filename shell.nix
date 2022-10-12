@@ -16,7 +16,7 @@ pkgs.mkShell {
     pkgs.zip
     pkgs.ninja
     pkgs.cmake
-    pkgs.clang
+    pkgs.gcc
     pkgs.gmock
     pkgs.gnumake
     pkgs.gdb

@@ -8,35 +8,39 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set up Git repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           submodules: recursive
       - name: Prepare build environment
-        uses: cachix/install-nix-action@v15
+        uses: cachix/install-nix-action@v18
         with:
           extra_nix_config: system-features = nixos-test benchmark big-parallel kvm
       - name: Connect Shikanime Nix cache
-        uses: cachix/cachix-action@v10
+        uses: cachix/cachix-action@v11
         with:
           name: shikanime
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
       - name: Setup environment
         run: nix develop -c make setup
+      - name: Generate CMake project
+        run: nix develop -c cmake --preset default -B out/build/gcc
       - name: Build CMake project
-        run: nix develop -c cmake --preset gcc -B out/build/gcc
+        run: nix develop -c cmake --build out/build/gcc
+      - name: Run tests
+        run: nix develop -c ctest --preset default --test-dir out/build/gcc
   test-javascript:
     runs-on: ubuntu-latest
     steps:
       - name: Set up Git repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           submodules: recursive
       - name: Prepare build environment
-        uses: cachix/install-nix-action@v15
+        uses: cachix/install-nix-action@v18
         with:
           extra_nix_config: system-features = nixos-test benchmark big-parallel kvm
       - name: Connect Shikanime Nix cache
-        uses: cachix/cachix-action@v10
+        uses: cachix/cachix-action@v11
         with:
           name: shikanime
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
@@ -50,15 +54,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set up Git repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           submodules: recursive
       - name: Prepare build environment
-        uses: cachix/install-nix-action@v15
+        uses: cachix/install-nix-action@v18
         with:
           extra_nix_config: system-features = nixos-test benchmark big-parallel kvm
       - name: Connect Shikanime Nix cache
-        uses: cachix/cachix-action@v10
+        uses: cachix/cachix-action@v11
         with:
           name: shikanime
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
