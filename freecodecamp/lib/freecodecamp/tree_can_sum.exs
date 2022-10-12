@@ -1,5 +1,3 @@
-import ExUnit.Assertions
-
 defmodule FreeCodeCamp.TreeCanSum do
   def solve(target, numbers, memo \\ %{})
 
@@ -29,9 +27,3 @@ defmodule FreeCodeCamp.TreeCanSum do
     end
   end
 end
-
-assert({true, _} = FreeCodeCamp.TreeCanSum.solve(7, [2, 3]))
-assert({true, _} = FreeCodeCamp.TreeCanSum.solve(7, [5, 3, 4, 7]))
-assert({false, _} = FreeCodeCamp.TreeCanSum.solve(7, [2, 4]))
-assert({true, _} = FreeCodeCamp.TreeCanSum.solve(8, [2, 3, 5]))
-assert({false, _} = FreeCodeCamp.TreeCanSum.solve(300, [7, 14]))

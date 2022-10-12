@@ -40,14 +40,18 @@ defmodule FreeCodeCamp.TreeHowSum do
   end
 end
 
-for {target, numbers} <- [
-      {0, [2, 3]},
-      {7, [2, 3]},
-      {7, [5, 3, 4, 7]},
-      {7, [2, 4]},
-      {8, [2, 3, 5]},
-      {300, [7, 14]}
-    ] do
-  {path, _memo} = FreeCodeCamp.TreeHowSum.solve(target, numbers)
-  IO.inspect(%{target: target, numbers: numbers, path: path})
+defmodule FreeCodeCamp.TreeHowSum.Example do
+  def run do
+    for {target, numbers} <- [
+          {0, [2, 3]},
+          {7, [2, 3]},
+          {7, [5, 3, 4, 7]},
+          {7, [2, 4]},
+          {8, [2, 3, 5]},
+          {300, [7, 14]}
+        ] do
+      {path, _memo} = FreeCodeCamp.TreeHowSum.solve(target, numbers)
+      IO.inspect(%{target: target, numbers: numbers, path: path})
+    end
+  end
 end

@@ -1,5 +1,3 @@
-import ExUnit.Assertions
-
 defmodule FreeCodeCamp.TabHowSum do
   def solve(target, numbers) when is_number(target) do
     solve([[] | List.duplicate(nil, target)], numbers)
@@ -32,16 +30,3 @@ defmodule FreeCodeCamp.TabHowSum do
     combinaison
   end
 end
-
-assert(
-  [
-    [],
-    nil,
-    nil,
-    [3],
-    [4],
-    [5],
-    [3, 3],
-    [4, 3]
-  ] == FreeCodeCamp.TabHowSum.solve(7, [5, 3, 4])
-)

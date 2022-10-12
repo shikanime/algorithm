@@ -1,7 +1,4 @@
-import ExUnit.Assertions
-require IEx
-
-defmodule FreeCodeCamp.TabCanSum do
+defmodule FreeCodeCamp.TabCanConstruct do
   def solve("", words) do
     [true]
   end
@@ -46,6 +43,3 @@ defmodule FreeCodeCamp.TabCanSum do
     ]
   end
 end
-
-assert([true] == FreeCodeCamp.TabCanSum.solve("", ["a", "b"]))
-assert(true == FreeCodeCamp.TabCanSum.solve("abcdef", ["ab", "abc", "cd", "def", "abcd"]))

@@ -1,11 +1,11 @@
-defmodule HashCode2022.SoftwareEngineeringAtScale do
+defmodule HashCode2022.Solver do
   def solve(contributors, projects) do
     estimations =
       for project <- projects do
         contributors
-        |> Enum.filter(&HashCode2022.SoftwareEngineeringAtScale.eligible?(project, &1))
-        |> Enum.sort_by(&HashCode2022.SoftwareEngineeringAtScale.compatiblity(project, &1))
-        |> Enum.flat_map_reduce(project, &HashCode2022.SoftwareEngineeringAtScale.assign(&2, &1))
+        |> Enum.filter(&eligible?(project, &1))
+        |> Enum.sort_by(&compatiblity(project, &1))
+        |> Enum.flat_map_reduce(project, &assign(&2, &1))
       end
 
     Enum.filter(estimations, &(length(elem(&1, 0)) > 0))
@@ -58,7 +58,7 @@ defmodule HashCode2022.SoftwareEngineeringAtScale do
   end
 end
 
-defmodule HashCode2022.SoftwareEngineeringAtScale.IO do
+defmodule HashCode2022.IO do
   defp read_line(device) do
     device
     |> IO.read(:line)
@@ -156,7 +156,3 @@ defmodule HashCode2022.SoftwareEngineeringAtScale.IO do
     Enum.intersperse(header ++ body, "\n")
   end
 end
-
-{contributors, projects} = HashCode2022.SoftwareEngineeringAtScale.IO.read(:stdio)
-tasks = HashCode2022.SoftwareEngineeringAtScale.solve(contributors, projects)
-HashCode2022.SoftwareEngineeringAtScale.IO.write(:stdio, tasks)

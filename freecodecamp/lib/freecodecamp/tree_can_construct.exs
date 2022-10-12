@@ -1,5 +1,3 @@
-import ExUnit.Assertions
-
 defmodule FreeCodeCamp.TreeCanConstruct do
   def solve(target, words, memo \\ %{})
 
@@ -27,41 +25,3 @@ defmodule FreeCodeCamp.TreeCanConstruct do
     {Enum.any?(results), memo}
   end
 end
-
-assert({true, _} = FreeCodeCamp.TreeCanConstruct.solve("", ["a", "b"]))
-
-assert(
-  {false, _} =
-    FreeCodeCamp.TreeCanConstruct.solve("abcdef", [
-      "ab",
-      "adc",
-      "cd",
-      "def",
-      "abcd"
-    ])
-)
-
-assert(
-  {false, _} =
-    FreeCodeCamp.TreeCanConstruct.solve("skateboard", [
-      "bo",
-      "rd",
-      "ate",
-      "t",
-      "ska",
-      "sk",
-      "boar"
-    ])
-)
-
-assert(
-  {false, _} =
-    FreeCodeCamp.TreeCanConstruct.solve("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef", [
-      "e",
-      "ee",
-      "eee",
-      "eeee",
-      "eeeeee",
-      "eeeeeee"
-    ])
-)

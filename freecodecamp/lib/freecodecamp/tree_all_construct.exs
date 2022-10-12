@@ -1,5 +1,3 @@
-import ExUnit.Assertions
-
 defmodule FreeCodeCamp.TreeAllConstruct do
   def solve(target, words, memo \\ %{})
 
@@ -31,62 +29,3 @@ defmodule FreeCodeCamp.TreeAllConstruct do
     {Enum.filter(results, &(length(&1) >= 1)), memo}
   end
 end
-
-assert({[[]], _} = FreeCodeCamp.TreeAllConstruct.solve("", ["a", "b"]))
-
-assert(
-  {
-    [
-      ["ab", "c", "def"],
-      ["ab", "cd", "ef"],
-      ["abc", "def"],
-      ["abcd", "ef"]
-    ],
-    _
-  } =
-    FreeCodeCamp.TreeAllConstruct.solve("abcdef", [
-      "ab",
-      "abc",
-      "c",
-      "cd",
-      "def",
-      "abcd",
-      "ef"
-    ])
-)
-
-assert(
-  {[], _} =
-    FreeCodeCamp.TreeAllConstruct.solve("skateboard", [
-      "bo",
-      "rd",
-      "ate",
-      "t",
-      "ska",
-      "sk",
-      "boar"
-    ])
-)
-
-assert(
-  {[], _} =
-    FreeCodeCamp.TreeAllConstruct.solve("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef", [
-      "e",
-      "ee",
-      "eee",
-      "eeee",
-      "eeeeee",
-      "eeeeeee"
-    ])
-)
-
-assert(
-  {[["purp", "le"], ["p", "ur", "p", "le"]], _} =
-    FreeCodeCamp.TreeAllConstruct.solve("purple", [
-      "purp",
-      "p",
-      "ur",
-      "le",
-      "purpl"
-    ])
-)

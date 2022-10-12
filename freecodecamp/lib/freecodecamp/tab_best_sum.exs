@@ -1,5 +1,3 @@
-import ExUnit.Assertions
-
 defmodule FreeCodeCamp.TabBestSum do
   def solve(target, numbers) when is_number(target) do
     solve([[] | List.duplicate(nil, target)], numbers)
@@ -31,11 +29,3 @@ defmodule FreeCodeCamp.TabBestSum do
     |> Enum.min_by(&length/1, fn -> nil end)
   end
 end
-
-assert([7] == List.last(FreeCodeCamp.TabBestSum.solve(7, [5, 3, 4, 7])))
-
-assert([3, 5] == List.last(FreeCodeCamp.TabBestSum.solve(8, [2, 3, 5])))
-
-assert([4, 4] == List.last(FreeCodeCamp.TabBestSum.solve(8, [1, 4, 5])))
-
-assert([25, 25, 25, 25] == List.last(FreeCodeCamp.TabBestSum.solve(100, [1, 2, 5, 25])))

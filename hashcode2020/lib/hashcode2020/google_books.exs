@@ -1,4 +1,4 @@
-defmodule HashCode2020.GoogleBooks do
+defmodule HashCode2020.GoogleBooks.Solver do
   require Logger
 
   def solve(budget, libraries) do
@@ -101,8 +101,14 @@ defmodule HashCode2020.GoogleBooks.IO do
   end
 end
 
-{n_books, n_libraries, budget} = HashCode2020.GoogleBooks.IO.read_header(:stdio)
-_order = HashCode2020.GoogleBooks.IO.read_books(:stdio, n_books)
-libraries = HashCode2020.GoogleBooks.IO.read_libraries(:stdio, n_libraries)
-libraries = HashCode2020.GoogleBooks.solve(budget, libraries)
-HashCode2020.GoogleBooks.IO.put_libraries(:stdio, libraries)
+defmodule HashCode2020.GoogleBooks do
+  alias HashCode2020.GoogleBooks, GB
+
+  def run do
+    {n_books, n_libraries, budget} = GB.IO.read_header(:stdio)
+    _order = GB.IO.read_books(:stdio, n_books)
+    libraries = GB.IO.read_libraries(:stdio, n_libraries)
+    libraries = GB.Solver.solve(budget, libraries)
+    GB.IO.put_libraries(:stdio, libraries)
+  end
+end

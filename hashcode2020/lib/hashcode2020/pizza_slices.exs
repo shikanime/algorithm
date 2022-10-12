@@ -1,4 +1,4 @@
-defmodule HashCode2020.PizzaSlices do
+defmodule HashCode2020.PizzaSlices.Solver do
   def solve(pizzas, n) do
     pizzas
     |> Enum.with_index()
@@ -50,8 +50,14 @@ defmodule HashCode2020.PizzaSlices.IO do
   end
 end
 
-n = HashCode2020.PizzaSlices.IO.read_header(:stdio)
-pizzas = HashCode2020.PizzaSlices.IO.read_pizzas(:stdio)
-orders = HashCode2020.PizzaSlices.solve(pizzas, n)
-HashCode2020.PizzaSlices.IO.put_types(:stdio, orders)
-HashCode2020.PizzaSlices.IO.put_orders(:stdio, orders)
+defmodule HashCode2020.PizzaSlices do
+  alias HashCode2020.PizzaSlices, as: PS
+
+  def run do
+    n = PS.IO.read_header(:stdio)
+    pizzas = PS.IO.read_pizzas(:stdio)
+    orders = PS.Solver.solve(pizzas, n)
+    PS.IO.put_types(:stdio, orders)
+    PS.IO.put_orders(:stdio, orders)
+  end
+end

@@ -40,12 +40,16 @@ defmodule FreeCodeCamp.TreeHowSum do
   end
 end
 
-for {target, numbers} <- [
-      {7, [5, 3, 4, 7]},
-      {8, [2, 3, 5]},
-      {8, [1, 4, 5]},
-      {100, [1, 2, 5, 25]}
-    ] do
-  {path, _memo} = TreeHowSum.solve(target, numbers)
-  IO.inspect(%{target: target, numbers: numbers, path: path})
+defmodule FreeCodeCamp.TreeHowSum.Example do
+  def run do
+    for {target, numbers} <- [
+          {7, [5, 3, 4, 7]},
+          {8, [2, 3, 5]},
+          {8, [1, 4, 5]},
+          {100, [1, 2, 5, 25]}
+        ] do
+      {path, _memo} = TreeHowSum.solve(target, numbers)
+      IO.inspect(%{target: target, numbers: numbers, path: path})
+    end
+  end
 end
