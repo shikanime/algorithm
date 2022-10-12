@@ -1,8 +1,8 @@
 .PHONY: all
-all: fetch
+all: setup
 
-.PHONY: fetch
-fetch: vcpkg/vcpkg
+.PHONY: setup
+setup: vcpkg/vcpkg.disable-metrics
 
-vcpkg/vcpkg:
-	sh vcpkg/bootstrap-vcpkg.sh --disableMetrics
+vcpkg/vcpkg.disable-metrics:
+	sh vcpkg/bootstrap-vcpkg.sh -disableMetrics
