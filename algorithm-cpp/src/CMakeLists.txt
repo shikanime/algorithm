@@ -1,0 +1,2 @@
+add_subdirectory(adventofcode2015)
+add_subdirectory(leetcode)

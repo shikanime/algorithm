@@ -1,2 +1,0 @@
-defmodule FreeCodeCamp do
-end

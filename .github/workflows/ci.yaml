@@ -4,7 +4,7 @@ on:
     branches:
       - main
 jobs:
-  test-cpp:
+  test-algorithm-cpp:
     runs-on: ubuntu-latest
     steps:
       - name: Set up Git repository
@@ -22,13 +22,17 @@ jobs:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
       - name: Setup environment
         run: nix develop -c make setup
+        working-directory: algorithm-cpp
       - name: Generate CMake project
         run: nix develop -c cmake --preset default -B out/build/gcc
+        working-directory: algorithm-cpp
       - name: Build CMake project
         run: nix develop -c cmake --build out/build/gcc
+        working-directory: algorithm-cpp
       - name: Run tests
         run: nix develop -c ctest --preset default --test-dir out/build/gcc
-  test-python:
+        working-directory: algorithm-cpp
+  test-algorithm-javascript:
     runs-on: ubuntu-latest
     steps:
       - name: Set up Git repository
@@ -44,7 +48,53 @@ jobs:
         with:
           name: shikanime
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
-      - name: Setup environment
-        run: nix develop -c make setup
+      - name: Install dependencies
+        run: nix develop -c npm ci
+        working-directory: algorithm-node
       - name: Run tests
-        run: nix develop -c pytest
+        run: nix develop -c npm run test -- --ci --passWithNoTests
+        working-directory: algorithm-node
+  test-algorithm-elixir:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - name: Prepare build environment
+        uses: cachix/install-nix-action@v18
+        with:
+          extra_nix_config: system-features = nixos-test benchmark big-parallel kvm
+      - name: Connect Shikanime Nix cache
+        uses: cachix/cachix-action@v11
+        with:
+          name: shikanime
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+      - name: Install dependencies
+        run: nix develop -c mix deps.get
+        working-directory: algorithm-elixir
+      - name: Run tests
+        run: nix develop -c mix test
+        working-directory: algorithm-elixir
+  test-algorithm-python:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - name: Prepare build environment
+        uses: cachix/install-nix-action@v18
+        with:
+          extra_nix_config: system-features = nixos-test benchmark big-parallel kvm
+      - name: Connect Shikanime Nix cache
+        uses: cachix/cachix-action@v11
+        with:
+          name: shikanime
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+      - name: Install dependencies
+        run: nix develop -c poetry install
+        working-directory: algorithm-python
+      - name: Run tests
+        run: nix develop -c poetry run pytest
+        working-directory: algorithm-python

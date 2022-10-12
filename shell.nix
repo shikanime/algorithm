@@ -1,10 +1,8 @@
 { pkgs ? import <nixpkgs> { } }:
 
 let
-  pythonEnv = pkgs.python3.withPackages (pypkgs: [
-    pypkgs.pip
-    pypkgs.black
-    pypkgs.pytest
+  pythonEnv = pkgs.python3.withPackages (pypkgs: with pypkgs; [
+    pip
   ]);
 in
 pkgs.mkShell {
@@ -18,6 +16,7 @@ pkgs.mkShell {
     pkgs.cmake
     pkgs.gcc
     pkgs.gmock
+    pkgs.poetry
     pkgs.gnumake
     pkgs.gdb
     pkgs.cmake-format

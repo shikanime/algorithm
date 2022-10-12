@@ -1,0 +1,2 @@
+defmodule Algorithm do
+end

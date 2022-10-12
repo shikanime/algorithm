@@ -1,2 +1,0 @@
-defmodule CrackTheCodeInterview do
-end

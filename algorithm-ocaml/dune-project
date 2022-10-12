@@ -1,0 +1,24 @@
+(lang dune 3.4)
+
+(name algorithm)
+
+(generate_opam_files true)
+
+(source
+ (github shikanime/algorithm))
+
+(authors "William Phetsinorath")
+
+(maintainers "William Phetsinorath")
+
+(license AGPL-3.0-or-later)
+
+(package
+ (name algorithm)
+ (synopsis "Shikanime's algorithms sketchbook")
+ (description "Shikanime's algorithms sketchbook")
+ (depends ocaml dune)
+ (tags
+  (algorithm algorithm)))
+
+; See the complete stanza docs at https://dune.readthedocs.io/en/stable/dune-files.html#dune-project
