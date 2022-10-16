@@ -9,6 +9,8 @@ packages = [{include = "algorithm"}]
 
 [tool.poetry.dependencies]
 python = "~3.9"
+Jinja2 = "^3.1.2"
+jinja2-strcase = "^0.0.2"
 
 [tool.poetry.dev-dependencies]
 black = "^22.10.0"
