@@ -1,21 +1,19 @@
-from functools import reduce
+from functools import reduce, partial
 
 
 class Solution:
     def longestConsecutive(self, nums: list[int]) -> int:
-        nseq = [False] * abs(min(nums, default=0) - 1)
-        pseq = [False] * (max(nums, default=0) + 1)
-        for n in nums:
-            if n >= 0:
-                pseq[n] = True
-            else:
-                nseq[n] = True
+        def searchGlobalLongestConsecutive(nums: set[int], best: int, curr: int) -> int:
+            local_best = searchLocalLongestConsecutive(nums, curr)
+            return local_best if local_best > best else best
 
-        def seqlen(acc: list[int], n: int):
-            if n:
-                acc[-1] += 1
-            else:
-                acc.append(0)
-            return acc
+        def searchLocalLongestConsecutive(nums: set[int], curr: int) -> int:
+            return (
+                searchLocalLongestConsecutive(nums, curr + 1) + 1 if curr in nums else 0
+            )
 
-        return max(reduce(seqlen, nseq + pseq, [0]))
+        return reduce(
+            partial(searchGlobalLongestConsecutive, set(nums)),
+            filter(lambda x: x - 1 not in nums, nums),
+            0,
+        )
