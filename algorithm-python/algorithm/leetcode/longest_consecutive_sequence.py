@@ -1,19 +1,24 @@
-from functools import reduce, partial
+from functools import partial, reduce
+from typing import Iterable
 
 
 class Solution:
     def longestConsecutive(self, nums: list[int]) -> int:
-        def searchGlobalLongestConsecutive(nums: set[int], best: int, curr: int) -> int:
-            local_best = searchLocalLongestConsecutive(nums, curr)
-            return local_best if local_best > best else best
+        return self.longestConsecutiveFromSet(set(nums))
 
-        def searchLocalLongestConsecutive(nums: set[int], curr: int) -> int:
-            return (
-                searchLocalLongestConsecutive(nums, curr + 1) + 1 if curr in nums else 0
-            )
-
+    def longestConsecutiveFromSet(self, nums: set[int]) -> int:
         return reduce(
-            partial(searchGlobalLongestConsecutive, set(nums)),
-            filter(lambda x: x - 1 not in nums, nums),
+            lambda best, x: max(self.findConsecutiveLength(nums, x), best),
+            filter(partial(self.isSequenceHead, nums), nums),
             0,
         )
+
+    def isSequenceHead(self, nums: Iterable[int], x: int) -> bool:
+        return x - 1 not in nums
+
+    def findConsecutiveLength(self, nums: Iterable[int], x: int) -> int:
+        best = 0
+        while x in nums:
+            best += 1
+            x += 1
+        return best
