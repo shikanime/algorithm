@@ -1,12 +1,15 @@
 class Solution:
-    def threeSum(self, nums: list[int]) -> list[list[int]]:
-        res: list[list[int]] = []
-        memo: set[int] = set()
-        for n in nums:
-            for m in memo:
-                if m < n:
-                    s = m - n
-                    if s in memo:
-                        res.append([n, m, s])
-            memo.add(n)
+    def threeSum(self, nums: list[int]) -> set[tuple[int, int, int]]:
+        res: set[tuple[int, int, int]] = set()
+        for i, target in enumerate(nums):
+            # Fastlane skip repeated occurrence
+            if i > 0 and target == nums[i - 1]:
+                continue
+            subnums = nums[:i] + nums[i + 1 :]
+            memo: dict[int, int] = {}
+            for i, n in enumerate(subnums):
+                diff = -target - n
+                if diff in memo:
+                    res.add(tuple(sorted([target, subnums[memo[diff]], subnums[i]])))
+                memo[n] = i
         return res
