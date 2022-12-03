@@ -1,7 +1,7 @@
 {
   description = "Shikanime's algorithms sketchbook";
 
-  inputs.nixpkgs.url = "github:nixos/nixpkgs/release-22.05";
+  inputs.nixpkgs.url = "github:nixos/nixpkgs/release-22.11";
 
   outputs = { self, nixpkgs, ... }: {
     devShell = nixpkgs.lib.genAttrs nixpkgs.lib.platforms.unix (system:

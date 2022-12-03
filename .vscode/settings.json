@@ -2,9 +2,7 @@
   "sonarlint.pathToCompileCommands": "${workspaceFolder}/out/build/gcc/compile_commands.json",
   "C_Cpp.default.cStandard": "c17",
   "C_Cpp.default.cppStandard": "c++20",
-  "python.testing.pytestArgs": [
-    "leetcode"
-  ],
+  "python.testing.pytestArgs": ["leetcode"],
   "python.testing.unittestEnabled": false,
   "python.testing.pytestEnabled": true,
   "workbench.colorCustomizations": {
@@ -14,5 +12,9 @@
     "statusBarItem.remoteBackground": "#378659",
     "statusBarItem.remoteForeground": "#e7e7e7"
   },
-  "peacock.color": "#378659"
+  "peacock.color": "#378659",
+  "ocaml.sandbox": {
+    "kind": "global"
+  },
+  "cmake.sourceDirectory": "${workspaceFolder}/algorithm-cpp"
 }
