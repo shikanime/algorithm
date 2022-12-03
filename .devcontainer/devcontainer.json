@@ -23,5 +23,6 @@
     "ms-python.python",
     "hbenl.vscode-test-explorer",
     "ocamllabs.ocaml-platform"
-  ]
+  ],
+  "postCreateCommand": "direnv allow"
 }
