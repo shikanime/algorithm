@@ -1,8 +1,10 @@
 from itertools import accumulate
 
+
 class Solution:
     def pivotIndex(self, nums: list[int]) -> int:
-        for i, x in enumerate(accumulate(nums)):
-            if x == sum(nums[i:]):
+        right = sum(nums)
+        for i, (v, left) in enumerate(zip(nums, accumulate(nums, initial=0))):
+            if left == right - left - v:
                 return i
         return -1
