@@ -2,7 +2,7 @@
   "sonarlint.pathToCompileCommands": "${workspaceFolder}/out/build/gcc/compile_commands.json",
   "C_Cpp.default.cStandard": "c17",
   "C_Cpp.default.cppStandard": "c++20",
-  "python.testing.pytestArgs": ["leetcode"],
+  "python.testing.pytestArgs": ["algorithm-python"],
   "python.testing.unittestEnabled": false,
   "python.testing.pytestEnabled": true,
   "workbench.colorCustomizations": {
