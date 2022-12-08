@@ -6,7 +6,7 @@ import argparse
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--name", type=str, required=True)
+    parser.add_argument("name", type=str, nargs="?")
     parser.add_argument("--path", type=str, required=True)
     parser.add_argument("--template", type=str, required=True)
     args, _ = parser.parse_known_args()
