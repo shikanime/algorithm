@@ -1,4 +1,5 @@
 from pathlib import Path
+from jinja2_strcase.jinja2_strcase import to_snake
 import jinja2
 import argparse
 
@@ -18,12 +19,12 @@ def main():
     path = Path(args.path)
     path.mkdir(parents=True, exist_ok=True)
 
-    test_file = path / f"{args.name}_test.py"
+    test_file = path / f"{to_snake(args.name)}_test.py"
     with test_file.open("w", encoding="utf-8") as f:
         test_template = env.get_template("test.py.jinja2")
         f.write(test_template.render(name=args.name))
 
-    source_file = path / f"{args.name}.py"
+    source_file = path / f"{to_snake(args.name)}.py"
     with source_file.open("w", encoding="utf-8") as f:
         source_template = env.get_template("source.py.jinja2")
         f.write(source_template.render(name=args.name))
