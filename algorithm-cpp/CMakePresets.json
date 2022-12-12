@@ -2,8 +2,8 @@
   "version": 3,
   "configurePresets": [
     {
-      "name": "default",
-      "displayName": "GCC",
+      "name": "unknown-unknown-gnu",
+      "displayName": "Default",
       "description": "Sets Ninja generator, build and install directory",
       "generator": "Ninja",
       "cacheVariables": {
@@ -17,14 +17,14 @@
   ],
   "buildPresets": [
     {
-      "name": "default",
-      "configurePreset": "default"
+      "name": "unknown-unknown-gnu",
+      "configurePreset": "unknown-unknown-gnu"
     }
   ],
   "testPresets": [
     {
-      "name": "default",
-      "configurePreset": "default",
+      "name": "unknown-unknown-gnu",
+      "configurePreset": "unknown-unknown-gnu",
       "output": {
         "outputOnFailure": true
       },

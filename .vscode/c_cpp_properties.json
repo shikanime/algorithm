@@ -1,8 +1,8 @@
 {
   "configurations": [
     {
-      "name": "GCC",
-      "compileCommands": "${workspaceFolder}/out/build/gcc/compile_commands.json"
+      "name": "Default",
+      "compileCommands": "${workspaceFolder}/out/build/unknown-unknown-gnu/compile_commands.json"
     }
   ],
   "version": 4

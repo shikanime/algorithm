@@ -24,13 +24,13 @@ jobs:
         run: nix develop -c make setup
         working-directory: algorithm-cpp
       - name: Generate CMake project
-        run: nix develop -c cmake --preset default -B out/build/gcc
+        run: nix develop -c cmake --preset unknown-unknown-gnu -B out/build/unknown-unknown-gnu
         working-directory: algorithm-cpp
       - name: Build CMake project
-        run: nix develop -c cmake --build out/build/gcc
+        run: nix develop -c cmake --build out/build/unknown-unknown-gnu
         working-directory: algorithm-cpp
       - name: Run tests
-        run: nix develop -c ctest --preset default --test-dir out/build/gcc
+        run: nix develop -c ctest --preset unknown-unknown-gnu --test-dir out/build/unknown-unknown-gnu
         working-directory: algorithm-cpp
   test-algorithm-javascript:
     runs-on: ubuntu-latest
