@@ -21,6 +21,7 @@ pkgs.mkShell {
     pkgs.gdb
     pkgs.cmake-format
     pkgs.clang-tools
+    pkgs.nixpkgs-fmt
     pythonEnv
   ];
 }
