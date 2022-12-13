@@ -2,6 +2,8 @@
 
 #include <gtest/gtest.h>
 
+using namespace leetcode::subtree_of_another_tree;
+
 TEST(SubTree, Base) {
   auto solution = Solution();
   EXPECT_EQ(solution.isSubtree(nullptr, nullptr), true);

@@ -2,6 +2,8 @@
 
 #include <gtest/gtest.h>
 
+using namespace leetcode::binary_tree_level_order_traversal;
+
 TEST(BinaryTreeLevelOrderTraversal, Base) {
   auto solution = Solution();
   std::vector<std::vector<int>> output = {};

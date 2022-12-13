@@ -1,34 +1,33 @@
 #include <queue>
 
-namespace {
+namespace leetcode::subtree_of_another_tree {
 struct TreeNode {
-  int val;
-  TreeNode* left;
-  TreeNode* right;
-  TreeNode() : val(0), left(nullptr), right(nullptr) {}
-  TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+  int val = 0;
+  TreeNode* left = nullptr;
+  TreeNode* right = nullptr;
+  explicit TreeNode(int x) : val(x) {}
   TreeNode(int x, TreeNode* left, TreeNode* right)
       : val(x), left(left), right(right) {}
 };
 
 class Solution {
  public:
-  bool isSubtree(TreeNode* root, TreeNode* subRoot) {
+  bool isSubtree(TreeNode* root, TreeNode* subRoot) const {
     auto queue = std::queue<TreeNode*>();
     queue.emplace(root);
     while (!queue.empty()) {
-      auto root = queue.front();
+      auto node = queue.front();
       queue.pop();
-      if (root == nullptr) continue;
-      if (isSameTree(root, subRoot)) return true;
-      queue.emplace(root->left);
-      queue.emplace(root->right);
+      if (node == nullptr) continue;
+      if (isSameTree(node, subRoot)) return true;
+      queue.emplace(node->left);
+      queue.emplace(node->right);
     }
     return root == subRoot;
   }
 
  private:
-  bool isSameTree(TreeNode* p, TreeNode* q) {
+  bool isSameTree(TreeNode* p, TreeNode* q) const {
     auto queue = std::queue<std::pair<TreeNode*, TreeNode*>>();
     queue.emplace(p, q);
     while (!queue.empty()) {
@@ -43,4 +42,4 @@ class Solution {
     return true;
   }
 };
-}  // namespace
+}  // namespace leetcode::subtree_of_another_tree

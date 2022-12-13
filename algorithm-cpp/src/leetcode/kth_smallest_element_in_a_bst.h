@@ -2,13 +2,12 @@
 #include <utility>
 #include <iostream>
 
-namespace {
+namespace leetcode::kth_smallest_element_in_a_bst {
 struct TreeNode {
-  int val;
-  TreeNode* left;
-  TreeNode* right;
-  TreeNode() : val(0), left(nullptr), right(nullptr) {}
-  TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+  int val = 0;
+  TreeNode* left = nullptr;
+  TreeNode* right = nullptr;
+  explicit TreeNode(int x) : val(x) {}
   TreeNode(int x, TreeNode* left, TreeNode* right)
       : val(x), left(left), right(right) {}
 };
@@ -30,4 +29,4 @@ class Solution {
     return traverse(root->right, count - 1);
   }
 };
-}  // namespace
+}  // namespace leetcode::kth_smallest_element_in_a_bst

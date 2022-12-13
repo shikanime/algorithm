@@ -2,6 +2,8 @@
 
 #include <gtest/gtest.h>
 
+using namespace leetcode::count_good_nodes_in_binary_tree;
+
 TEST(CountGoodNodesInBinaryTree, Base) {
   auto solution = Solution();
   EXPECT_EQ(solution.goodNodes(nullptr), 0);

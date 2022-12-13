@@ -2,6 +2,8 @@
 
 #include <gtest/gtest.h>
 
+using namespace leetcode::same_tree;
+
 TEST(SameTree, Base) {
   auto solution = Solution();
   EXPECT_EQ(solution.isSameTree(nullptr, nullptr), true);

@@ -2,6 +2,8 @@
 
 #include <gtest/gtest.h>
 
+using namespace leetcode::validate_binary_search_tree;
+
 TEST(ValidateBinarySearchTree, Base) {
   auto solution = Solution();
   EXPECT_EQ(solution.isValidBST(nullptr), true);

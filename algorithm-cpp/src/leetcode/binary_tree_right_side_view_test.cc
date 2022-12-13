@@ -3,6 +3,8 @@
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
+using namespace leetcode::binary_tree_right_side_view;
+
 TEST(BinaryTreeRightSideView, Base) {
   auto solution = Solution();
   std::vector<int> output = {};

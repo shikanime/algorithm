@@ -1,19 +1,19 @@
 #include <utility>
 
-namespace {
+namespace leetcode::lowest_common_ancestor_of_a_binary_search {
 struct TreeNode {
-  int val;
-  TreeNode* left;
-  TreeNode* right;
-  TreeNode() : val(0), left(nullptr), right(nullptr) {}
-  TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+  int val = 0;
+  TreeNode* left = nullptr;
+  TreeNode* right = nullptr;
+  explicit TreeNode(int x) : val(x) {}
   TreeNode(int x, TreeNode* left, TreeNode* right)
       : val(x), left(left), right(right) {}
 };
 
 class Solution {
  public:
-  TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+  TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode const* p,
+                                 TreeNode const* q) {
     while (root != nullptr)
       if (p->val > root->val && q->val > root->val)
         root = root->right;
@@ -24,4 +24,4 @@ class Solution {
     return nullptr;
   }
 };
-}  // namespace
+}  // namespace leetcode::lowest_common_ancestor_of_a_binary_search
