@@ -2,7 +2,7 @@
   "configurations": [
     {
       "name": "Default",
-      "compileCommands": "${workspaceFolder}/out/build/unknown-unknown-gnu/compile_commands.json"
+      "compileCommands": "${workspaceFolder}/algorithm-cpp/out/build/unknown-nixos-gnu/compile_commands.json"
     }
   ],
   "version": 4

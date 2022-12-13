@@ -22,7 +22,8 @@
     "ms-python.vscode-pylance",
     "ms-python.python",
     "hbenl.vscode-test-explorer",
-    "ocamllabs.ocaml-platform"
+    "ocamllabs.ocaml-platform",
+    "SonarSource.sonarlint-vscode"
   ],
   "postCreateCommand": "direnv allow"
 }

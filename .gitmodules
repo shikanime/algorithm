@@ -1,3 +1,0 @@
-[submodule "algorithm-cpp/vcpkg"]
-	path = algorithm-cpp/vcpkg
-	url = https://github.com/microsoft/vcpkg.git

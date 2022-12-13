@@ -20,17 +20,14 @@ jobs:
         with:
           name: shikanime
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
-      - name: Setup environment
-        run: nix develop -c make setup
-        working-directory: algorithm-cpp
       - name: Generate CMake project
-        run: nix develop -c cmake --preset unknown-unknown-gnu -B out/build/unknown-unknown-gnu
+        run: nix develop -c cmake --preset unknown-nixos-gnu -B out/build/unknown-nixos-gnu
         working-directory: algorithm-cpp
       - name: Build CMake project
-        run: nix develop -c cmake --build out/build/unknown-unknown-gnu
+        run: nix develop -c cmake --build out/build/unknown-nixos-gnu
         working-directory: algorithm-cpp
       - name: Run tests
-        run: nix develop -c ctest --preset unknown-unknown-gnu --test-dir out/build/unknown-unknown-gnu
+        run: nix develop -c ctest --preset unknown-nixos-gnu --test-dir out/build/unknown-nixos-gnu
         working-directory: algorithm-cpp
   test-algorithm-javascript:
     runs-on: ubuntu-latest

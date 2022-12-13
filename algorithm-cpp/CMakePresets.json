@@ -2,29 +2,28 @@
   "version": 3,
   "configurePresets": [
     {
-      "name": "unknown-unknown-gnu",
-      "displayName": "Default",
+      "name": "unknown-nixos-gnu",
+      "displayName": "NixOS",
       "description": "Sets Ninja generator, build and install directory",
       "generator": "Ninja",
       "cacheVariables": {
         "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
         "CMAKE_MAKE_PROGRAM": "ninja",
         "CMAKE_CXX_COMPILER": "g++",
-        "CMAKE_C_COMPILER": "gcc",
-        "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/vcpkg/scripts/buildsystems/vcpkg.cmake"
+        "CMAKE_C_COMPILER": "gcc"
       }
     }
   ],
   "buildPresets": [
     {
-      "name": "unknown-unknown-gnu",
-      "configurePreset": "unknown-unknown-gnu"
+      "name": "unknown-nixos-gnu",
+      "configurePreset": "unknown-nixos-gnu"
     }
   ],
   "testPresets": [
     {
-      "name": "unknown-unknown-gnu",
-      "configurePreset": "unknown-unknown-gnu",
+      "name": "unknown-nixos-gnu",
+      "configurePreset": "unknown-nixos-gnu",
       "output": {
         "outputOnFailure": true
       },
