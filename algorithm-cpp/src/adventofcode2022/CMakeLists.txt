@@ -13,3 +13,6 @@ set_property(TARGET rock_paper_scissors PROPERTY CXX_STANDARD 20)
 
 add_executable(rock_paper_scissors_part_two rock_paper_scissors_part_two.cc)
 set_property(TARGET rock_paper_scissors_part_two PROPERTY CXX_STANDARD 20)
+
+add_executable(rucksack_reorganization rucksack_reorganization.cc)
+set_property(TARGET rucksack_reorganization PROPERTY CXX_STANDARD 20)
