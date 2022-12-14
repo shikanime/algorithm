@@ -2,6 +2,7 @@
 #include <map>
 #include <regex>
 #include <variant>
+#include <ranges>
 
 struct rock;
 struct paper;
@@ -38,8 +39,7 @@ std::strong_ordering compare_command(std::string_view player,
 
 unsigned int solve(std::istream& is) {
   unsigned int total_score = 0;
-  std::string line;
-  while (std::getline(is, line)) {
+  for (const auto& line : std::ranges::istream_view<std::string>(is)) {
     std::smatch exp_match;
     if (static const auto exp_regex = std::regex("^(\\w) (\\w)$");
         !std::regex_search(line, exp_match, exp_regex)) {

@@ -2,11 +2,11 @@
 #include <iterator>
 #include <vector>
 #include <algorithm>
+#include <ranges>
 
 int solve(std::istream& is) {
   std::vector<int> calories{0};
-  std::string line;
-  while (std::getline(is, line)) {
+  for (const auto& line : std::ranges::istream_view<std::string>(is)) {
     if (line == "") {
       calories.push_back(0);
     } else {

@@ -6,17 +6,18 @@
 #include <ranges>
 
 unsigned int read(char c) {
-  if (c >= 'a') {
+  if (c >= 'a' && c <= 'z') {
     return c - 'a' + 1;
-  } else if (c >= 'A') {
+  }
+  if (c >= 'A' && c <= 'Z') {
     return c - 'A' + 1 + 26;
   }
   throw std::invalid_argument("Invalid input");
 }
 
-unsigned int solve(std::istream& is) {
+unsigned int solve(std::ranges::input_range auto ir) {
   unsigned int total_score = 0;
-  for (const auto& line : std::ranges::istream_view<std::string>(is)) {
+  for (const auto& line : ir) {
     std::set<unsigned int> left;
     std::set<unsigned int> right;
     for (auto i = 0; line.length() / 2 > i; i++) {
@@ -32,6 +33,7 @@ unsigned int solve(std::istream& is) {
 }
 
 int main(int argc, char const* argv[]) {
-  std::cout << solve(std::cin) << std::endl;
+  std::cout << solve(std::ranges::istream_view<std::string>(std::cin))
+            << std::endl;
   return 0;
 }
