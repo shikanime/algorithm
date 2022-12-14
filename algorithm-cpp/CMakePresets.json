@@ -2,8 +2,7 @@
   "version": 3,
   "configurePresets": [
     {
-      "name": "unknown-nixos-gnu",
-      "displayName": "NixOS",
+      "name": "unknown-unknown-gnu",
       "description": "Sets Ninja generator, build and install directory",
       "generator": "Ninja",
       "cacheVariables": {
@@ -16,14 +15,14 @@
   ],
   "buildPresets": [
     {
-      "name": "unknown-nixos-gnu",
-      "configurePreset": "unknown-nixos-gnu"
+      "name": "unknown-unknown-gnu",
+      "configurePreset": "unknown-unknown-gnu"
     }
   ],
   "testPresets": [
     {
-      "name": "unknown-nixos-gnu",
-      "configurePreset": "unknown-nixos-gnu",
+      "name": "unknown-unknown-gnu",
+      "configurePreset": "unknown-unknown-gnu",
       "output": {
         "outputOnFailure": true
       },
