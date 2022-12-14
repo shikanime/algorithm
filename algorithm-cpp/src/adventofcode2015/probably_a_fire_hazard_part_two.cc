@@ -8,7 +8,7 @@
 
 enum class action { turn_on, turn_off, toggle };
 
-auto read_action(std::string s) -> action {
+action read_action(std::string_view s) {
   if (s == "turn on")
     return action::turn_on;
   else if (s == "turn off")
@@ -16,7 +16,7 @@ auto read_action(std::string s) -> action {
   else if (s == "toggle")
     return action::toggle;
   else
-    throw std::runtime_error("unknown instruction");
+    throw std::invalid_argument("Unexpected action");
 }
 
 auto cartesian_product_view(std::ranges::input_range auto a,
@@ -41,7 +41,7 @@ int main(int argc, char const* argv[]) {
       auto ay = std::stoi(smatch[4]);
       auto bx = std::stoi(smatch[3]);
       auto by = std::stoi(smatch[5]);
-      auto action = read_action(smatch[1]);
+      auto action = read_action(smatch[1].str());
       auto matrix = cartesian_product_view(std::views::iota(ax, ay + 1),
                                            std::views::iota(bx, by + 1));
       std::ranges::for_each(matrix, [&grid, &action](const auto xy) {
@@ -54,6 +54,8 @@ int main(int argc, char const* argv[]) {
             break;
           case action::toggle:
             grid[xy.first][xy.second] += 2;
+            break;
+          default:
             break;
         }
       });

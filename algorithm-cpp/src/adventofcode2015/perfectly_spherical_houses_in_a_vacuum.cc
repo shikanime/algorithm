@@ -9,7 +9,7 @@
 
 using position = std::pair<int, int>;
 
-auto read(char c) -> position {
+position read(char c) {
   switch (c) {
     case '^':
       return {0, +1};
@@ -19,18 +19,18 @@ auto read(char c) -> position {
       return {-1, 0};
     case '>':
       return {+1, 0};
+    default:
+      throw std::invalid_argument("Unexpected character");
   }
-  throw std::runtime_error("invalid character");
 }
 
-auto visit(std::ranges::input_range auto r, std::list<position>& houses) {
+void visit(std::ranges::input_range auto r, std::list<position>& houses) {
   houses.push_front({0, 0});
   std::ranges::transform(r, std::front_inserter(houses),
                          [&houses](char c) -> position {
-                           auto curr = houses.front();
-                           auto next = read(c);
-                           return {std::get<0>(curr) + std::get<0>(next),
-                                   std::get<1>(curr) + std::get<1>(next)};
+                           auto [cx, cy] = houses.front();
+                           auto [nx, ny] = read(c);
+                           return {cx + nx, cy + ny};
                          });
 }
 

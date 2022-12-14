@@ -16,13 +16,13 @@ class Solution {
     auto queue = std::queue<std::pair<TreeNode*, TreeNode*>>();
     queue.emplace(p, q);
     while (!queue.empty()) {
-      auto [p, q] = queue.front();
+      auto [fp, fq] = queue.front();
       queue.pop();
-      if (p == nullptr && q == nullptr) continue;
-      if (p == nullptr || q == nullptr) return false;
-      if (p->val != q->val) return false;
-      queue.emplace(p->left, q->left);
-      queue.emplace(p->right, q->right);
+      if (fp == nullptr && fq == nullptr) continue;
+      if (fp == nullptr || fq == nullptr) return false;
+      if (fp->val != fq->val) return false;
+      queue.emplace(fp->left, fq->left);
+      queue.emplace(fp->right, fq->right);
     }
     return true;
   }

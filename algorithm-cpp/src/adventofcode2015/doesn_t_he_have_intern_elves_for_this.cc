@@ -14,8 +14,9 @@ auto has_enough_vowels(std::ranges::input_range auto r) {
 }
 
 auto has_pair(std::ranges::input_range auto r) {
-  return std::ranges::any_of(
-      r, [](std::pair<char, char>& pair) { return pair.first == pair.second; });
+  return std::ranges::any_of(r, [](std::pair<char, char> const& pair) {
+    return pair.first == pair.second;
+  });
 }
 
 auto has_only_valid_chars(std::ranges::input_range auto r) {

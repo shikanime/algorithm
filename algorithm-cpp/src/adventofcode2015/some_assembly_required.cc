@@ -35,6 +35,7 @@ int main(int argc, char const* argv[]) {
         " (?:\\d+) (?:NOT|AND|OR|RSHIFT|LSHIFT) (\\d+) -> (\\d+)");
     std::smatch smatch;
     if (std::regex_search(line, smatch, command_regex)) {
+      throw std::logic_error("Not yet implemented");
     }
   }
   return 0;

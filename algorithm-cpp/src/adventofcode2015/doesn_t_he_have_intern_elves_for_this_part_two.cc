@@ -11,7 +11,7 @@
 
 auto has_repeated_pair(std::string_view s) {
   return std::ranges::any_of(
-      std::views::iota(0ul, s.length() - 2), [&s](auto n) {
+      std::views::iota(0uL, s.length() - 2), [&s](auto n) {
         return s.substr(n + 2).find(s.substr(n, 2)) != std::string::npos;
       });
 }

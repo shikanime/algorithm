@@ -11,8 +11,9 @@ auto read(char c) {
       return 1;
     case ')':
       return -1;
+    default:
+      throw std::invalid_argument("Unexpected input");
   }
-  throw std::runtime_error("invalid input");
 }
 
 int main(int argc, char const* argv[]) {

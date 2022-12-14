@@ -21,7 +21,6 @@ int main(int argc, char const* argv[]) {
       auto box = 2 * (lw + wh + hl);
       auto slack = std::min(lw, std::min(wh, hl));
       papers.push_back(box + slack);
-    } else {
     }
   }
   auto res = std::accumulate(std::begin(papers), std::end(papers), 0);
