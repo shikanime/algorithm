@@ -1,11 +1,9 @@
-import collections
+from collections import Counter
 
 
 class Solution:
     def topKFrequent(self, nums: list[int], k: int) -> list[int]:
-        count: dict[int, int] = collections.defaultdict(int)
-        for num in nums:
-            count[num] += 1
+        count = Counter(nums)
         top: list[list[int]] = [[] for _ in range(0, len(nums))]
         for ck, cc in count.items():
             top[cc - 1].append(ck)
