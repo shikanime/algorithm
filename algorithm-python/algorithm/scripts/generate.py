@@ -1,7 +1,8 @@
-from pathlib import Path
-from jinja2_strcase.jinja2_strcase import to_snake
-import jinja2
 import argparse
+from pathlib import Path
+
+import jinja2
+from jinja2_strcase.jinja2_strcase import to_snake
 
 
 def main():

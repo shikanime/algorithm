@@ -1,4 +1,4 @@
-from .diameter_of_binary_tree import TreeNode, Solution
+from .diameter_of_binary_tree import Solution, TreeNode
 
 
 def test_solution():

@@ -1,4 +1,4 @@
-from .invert_binary_tree import TreeNode, Solution
+from .invert_binary_tree import Solution, TreeNode
 
 
 def test_solution():

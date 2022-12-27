@@ -1,8 +1,8 @@
 #include <iostream>
 #include <map>
+#include <ranges>
 #include <regex>
 #include <variant>
-#include <ranges>
 
 struct rock;
 struct paper;

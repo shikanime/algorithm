@@ -1,8 +1,8 @@
+#include <algorithm>
 #include <iostream>
 #include <iterator>
-#include <vector>
-#include <algorithm>
 #include <ranges>
+#include <vector>
 
 int solve(std::istream& is) {
   std::vector<int> calories{0};

@@ -1,6 +1,6 @@
+#include <iostream>
 #include <optional>
 #include <utility>
-#include <iostream>
 
 namespace leetcode::kth_smallest_element_in_a_bst {
 struct TreeNode {

@@ -1,9 +1,9 @@
-#include <iostream>
-#include <set>
 #include <algorithm>
+#include <iostream>
 #include <numeric>
-#include <vector>
 #include <ranges>
+#include <set>
+#include <vector>
 
 unsigned int read(char c) {
   if (c >= 'a' && c <= 'z') {
