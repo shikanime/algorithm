@@ -47,10 +47,10 @@ jobs:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
       - name: Install dependencies
         run: nix develop -c npm ci
-        working-directory: algorithm-node
+        working-directory: algorithm-javascript
       - name: Run tests
         run: nix develop -c npm run test -- --ci --passWithNoTests
-        working-directory: algorithm-node
+        working-directory: algorithm-javascript
   test-algorithm-elixir:
     runs-on: ubuntu-latest
     steps:
