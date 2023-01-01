@@ -17,7 +17,7 @@
     ];
   };
 
-  outputs = { nixpkgs, devenv, ... } @ inputs: {
+  outputs = { nixpkgs, devenv, ... }@inputs: {
     devShells = nixpkgs.lib.genAttrs nixpkgs.lib.platforms.unix (system:
       let pkgs = import nixpkgs { inherit system; }; in {
         default = devenv.lib.mkShell {
@@ -25,9 +25,8 @@
           modules = [
             ./modules/base.nix
             ./modules/beam.nix
-            ./modules/cpp.nix
+            ./modules/cc.nix
             ./modules/javascript.nix
-            ./modules/nix.nix
             ./modules/ocaml.nix
             ./modules/python.nix
           ];
