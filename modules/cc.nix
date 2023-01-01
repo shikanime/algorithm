@@ -5,9 +5,10 @@
   packages = [
     pkgs.ninja
     pkgs.gcc
+    pkgs.binutils
     pkgs.cmake
     pkgs.openssl
-    pkgs.gmock
+    pkgs.gtest
     pkgs.cmake-format
     pkgs.clang-tools
     pkgs.gdb
