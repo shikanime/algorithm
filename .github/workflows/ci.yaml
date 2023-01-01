@@ -4,7 +4,7 @@ on:
     branches:
       - main
 jobs:
-  test-algorithm-cpp:
+  test-algorithm-cc:
     runs-on: ubuntu-latest
     steps:
       - name: Set up Git repository
@@ -20,13 +20,13 @@ jobs:
           authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
       - name: Generate CMake project
         run: nix develop -c cmake --preset unknown-unknown-gnu -B out/build/unknown-unknown-gnu
-        working-directory: algorithm-cpp
+        working-directory: algorithm-cc
       - name: Build CMake project
         run: nix develop -c cmake --build out/build/unknown-unknown-gnu
-        working-directory: algorithm-cpp
+        working-directory: algorithm-cc
       - name: Run tests
         run: nix develop -c ctest --preset unknown-unknown-gnu --test-dir out/build/unknown-unknown-gnu
-        working-directory: algorithm-cpp
+        working-directory: algorithm-cc
   test-algorithm-javascript:
     runs-on: ubuntu-latest
     steps:

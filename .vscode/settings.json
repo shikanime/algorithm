@@ -1,5 +1,5 @@
 {
-  "sonarlint.pathToCompileCommands": "${workspaceFolder}/algorithm-cpp/out/build/unknown-unknown-gnu/compile_commands.json",
+  "sonarlint.pathToCompileCommands": "${workspaceFolder}/algorithm-cc/out/build/unknown-unknown-gnu/compile_commands.json",
   "C_Cpp.default.cStandard": "c17",
   "C_Cpp.default.cppStandard": "c++20",
   "python.testing.pytestArgs": ["algorithm-python"],
@@ -16,5 +16,5 @@
   "ocaml.sandbox": {
     "kind": "global"
   },
-  "cmake.sourceDirectory": "${workspaceFolder}/algorithm-cpp"
+  "cmake.sourceDirectory": "${workspaceFolder}/algorithm-cc"
 }
