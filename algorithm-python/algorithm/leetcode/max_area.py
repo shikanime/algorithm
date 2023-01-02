@@ -1,17 +1,19 @@
-from functools import reduce
-
-
 class Solution:
     def maxArea(self, height: list[int]) -> int:
-        def area(left: int, right: int):
-            h = min(height[left], height[right])
-            w = abs(right - left)
-            return h * w
+        best_left, best_right = left, right = 0, len(height) - 1
+        while left < right:
+            if self.area(height, left, right) > self.area(
+                height, best_left, best_right
+            ):
+                best_left, best_right = left, right
+            if height[left] > height[right]:
+                right -= 1
+            else:
+                left += 1
 
-        def bestArea(edges: tuple[int, int], x: int):
-            def followingBestArea(edges: tuple[int, int], lx: int):
-                return (x, lx) if area(x, lx) > area(*edges) else edges
+        return self.area(height, best_left, best_right)
 
-            return reduce(followingBestArea, reversed(range(x, len(height))), edges)
-
-        return area(*reduce(bestArea, range(len(height)), (0, len(height) - 1)))
+    def area(self, height: list[int], left: int, right: int):
+        h = min(height[left], height[right])
+        w = right - left
+        return h * w
