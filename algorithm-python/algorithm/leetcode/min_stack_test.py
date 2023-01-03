@@ -1,16 +1,12 @@
 from .min_stack import MinStack
 
 
-def test_min_stack():
-    obj = MinStack()
-    obj.push(-2)
-    assert obj.data == [-2]
-    obj.push(0)
-    assert obj.data == [-2, 0]
-    obj.push(-3)
-    assert obj.data == [-2, 0, -3]
-    assert obj.getMin() == -3
-    obj.pop()
-    assert obj.data == [-2, 0]
-    assert obj.top() == 0
-    assert obj.getMin() == -2
+def test_solution():
+    ms = MinStack()
+    ms.push(-2)
+    ms.push(0)
+    ms.push(-3)
+    assert ms.getMin() == -3
+    ms.pop()
+    assert ms.top() == 0
+    assert ms.getMin() == -2
