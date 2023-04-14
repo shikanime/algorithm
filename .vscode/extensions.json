@@ -1,0 +1,20 @@
+{
+  "recommendations": [
+    "jnoortheen.nix-ide",
+    "mkhl.direnv",
+    "yzhang.markdown-all-in-one",
+    "ms-vscode.cpptools",
+    "xaver.clang-format",
+    "twxs.cmake",
+    "ms-vscode.cmake-tools",
+    "fredericbonnet.cmake-test-adapter",
+    "vadimcn.vscode-lldb",
+    "JakeBecker.elixir-ls",
+    "erlang-ls.erlang-ls",
+    "ms-python.vscode-pylance",
+    "ms-python.python",
+    "hbenl.vscode-test-explorer",
+    "ocamllabs.ocaml-platform",
+    "SonarSource.sonarlint-vscode"
+  ]
+}
