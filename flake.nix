@@ -20,21 +20,28 @@
     ];
   };
 
-  outputs = { nixpkgs, devenv, ... }@inputs: {
-    devShells = nixpkgs.lib.genAttrs nixpkgs.lib.platforms.unix (system:
-      let pkgs = import nixpkgs { inherit system; }; in {
-        default = devenv.lib.mkShell {
-          inherit inputs pkgs;
-          modules = [
-            ./modules/base.nix
-            ./modules/beam.nix
-            ./modules/cc.nix
-            ./modules/javascript.nix
-            ./modules/ocaml.nix
-            ./modules/python.nix
-          ];
-        };
-      }
-    );
-  };
+  outputs = { nixpkgs, devenv, ... }@inputs:
+    let
+      systems = [
+        "aarch64-linux"
+        "x86_64-linux"
+      ];
+    in
+    {
+      devShells = nixpkgs.lib.genAttrs systems (system:
+        let pkgs = import nixpkgs { inherit system; }; in {
+          default = devenv.lib.mkShell {
+            inherit inputs pkgs;
+            modules = [
+              ./modules/base.nix
+              ./modules/beam.nix
+              ./modules/cc.nix
+              ./modules/javascript.nix
+              ./modules/ocaml.nix
+              ./modules/python.nix
+            ];
+          };
+        }
+      );
+    };
 }
