@@ -2,8 +2,11 @@
   description = "Shikanime's algorithms sketchbook";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/release-22.11";
-    devenv.url = "github:cachix/devenv";
+    nixpkgs.url = "github:nixos/nixpkgs";
+    devenv = {
+      url = "github:cachix/devenv";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   nixConfig = {

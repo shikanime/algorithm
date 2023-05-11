@@ -6,9 +6,7 @@
     isort.enable = true;
   };
   packages = [
-    (pkgs.python3.withPackages (ps: with ps; [
-      poetry
-      pip
-    ]))
+    pkgs.python3
+    pkgs.poetry
   ];
 }
