@@ -1,4 +1,4 @@
-name: CI
+name: Build and Test Packages
 on:
   push:
     branches:
@@ -7,7 +7,7 @@ on:
     branches:
       - main
 jobs:
-  test-algorithm-cc:
+  algorithm-cc:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
@@ -27,7 +27,7 @@ jobs:
       - name: Run tests
         run: nix develop -c ctest --preset unknown-unknown-gnu --test-dir out/build/unknown-unknown-gnu
         working-directory: algorithm-cc
-  test-algorithm-javascript:
+  algorithm-javascript:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
@@ -44,7 +44,7 @@ jobs:
       - name: Run tests
         run: nix develop -c npm run test -- --ci --passWithNoTests
         working-directory: algorithm-javascript
-  test-algorithm-elixir:
+  algorithm-elixir:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
@@ -61,7 +61,7 @@ jobs:
       - name: Run tests
         run: nix develop -c mix test
         working-directory: algorithm-elixir
-  test-algorithm-python:
+  algorithm-python:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
