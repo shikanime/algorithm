@@ -7,7 +7,6 @@
     pkgs.gcc
     pkgs.binutils
     pkgs.cmake
-    pkgs.openssl
     pkgs.gtest
     pkgs.cmake-format
     pkgs.clang-tools
