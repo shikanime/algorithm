@@ -13,5 +13,53 @@
     "ghcr.io/christophermacgown/devcontainer-features/direnv:1": {}
   },
   "updateContentCommand": "nix develop --build --accept-flake-config --impure",
-  "mounts": ["source=nix,target=/nix,type=volume"]
+  "mounts": ["source=nix,target=/nix,type=volume"],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "jnoortheen.nix-ide",
+        "mkhl.direnv",
+        "yzhang.markdown-all-in-one",
+        "sonarsource.sonarlint-vscode",
+        "github.vscode-pull-request-github",
+        "github.vscode-github-actions",
+        "streetsidesoftware.code-spell-checker",
+        "foxundermoon.shell-format",
+        "pomdtr.excalidraw-editor",
+        "ms-vscode.cpptools",
+        "xaver.clang-format",
+        "twxs.cmake",
+        "ms-vscode.cmake-tools",
+        "fredericbonnet.cmake-test-adapter",
+        "vadimcn.vscode-lldb",
+        "JakeBecker.elixir-ls",
+        "erlang-ls.erlang-ls",
+        "ms-python.vscode-pylance",
+        "ms-python.python",
+        "hbenl.vscode-test-explorer",
+        "ocamllabs.ocaml-platform",
+        "SonarSource.sonarlint-vscode"
+      ],
+      "settings": {
+        "sonarlint.pathToCompileCommands": "${workspaceFolder}/algorithm-cc/out/build/unknown-unknown-gnu/compile_commands.json",
+        "C_Cpp.default.cStandard": "c17",
+        "C_Cpp.default.cppStandard": "c++20",
+        "python.testing.pytestArgs": ["algorithm-python"],
+        "python.testing.unittestEnabled": false,
+        "python.testing.pytestEnabled": true,
+        "workbench.colorCustomizations": {
+          "statusBar.background": "#378659",
+          "statusBar.foreground": "#e7e7e7",
+          "statusBarItem.hoverBackground": "#46aa71",
+          "statusBarItem.remoteBackground": "#378659",
+          "statusBarItem.remoteForeground": "#e7e7e7"
+        },
+        "peacock.color": "#378659",
+        "ocaml.sandbox": {
+          "kind": "global"
+        },
+        "cmake.sourceDirectory": "${workspaceFolder}/algorithm-cc"
+      }
+    }
+  }
 }
