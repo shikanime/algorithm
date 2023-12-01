@@ -44,7 +44,7 @@ jobs:
       - name: Run tests
         run: nix develop -c npm run test -- --ci --passWithNoTests
         working-directory: algorithm-javascript
-  algorithm-elixir:
+  algorithm-beam:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
@@ -57,10 +57,10 @@ jobs:
           authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
       - name: Install dependencies
         run: nix develop -c mix deps.get
-        working-directory: algorithm-elixir
+        working-directory: algorithm-beam
       - name: Run tests
         run: nix develop -c mix test
-        working-directory: algorithm-elixir
+        working-directory: algorithm-beam
   algorithm-python:
     runs-on: ubuntu-22.04
     steps:

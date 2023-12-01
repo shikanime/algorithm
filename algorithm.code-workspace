@@ -1,0 +1,34 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "algorithm-cc"
+		},
+		{
+			"path": "algorithm-beam"
+		},
+		{
+			"path": "algorithm-javascript"
+		},
+		{
+			"path": "algorithm-ocaml"
+		},
+		{
+			"path": "algorithm-python"
+		}
+	],
+	"extensions": {
+		"recommendations": [
+			"jnoortheen.nix-ide",
+			"mkhl.direnv",
+			"yzhang.markdown-all-in-one",
+			"sonarsource.sonarlint-vscode",
+			"github.vscode-pull-request-github",
+			"github.vscode-github-actions",
+			"streetsidesoftware.code-spell-checker",
+			"foxundermoon.shell-format"
+		]
+	}
+}
