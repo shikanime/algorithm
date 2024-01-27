@@ -33,12 +33,12 @@
           default = devenv.lib.mkShell {
             inherit inputs pkgs;
             modules = [
-              ./modules/base.nix
-              ./modules/beam.nix
-              ./modules/cc.nix
-              ./modules/javascript.nix
-              ./modules/ocaml.nix
-              ./modules/python.nix
+              ./nix/base.nix
+              ./nix/beam.nix
+              ./nix/cc.nix
+              ./nix/javascript.nix
+              ./nix/ocaml.nix
+              ./nix/python.nix
             ];
           };
         }
