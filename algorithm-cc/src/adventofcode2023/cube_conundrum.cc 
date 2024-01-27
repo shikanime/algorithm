@@ -1,0 +1,15 @@
+#include <algorithm>
+#include <charconv>
+#include <iostream>
+#include <numeric>
+#include <ranges>
+#include <vector>
+
+int solve(std::istream& is) {
+}
+
+int main(int argc, char const* argv[]) {
+  std::cout << solve(std::cin) << std::endl;
+  return 0;
+}
+
