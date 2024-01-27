@@ -9,5 +9,5 @@
     },
     "ghcr.io/christophermacgown/devcontainer-features/direnv:1": {}
   },
-  "updateContentCommand": "nix develop --build --accept-flake-config --impure"
+  "updateContentCommand": "nix develop --build --impure --accept-flake-config"
 }
