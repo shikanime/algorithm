@@ -7,6 +7,6 @@
   };
   packages = [
     pkgs.python3
-    pkgs.poetry
+    pkgs.pipx
   ];
 }
