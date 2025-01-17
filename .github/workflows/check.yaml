@@ -3,11 +3,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - .github/**
-      - flake.lock
-      - flake.nix
-      - nix/**
   pull_request:
     branches:
       - gh/*/*/base
