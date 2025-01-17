@@ -22,9 +22,8 @@ action read_action(std::string_view s) {
 auto cartesian_product_view(std::ranges::input_range auto a,
                             std::ranges::input_range auto b) {
   return a | std::views::transform([b](const auto x) {
-           return b | std::views::transform([x](const auto y) {
-                    return std::pair{x, y};
-                  });
+           return b | std::views::transform(
+                          [x](const auto y) { return std::pair{x, y}; });
          }) |
          std::views::join;
 }

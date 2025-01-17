@@ -1,12 +1,9 @@
 {
-  description = "Shikanime's algorithms sketchbook";
-
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs";
-    devenv = {
-      url = "github:cachix/devenv";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    devenv.url = "github:cachix/devenv";
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    treefmt-nix.url = "github:numtide/treefmt-nix";
   };
 
   nixConfig = {
@@ -20,28 +17,24 @@
     ];
   };
 
-  outputs = { nixpkgs, devenv, ... }@inputs:
-    let
-      systems = [
-        "aarch64-linux"
-        "x86_64-linux"
+  outputs =
+    inputs@{
+      devenv,
+      flake-parts,
+      treefmt-nix,
+      ...
+    }:
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      imports = [
+        devenv.flakeModule
+        treefmt-nix.flakeModule
+        ./nix/devenv.nix
       ];
-    in
-    {
-      devShells = nixpkgs.lib.genAttrs systems (system:
-        let pkgs = import nixpkgs { inherit system; }; in {
-          default = devenv.lib.mkShell {
-            inherit inputs pkgs;
-            modules = [
-              ./nix/base.nix
-              ./nix/beam.nix
-              ./nix/cc.nix
-              ./nix/javascript.nix
-              ./nix/ocaml.nix
-              ./nix/python.nix
-            ];
-          };
-        }
-      );
+      systems = [
+        "x86_64-linux"
+        "x86_64-darwin"
+        "aarch64-linux"
+        "aarch64-darwin"
+      ];
     };
 }

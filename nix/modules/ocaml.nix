@@ -1,0 +1,3 @@
+{
+  languages.ocaml.enable = true;
+}

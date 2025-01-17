@@ -23,7 +23,7 @@ function scoreOneAwayEdition(a: string, b: string, scores: number[]): number {
 function scoreOneAwayReplace(
   a: string,
   b: string,
-  scores: number[]
+  scores: number[],
 ): number | null {
   const next = b.indexOf(a[0]);
   if (next !== -1) {
@@ -31,7 +31,9 @@ function scoreOneAwayReplace(
     return scoreOneAway(
       a,
       b.slice(next),
-      deleteIdx !== -1 ? scores.slice(next >= deleteIdx ? deleteIdx : next) : []
+      deleteIdx !== -1
+        ? scores.slice(next >= deleteIdx ? deleteIdx : next)
+        : [],
     );
   }
   return null;
