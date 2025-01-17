@@ -12,12 +12,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
-      - uses: docker/setup-qemu-action@v3
-        with:
-          platforms: arm64
       - uses: DeterminateSystems/nix-installer-action@v13
-        with:
-          extra-conf: system-features = nixos-test benchmark big-parallel kvm
       - uses: cachix/cachix-action@v12
         with:
           name: shikanime
@@ -35,12 +30,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
-      - uses: docker/setup-qemu-action@v3
-        with:
-          platforms: arm64
       - uses: DeterminateSystems/nix-installer-action@v13
-        with:
-          extra-conf: system-features = nixos-test benchmark big-parallel kvm
       - uses: cachix/cachix-action@v12
         with:
           name: shikanime
@@ -55,12 +45,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
-      - uses: docker/setup-qemu-action@v3
-        with:
-          platforms: arm64
       - uses: DeterminateSystems/nix-installer-action@v13
-        with:
-          extra-conf: system-features = nixos-test benchmark big-parallel kvm
       - uses: cachix/cachix-action@v12
         with:
           name: shikanime
@@ -75,12 +60,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
-      - uses: docker/setup-qemu-action@v3
-        with:
-          platforms: arm64
       - uses: DeterminateSystems/nix-installer-action@v13
-        with:
-          extra-conf: system-features = nixos-test benchmark big-parallel kvm
       - uses: cachix/cachix-action@v12
         with:
           name: shikanime
