@@ -9,7 +9,7 @@ on:
       - gh/*/*/base
 jobs:
   algorithm-cc:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: DeterminateSystems/nix-installer-action@v13
@@ -27,7 +27,7 @@ jobs:
         run: nix develop .#cc --impure -c ctest --preset unknown-unknown-gnu --test-dir out/build/unknown-unknown-gnu
         working-directory: algorithm-cc
   algorithm-javascript:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: DeterminateSystems/nix-installer-action@v13
@@ -42,7 +42,7 @@ jobs:
         run: nix develop .#javascript --impure -c npm run test -- --ci --passWithNoTests
         working-directory: algorithm-javascript
   algorithm-beam:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: DeterminateSystems/nix-installer-action@v13
@@ -57,7 +57,7 @@ jobs:
         run: nix develop .#beam --impure -c mix test
         working-directory: algorithm-beam
   algorithm-python:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: DeterminateSystems/nix-installer-action@v13
