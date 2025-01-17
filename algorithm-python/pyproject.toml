@@ -1,21 +1,13 @@
-[tool.poetry]
+[project]
 name = "algorithm"
 version = "0.1.0"
 description = "Shikanime's algorithms sketchbook"
-authors = ["William Phetsinorath <william.phetsinorath@shikanime.studio>"]
-license = "AGPL-3.0-or-later"
+authors = [
+  { name = "William Phetsinorath", email = "william.phetsinorath@shikanime.studio" },
+]
 readme = "README.md"
-packages = [{ include = "algorithm" }]
+requires-python = ">=3.13"
+dependencies = ["jinja2>=3.1.5", "jinja2-strcase>=0.0.2"]
 
-[tool.poetry.dependencies]
-python = "~3.10"
-Jinja2 = "^3.1.2"
-jinja2-strcase = "^0.0.2"
-
-[tool.poetry.dev-dependencies]
-black = "^22.10.0"
-pytest = "^7.1.3"
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+[dependency-groups]
+dev = ["pytest>=8.3.4"]

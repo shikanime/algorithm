@@ -8,8 +8,6 @@
     pkgs.binutils
     pkgs.cmake
     pkgs.gtest
-    pkgs.cmake-format
-    pkgs.clang-tools
     pkgs.gdb
   ];
 }

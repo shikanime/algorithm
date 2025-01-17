@@ -1,7 +1,8 @@
 { pkgs, ... }:
 
 {
-  packages = [
-    pkgs.uv
-  ];
+  languages.python = {
+    enable = true;
+    uv.enable = true;
+  };
 }

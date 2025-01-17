@@ -7,8 +7,10 @@
         enableDefaultExcludes = true;
         programs = {
           clang-format.enable = true;
+          cmake-format.enable = true;
           mix-format.enable = true;
           nixfmt.enable = true;
+          ocamlformat.enable = true;
           prettier.enable = true;
           ruff-format.enable = true;
           shfmt.enable = true;
@@ -16,6 +18,9 @@
           taplo.enable = true;
         };
         settings.global.excludes = [
+          "*.jinja2"
+          "algorithm-beam/priv/*"
+          "algorithm-cc/share/*"
           "LICENSE"
         ];
       };
