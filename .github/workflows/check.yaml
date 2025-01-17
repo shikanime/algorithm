@@ -39,9 +39,9 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
-      - uses: cachix/install-nix-action@v20
+      - uses: DeterminateSystems/nix-installer-action@v13
         with:
-          extra_nix_config: system-features = nixos-test benchmark big-parallel kvm
+          extra-conf: system-features = nixos-test benchmark big-parallel kvm
       - uses: cachix/cachix-action@v12
         with:
           name: shikanime
@@ -59,9 +59,9 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
-      - uses: cachix/install-nix-action@v20
+      - uses: DeterminateSystems/nix-installer-action@v13
         with:
-          extra_nix_config: system-features = nixos-test benchmark big-parallel kvm
+          extra-conf: system-features = nixos-test benchmark big-parallel kvm
       - uses: cachix/cachix-action@v12
         with:
           name: shikanime
@@ -76,9 +76,9 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
-      - uses: cachix/install-nix-action@v20
+      - uses: DeterminateSystems/nix-installer-action@v13
         with:
-          extra_nix_config: system-features = nixos-test benchmark big-parallel kvm
+          extra-conf: system-features = nixos-test benchmark big-parallel kvm
       - uses: cachix/cachix-action@v12
         with:
           name: shikanime
@@ -93,9 +93,9 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
-      - uses: cachix/install-nix-action@v20
+      - uses: DeterminateSystems/nix-installer-action@v13
         with:
-          extra_nix_config: system-features = nixos-test benchmark big-parallel kvm
+          extra-conf: system-features = nixos-test benchmark big-parallel kvm
       - uses: cachix/cachix-action@v12
         with:
           name: shikanime
