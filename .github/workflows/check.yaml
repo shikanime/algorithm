@@ -35,3 +35,74 @@ jobs:
       - name: Check Nix Flake
         run: |
           nix flake check --show-trace --all-systems --impure
+  algorithm-cc:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: cachix/install-nix-action@v20
+        with:
+          extra_nix_config: system-features = nixos-test benchmark big-parallel kvm
+      - uses: cachix/cachix-action@v12
+        with:
+          name: shikanime
+          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
+      - name: Generate CMake project
+        run: nix develop -c cmake --preset unknown-unknown-gnu -B out/build/unknown-unknown-gnu
+        working-directory: algorithm-cc
+      - name: Build CMake project
+        run: nix develop -c cmake --build out/build/unknown-unknown-gnu
+        working-directory: algorithm-cc
+      - name: Run tests
+        run: nix develop -c ctest --preset unknown-unknown-gnu --test-dir out/build/unknown-unknown-gnu
+        working-directory: algorithm-cc
+  algorithm-javascript:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: cachix/install-nix-action@v20
+        with:
+          extra_nix_config: system-features = nixos-test benchmark big-parallel kvm
+      - uses: cachix/cachix-action@v12
+        with:
+          name: shikanime
+          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
+      - name: Install dependencies
+        run: nix develop -c npm ci
+        working-directory: algorithm-javascript
+      - name: Run tests
+        run: nix develop -c npm run test -- --ci --passWithNoTests
+        working-directory: algorithm-javascript
+  algorithm-beam:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: cachix/install-nix-action@v20
+        with:
+          extra_nix_config: system-features = nixos-test benchmark big-parallel kvm
+      - uses: cachix/cachix-action@v12
+        with:
+          name: shikanime
+          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
+      - name: Install dependencies
+        run: nix develop -c mix deps.get
+        working-directory: algorithm-beam
+      - name: Run tests
+        run: nix develop -c mix test
+        working-directory: algorithm-beam
+  algorithm-python:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: cachix/install-nix-action@v20
+        with:
+          extra_nix_config: system-features = nixos-test benchmark big-parallel kvm
+      - uses: cachix/cachix-action@v12
+        with:
+          name: shikanime
+          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
+      - name: Install dependencies
+        run: nix develop -c uv install
+        working-directory: algorithm-python
+      - name: Run tests
+        run: nix develop -c uv run pytest
+        working-directory: algorithm-python
