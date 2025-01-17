@@ -19,6 +19,7 @@
         };
         settings.global.excludes = [
           "*.jinja2"
+          "*.python-version"
           "algorithm-beam/priv/*"
           "algorithm-cc/share/*"
           "LICENSE"

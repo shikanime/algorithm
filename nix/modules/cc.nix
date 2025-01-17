@@ -8,6 +8,5 @@
     pkgs.binutils
     pkgs.cmake
     pkgs.gtest
-    pkgs.gdb
   ];
 }

@@ -1,5 +1,5 @@
 {
-  languages.javascript={
+  languages.javascript = {
     enable = true;
     npm.enable = true;
   };
