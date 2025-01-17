@@ -4,15 +4,14 @@ on:
     branches:
       - main
     paths:
-      - flake.nix
-      - flake.lock
-      - pkgs/**
-      - modules/**
       - .github/**
+      - flake.lock
+      - flake.nix
+      - nix/**
   pull_request:
     branches:
-      - main
       - gh/*/*/base
+      - main
 jobs:
   check:
     runs-on: ubuntu-latest
