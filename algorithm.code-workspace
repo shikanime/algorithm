@@ -33,6 +33,9 @@
 	},
 	"settings": {
 		"files.associations": {
+			"*.excalidraw": "json",
+			"*.excalidrawlib": "json",
+			"*.yaml": "yaml",
 			"any": "cpp",
 			"array": "cpp",
 			"atomic": "cpp",
@@ -97,7 +100,8 @@
 			"thread": "cpp",
 			"cinttypes": "cpp",
 			"typeinfo": "cpp",
-			"variant": "cpp"
+			"variant": "cpp",
+			"cstring": "cpp"
 		}
 	}
 }

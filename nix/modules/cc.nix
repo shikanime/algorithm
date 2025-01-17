@@ -1,7 +1,6 @@
 { pkgs, ... }:
 
 {
-  pre-commit.hooks.clang-format.enable = true;
   packages = [
     pkgs.ninja
     pkgs.gcc

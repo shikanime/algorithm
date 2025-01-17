@@ -5,7 +5,7 @@ description = "Shikanime's algorithms sketchbook"
 authors = ["William Phetsinorath <william.phetsinorath@shikanime.studio>"]
 license = "AGPL-3.0-or-later"
 readme = "README.md"
-packages = [{include = "algorithm"}]
+packages = [{ include = "algorithm" }]
 
 [tool.poetry.dependencies]
 python = "~3.10"

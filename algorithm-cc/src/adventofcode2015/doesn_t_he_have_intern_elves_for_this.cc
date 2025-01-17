@@ -29,10 +29,9 @@ auto has_only_valid_chars(std::ranges::input_range auto r) {
 
 auto window(std::input_iterator auto first, std::input_iterator auto last,
             std::output_iterator<std::pair<char, char>> auto out) {
-  std::transform(first, last - 1, first + 1, out,
-                 [](char a, char b) -> std::pair<char, char> {
-                   return {a, b};
-                 });
+  std::transform(
+      first, last - 1, first + 1, out,
+      [](char a, char b) -> std::pair<char, char> { return {a, b}; });
 }
 
 int main(int argc, char const* argv[]) {

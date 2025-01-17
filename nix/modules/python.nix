@@ -2,6 +2,6 @@
 
 {
   packages = [
-    pkgs.elixir
+    pkgs.uv
   ];
 }
