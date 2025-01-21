@@ -1,6 +1,6 @@
 {
   perSystem =
-    { ... }:
+    _:
     {
       treefmt = {
         projectRootFile = "flake.nix";
