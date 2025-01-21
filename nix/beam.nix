@@ -1,7 +1,0 @@
-{ pkgs, ... }:
-
-{
-  packages = [
-    pkgs.elixir
-  ];
-}
