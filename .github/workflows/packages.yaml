@@ -65,8 +65,8 @@ jobs:
         with:
           name: shikanime
           authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
-      - name: Create Venv
-        run: nix develop .#python --impure -c uv venv
+      - name: Install Python
+        run: nix develop .#python --impure -c uv python install
         working-directory: algorithm-python
       - name: Run tests
         run: nix develop .#python --impure -c uv run pytest
