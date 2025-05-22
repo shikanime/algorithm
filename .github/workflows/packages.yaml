@@ -12,8 +12,8 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
-      - uses: DeterminateSystems/nix-installer-action@v13
-      - uses: cachix/cachix-action@v12
+      - uses: DeterminateSystems/nix-installer-action@v17
+      - uses: cachix/cachix-action@v16
         with:
           name: shikanime
           authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
@@ -30,8 +30,8 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
-      - uses: DeterminateSystems/nix-installer-action@v13
-      - uses: cachix/cachix-action@v12
+      - uses: DeterminateSystems/nix-installer-action@v17
+      - uses: cachix/cachix-action@v16
         with:
           name: shikanime
           authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
@@ -45,8 +45,8 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
-      - uses: DeterminateSystems/nix-installer-action@v13
-      - uses: cachix/cachix-action@v12
+      - uses: DeterminateSystems/nix-installer-action@v17
+      - uses: cachix/cachix-action@v16
         with:
           name: shikanime
           authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
@@ -60,8 +60,8 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
-      - uses: DeterminateSystems/nix-installer-action@v13
-      - uses: cachix/cachix-action@v12
+      - uses: DeterminateSystems/nix-installer-action@v17
+      - uses: cachix/cachix-action@v16
         with:
           name: shikanime
           authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
