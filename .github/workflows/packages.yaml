@@ -65,9 +65,8 @@ jobs:
         with:
           name: shikanime
           authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
-      - name: Install Python
-        run: nix develop .#python --impure -c uv python install
-        working-directory: algorithm-python
       - name: Run tests
+        env:
+          UV_PYTHON_DOWNLOADS: automatic
         run: nix develop .#python --impure -c uv run pytest
         working-directory: algorithm-python
