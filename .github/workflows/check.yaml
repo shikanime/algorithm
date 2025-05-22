@@ -12,9 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: DeterminateSystems/nix-installer-action@v13
-      - uses: DeterminateSystems/magic-nix-cache-action@v8
-      - uses: cachix/cachix-action@v12
+      - uses: DeterminateSystems/nix-installer-action@v17
+      - uses: DeterminateSystems/magic-nix-cache-action@v9
+      - uses: cachix/cachix-action@v16
         with:
           name: shikanime
           authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
