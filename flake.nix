@@ -55,27 +55,27 @@
         };
         devenv.shells = {
           default.imports = [
-            ./nix/modules/base.nix
+            ./nix/modules/devenv/base.nix
           ];
           beam.imports = [
-            ./nix/modules/base.nix
-            ./nix/modules/beam.nix
+            ./nix/modules/devenv/base.nix
+            ./nix/modules/devenv/beam.nix
           ];
           cc.imports = [
-            ./nix/modules/base.nix
-            ./nix/modules/cc.nix
+            ./nix/modules/devenv/base.nix
+            ./nix/modules/devenv/cc.nix
           ];
           javascript.imports = [
-            ./nix/modules/base.nix
-            ./nix/modules/javascript.nix
+            ./nix/modules/devenv/base.nix
+            ./nix/modules/devenv/javascript.nix
           ];
           ocaml.imports = [
-            ./nix/modules/base.nix
-            ./nix/modules/ocaml.nix
+            ./nix/modules/devenv/base.nix
+            ./nix/modules/devenv/ocaml.nix
           ];
           python.imports = [
-            ./nix/modules/base.nix
-            ./nix/modules/python.nix
+            ./nix/modules/devenv/base.nix
+            ./nix/modules/devenv/python.nix
           ];
         };
       };
