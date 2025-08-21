@@ -13,6 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - uses: DeterminateSystems/nix-installer-action@v19
+      - uses: DeterminateSystems/magic-nix-cache-action@v13
       - name: Generate CMake project
         run: nix develop .#cc --impure -c cmake --preset unknown-unknown-gnu -B out/build/unknown-unknown-gnu
         working-directory: algorithm-cc
@@ -27,6 +28,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - uses: DeterminateSystems/nix-installer-action@v19
+      - uses: DeterminateSystems/magic-nix-cache-action@v13
       - name: Install dependencies
         run: nix develop .#javascript --impure -c npm ci
         working-directory: algorithm-javascript
@@ -38,6 +40,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - uses: DeterminateSystems/nix-installer-action@v19
+      - uses: DeterminateSystems/magic-nix-cache-action@v13
       - name: Install dependencies
         run: nix develop .#beam --impure -c mix deps.get
         working-directory: algorithm-beam
@@ -49,6 +52,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - uses: DeterminateSystems/nix-installer-action@v19
+      - uses: DeterminateSystems/magic-nix-cache-action@v13
       - name: Run tests
         run: nix develop .#python --impure -c uv run pytest
         working-directory: algorithm-python
