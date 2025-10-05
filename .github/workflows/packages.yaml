@@ -1,12 +1,12 @@
 name: Packages
 on:
-  push:
+  workflow_run:
+    workflows:
+      - check
     branches:
       - main
-  pull_request:
-    branches:
-      - main
-      - gh/*/*/base
+    types:
+      - completed
 jobs:
   algorithm-cc:
     runs-on: ubuntu-latest
