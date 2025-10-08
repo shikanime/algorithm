@@ -1,8 +1,8 @@
 {
   perSystem = _: {
     treefmt = {
-      projectRootFile = "flake.nix";
       enableDefaultExcludes = true;
+      projectRootFile = "flake.nix";
       programs = {
         nixfmt.enable = true;
         prettier.enable = true;
