@@ -5,8 +5,9 @@
       enableDefaultExcludes = true;
       programs = {
         nixfmt.enable = true;
-        statix.enable = true;
+        prettier.enable = true;
         shfmt.enable = true;
+        statix.enable = true;
       };
       settings.global.excludes = [
         "LICENSE"
