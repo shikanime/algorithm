@@ -28,7 +28,6 @@
       imports = [
         devenv.flakeModule
         treefmt-nix.flakeModule
-        flake-parts.flakeModules.modules
         ./nix/flake/base.nix
         ./nix/flake/beam.nix
         ./nix/flake/cc.nix
