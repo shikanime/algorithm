@@ -28,57 +28,13 @@
       imports = [
         devenv.flakeModule
         treefmt-nix.flakeModule
+        ./nix/flake/base.nix
+        ./nix/flake/beam.nix
+        ./nix/flake/cc.nix
+        ./nix/flake/javascript.nix
+        ./nix/flake/ocaml.nix
+        ./nix/flake/python.nix
       ];
-      perSystem = _: {
-        treefmt = {
-          projectRootFile = "flake.nix";
-          enableDefaultExcludes = true;
-          programs = {
-            clang-format.enable = true;
-            cmake-format.enable = true;
-            mix-format.enable = true;
-            nixfmt.enable = true;
-            ocamlformat.enable = true;
-            prettier.enable = true;
-            ruff-format.enable = true;
-            shfmt.enable = true;
-            statix.enable = true;
-            taplo.enable = true;
-          };
-          settings.global.excludes = [
-            "*.jinja2"
-            "*.python-version"
-            "algorithm-beam/priv/*"
-            "algorithm-cc/share/*"
-            "LICENSE"
-          ];
-        };
-        devenv.shells = {
-          default.imports = [
-            ./nix/modules/devenv/base.nix
-          ];
-          beam.imports = [
-            ./nix/modules/devenv/base.nix
-            ./nix/modules/devenv/beam.nix
-          ];
-          cc.imports = [
-            ./nix/modules/devenv/base.nix
-            ./nix/modules/devenv/cc.nix
-          ];
-          javascript.imports = [
-            ./nix/modules/devenv/base.nix
-            ./nix/modules/devenv/javascript.nix
-          ];
-          ocaml.imports = [
-            ./nix/modules/devenv/base.nix
-            ./nix/modules/devenv/ocaml.nix
-          ];
-          python.imports = [
-            ./nix/modules/devenv/base.nix
-            ./nix/modules/devenv/python.nix
-          ];
-        };
-      };
       systems = [
         "x86_64-linux"
         "x86_64-darwin"
