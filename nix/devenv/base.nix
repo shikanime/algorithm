@@ -15,5 +15,6 @@
   };
   packages = [
     pkgs.gh
+    pkgs.sapling
   ];
 }
