@@ -10,7 +10,6 @@
       ];
     };
     devenv.shells.cc.imports = [
-      ../devenv/base.nix
       ../devenv/cc.nix
     ];
   };

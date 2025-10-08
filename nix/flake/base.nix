@@ -13,7 +13,7 @@
         "LICENSE"
       ];
     };
-    devenv.shells.default.imports = [
+    devenv.modules = [
       ../devenv/base.nix
     ];
   };
