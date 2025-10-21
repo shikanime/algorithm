@@ -7,6 +7,7 @@
       ];
     };
     devenv.shells.beam.imports = [
+      ../devenv/base.nix
       ../devenv/beam.nix
     ];
   };

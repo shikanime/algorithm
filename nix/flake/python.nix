@@ -11,6 +11,7 @@
       ];
     };
     devenv.shells.python.imports = [
+      ../devenv/base.nix
       ../devenv/python.nix
     ];
   };
