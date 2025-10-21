@@ -1,6 +1,7 @@
 {
   inputs = {
     devenv.url = "github:cachix/devenv";
+    devlib.url = "github:shikanime-studio/devlib";
     flake-parts.url = "github:hercules-ci/flake-parts";
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     treefmt-nix.url = "github:numtide/treefmt-nix";

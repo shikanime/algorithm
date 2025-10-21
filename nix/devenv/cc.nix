@@ -1,6 +1,10 @@
 { pkgs, ... }:
 
 {
+  gitignore.templates = [
+    "tt:c"
+    "tt:c++"
+  ];
   packages = [
     pkgs.ninja
     pkgs.gcc
