@@ -1,3 +1,5 @@
+{ inputs, ... }:
+
 {
   perSystem = _: {
     treefmt = {
@@ -15,6 +17,7 @@
     };
     devenv = {
       modules = [
+        inputs.devlib.devenvModule
         ../devenv/base.nix
       ];
       shells.default = { };

@@ -1,20 +1,17 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 
 {
-  containers = pkgs.lib.mkForce { };
   cachix = {
     enable = true;
     push = "shikanime";
   };
-  git-hooks.hooks = {
-    actionlint.enable = true;
-    deadnix.enable = true;
-    flake-checker.enable = true;
-    shellcheck.enable = true;
+  containers = pkgs.lib.mkForce { };
+  github.enable = true;
+  languages = {
+    nix.enable = true;
+    shell.enable = true;
   };
-  languages.nix.enable = true;
   packages = [
-    pkgs.gh
     pkgs.sapling
   ];
 }
