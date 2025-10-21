@@ -21,11 +21,6 @@
       ];
       shells.default.imports = [
         ../devenv/base.nix
-        ../devenv/beam.nix
-        ../devenv/cc.nix
-        ../devenv/javascript.nix
-        ../devenv/ocaml.nix
-        ../devenv/python.nix
       ];
     };
   };
