@@ -13,8 +13,11 @@
         "LICENSE"
       ];
     };
-    devenv.modules = [
-      ../devenv/base.nix
-    ];
+    devenv = {
+      modules = [
+        ../devenv/base.nix
+      ];
+      shells.default = { };
+    };
   };
 }
