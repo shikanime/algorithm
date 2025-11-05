@@ -5,7 +5,6 @@
     enable = true;
     push = "shikanime";
   };
-  containers = pkgs.lib.mkForce { };
   github.enable = true;
   gitignore = {
     enable = true;
