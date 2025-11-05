@@ -25,10 +25,13 @@
           default.imports = [
             ../devenv/base.nix
           ];
-          update.packages = [
-            pkgs.nushell
-            pkgs.sapling
-          ];
+          update = {
+            containers = pkgs.lib.mkForce { };
+            packages = [
+              pkgs.nushell
+              pkgs.sapling
+            ];
+          };
         };
       };
     };
