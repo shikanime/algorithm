@@ -29,6 +29,6 @@ jobs:
             --local ui.email "github-actions[bot]@users.noreply.github.com"
           nix develop --accept-flake-config --impure .#update --command sl \
             ci \
-            -m "Update Flake"
+            --message "Update Flake"
           nix develop --accept-flake-config --impure .#update --command sl \
             ghstack
