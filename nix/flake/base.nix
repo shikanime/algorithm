@@ -21,18 +21,9 @@
         modules = [
           inputs.devlib.devenvModule
         ];
-        shells = {
-          default.imports = [
-            ../devenv/base.nix
-          ];
-          update = {
-            containers = pkgs.lib.mkForce { };
-            packages = [
-              pkgs.nushell
-              pkgs.sapling
-            ];
-          };
-        };
+        shells.default.imports = [
+          ../devenv/base.nix
+        ];
       };
     };
 }
