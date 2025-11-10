@@ -29,3 +29,79 @@ jobs:
             --accept-flake-config \
             --all-systems \
             --no-pure-eval
+  check-algorithm-cc:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: DeterminateSystems/nix-installer-action@v19
+        with:
+          github-token: ${{ secrets.NIX_GITHUB_TOKEN }}
+      - uses: DeterminateSystems/magic-nix-cache-action@v13
+      - name: Configure (GNU)
+        run: |
+          nix develop --accept-flake-config --impure .#cc --command cmake \
+            --preset unknown-unknown-gnu \
+            -B out/build/unknown-unknown-gnu
+        working-directory: algorithm-cc
+      - name: Build (GNU)
+        run: |
+          nix develop --accept-flake-config --impure .#cc --command cmake \
+            --build out/build/unknown-unknown-gnu
+        working-directory: algorithm-cc
+      - name: Test (GNU)
+        run: |
+          nix develop --accept-flake-config --impure .#cc --command ctest \
+            --preset unknown-unknown-gnu \
+            --test-dir out/build/unknown-unknown-gnu
+        working-directory: algorithm-cc
+  check-algorithm-javascript:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: DeterminateSystems/nix-installer-action@v19
+        with:
+          github-token: ${{ secrets.NIX_GITHUB_TOKEN }}
+      - uses: DeterminateSystems/magic-nix-cache-action@v13
+      - name: Install dependencies
+        run: |
+          nix develop --accept-flake-config --impure .#javascript --command npm \
+            ci
+        working-directory: algorithm-javascript
+      - name: Run tests
+        run: |
+          nix develop --accept-flake-config --impure .#javascript --command npm \
+            run test -- \
+            --ci \
+            --passWithNoTests
+        working-directory: algorithm-javascript
+  check-algorithm-beam:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: DeterminateSystems/nix-installer-action@v19
+        with:
+          github-token: ${{ secrets.NIX_GITHUB_TOKEN }}
+      - uses: DeterminateSystems/magic-nix-cache-action@v13
+      - name: Fetch deps
+        run: |
+          nix develop --accept-flake-config --impure .#beam --command mix \
+            deps.get
+        working-directory: algorithm-beam
+      - name: Run tests
+        run: |
+          nix develop --accept-flake-config --impure .#beam --command mix \
+            test
+        working-directory: algorithm-beam
+  check-algorithm-python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: DeterminateSystems/nix-installer-action@v19
+        with:
+          github-token: ${{ secrets.NIX_GITHUB_TOKEN }}
+      - uses: DeterminateSystems/magic-nix-cache-action@v13
+      - name: Run tests
+        run: |
+          nix develop --accept-flake-config --impure .#python --command uv \
+            run pytest
+        working-directory: algorithm-python
