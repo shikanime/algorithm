@@ -39,7 +39,7 @@
         treefmt-nix.flakeModule
       ];
       perSystem =
-        { pkgs, ... }:
+        { lib, pkgs, ... }:
         {
           devenv = {
             modules = [
@@ -51,6 +51,16 @@
             ];
             shells = {
               cc = {
+                enterTest = ''
+                  ${lib.getExe pkgs.cmake} \
+                    --preset unknown-unknown-gnu \
+                    -B out/build/unknown-unknown-gnu
+                  ${lib.getExe pkgs.cmake} \
+                    --build out/build/unknown-unknown-gnu
+                  ${pkgs.cmake}/bin/ctest \
+                    --preset unknown-unknown-gnu \
+                    --test-dir out/build/unknown-unknown-gnu
+                '';
                 gitignore.templates = [
                   "tt:c"
                   "tt:c++"
@@ -71,18 +81,41 @@
               default.imports = [
                 devlib.devenvModules.github
               ];
-              elixir.imports = [
-                devlib.devenvModules.elixir
-              ];
-              javascript.imports = [
-                devlib.devenvModules.javascript
-              ];
-              ocaml.imports = [
-                devlib.devenvModules.ocaml
-              ];
-              python.imports = [
-                devlib.devenvModules.python
-              ];
+              elixir = {
+                imports = [
+                  devlib.devenvModules.elixir
+                ];
+                enterTest = ''
+                  ${pkgs.elixir}/bin/mix deps.get
+                  ${pkgs.elixir}/bin/mix test
+                '';
+              };
+              javascript = {
+                imports = [
+                  devlib.devenvModules.javascript
+                ];
+                enterTest = ''
+                  ${pkgs.nodejs}/bin/npm ci
+                  ${pkgs.nodejs}/bin/npm run test
+                '';
+              };
+              ocaml = {
+                imports = [
+                  devlib.devenvModules.ocaml
+                ];
+                enterTest = ''
+                  ${lib.getExe pkgs.dune_3} build @test
+                  ${lib.getExe pkgs.dune_3} runtest @test
+                '';
+              };
+              python = {
+                imports = [
+                  devlib.devenvModules.python
+                ];
+                enterTest = ''
+                  ${lib.getExe pkgs.uv} run pytest
+                '';
+              };
             };
           };
         };

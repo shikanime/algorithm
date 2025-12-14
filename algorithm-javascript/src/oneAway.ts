@@ -43,11 +43,8 @@ function scoreOneAwayDeletion(a: string, b: string, scores: number[]): number {
   return scoreOneAway(a.slice(1), b, [...scores, -1]);
 }
 
-function oneAway(a: string, b: string, factor: number): boolean {
+export function oneAway(a: string, b: string, factor: number): boolean {
   return scoreOneAway(a, b, []) >= b.length - factor;
 }
 
-console.assert(oneAway("pale", "ple", 1) === true, { a: "pale", b: "ple" });
-console.assert(oneAway("pales", "pale", 1) === true, { a: "pales", b: "pale" });
-console.assert(oneAway("pale", "bale", 1) === true, { a: "pale", b: "bale" });
-console.assert(oneAway("pale", "bake", 1) === false, { a: "pale", b: "bake" });
+
