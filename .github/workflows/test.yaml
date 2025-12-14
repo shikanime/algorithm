@@ -8,7 +8,7 @@ on:
       - main
       - gh/*/*/base
 jobs:
-  test-algorithm-cc:
+  algorithm-cc:
     runs-on: ubuntu-latest
     steps:
       - id: createGithubAppToken
@@ -28,7 +28,7 @@ jobs:
           github-token: ${{ steps.createGithubAppToken.outputs.token }}
       - run: devenv test
         working-directory: algorithm-cc
-  test-algorithm-javascript:
+  algorithm-javascript:
     runs-on: ubuntu-latest
     steps:
       - id: createGithubAppToken
@@ -48,7 +48,7 @@ jobs:
           github-token: ${{ steps.createGithubAppToken.outputs.token }}
       - run: devenv test
         working-directory: algorithm-javascript
-  test-algorithm-elixir:
+  algorithm-elixir:
     runs-on: ubuntu-latest
     steps:
       - id: createGithubAppToken
@@ -68,7 +68,7 @@ jobs:
           github-token: ${{ steps.createGithubAppToken.outputs.token }}
       - run: devenv test
         working-directory: algorithm-elixir
-  test-algorithm-python:
+  algorithm-python:
     runs-on: ubuntu-latest
     steps:
       - id: createGithubAppToken
