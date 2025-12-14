@@ -77,7 +77,16 @@
                         checkout
                         setup-nix
                         {
-                          run = "nix develop --accept-flake-config --no-pure-eval .#${mkWorkflowRef "matrix.package"} --command devenv test";
+                          run = mkWorkflowRun [
+                            "nix"
+                            "develop"
+                            "--accept-flake-config"
+                            "--no-pure-eval"
+                            ".#${mkWorkflowRef "matrix.package"}"
+                            "--command"
+                            "devenv"
+                            "test"
+                          ];
                           "working-directory" = mkWorkflowRef "matrix.package";
                         }
                       ];
