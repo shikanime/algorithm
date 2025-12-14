@@ -85,6 +85,7 @@
                         "algorithm-cc"
                         "algorithm-elixir"
                         "algorithm-javascript"
+                        "algorithm-ocaml"
                         "algorithm-python"
                       ];
                     };
