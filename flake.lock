@@ -807,11 +807,11 @@
         "treefmt-nix": "treefmt-nix_9"
       },
       "locked": {
-        "lastModified": 1765745484,
-        "narHash": "sha256-zeqfsxvFvfr3OlA1IzonIARVqobt2p+kNXm0ayIRKOg=",
+        "lastModified": 1765750171,
+        "narHash": "sha256-FlNzV6Xv9S+PWPjnDlIBaRhZZMH1osoy5xECa5CLS/Q=",
         "owner": "shikanime-studio",
         "repo": "devlib",
-        "rev": "d798bd7b887282e778579634370d0ed1e7a64adb",
+        "rev": "0b67568ba8608ac6500593f483c9beb312668337",
         "type": "github"
       },
       "original": {
