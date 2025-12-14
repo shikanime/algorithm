@@ -1,8 +1,10 @@
 {
   inputs = {
+    automata.url = "github:shikanime-studio/automata";
     devenv.url = "github:cachix/devenv";
     devlib.url = "github:shikanime-studio/devlib";
     flake-parts.url = "github:hercules-ci/flake-parts";
+    git-hooks.url = "github:cachix/git-hooks.nix";
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     treefmt-nix.url = "github:numtide/treefmt-nix";
   };
@@ -23,21 +25,53 @@
   outputs =
     inputs@{
       devenv,
+      devlib,
       flake-parts,
+      git-hooks,
       treefmt-nix,
       ...
     }:
     flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
         devenv.flakeModule
+        devlib.flakeModule
+        git-hooks.flakeModule
         treefmt-nix.flakeModule
-        ./nix/flake/base.nix
-        ./nix/flake/beam.nix
-        ./nix/flake/cc.nix
-        ./nix/flake/javascript.nix
-        ./nix/flake/ocaml.nix
-        ./nix/flake/python.nix
       ];
+      perSystem =
+        { pkgs, ... }:
+        {
+          devenv.shells.default = {
+            imports = [
+              devlib.devenvModules.docs
+              devlib.devenvModules.formats
+              devlib.devenvModules.github
+              devlib.devenvModules.nix
+              devlib.devenvModules.ocaml
+              devlib.devenvModules.python
+              devlib.devenvModules.javascript
+              devlib.devenvModules.elixir
+              devlib.devenvModules.shell
+              devlib.devenvModules.shikanime
+            ];
+            gitignore.templates = [
+              "tt:c"
+              "tt:c++"
+            ];
+            packages = [
+              pkgs.ninja
+              pkgs.gcc
+              pkgs.openssl
+              pkgs.binutils
+              pkgs.cmake
+              pkgs.gtest
+            ];
+            treefmt.config.programs = {
+              clang-format.enable = true;
+              cmake-format.enable = true;
+            };
+          };
+        };
       systems = [
         "x86_64-linux"
         "x86_64-darwin"
