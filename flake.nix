@@ -55,7 +55,43 @@
               devlib.devenvModules.shikanime
             ];
             shells = {
-              cc = {
+              default = {
+                imports = [
+                  devlib.devenvModules.github
+                ];
+                github.workflows.test = with config.devenv.shells.default.github.actions; {
+                  enable = true;
+                  settings = {
+                    name = "Test";
+                    on = {
+                      push.branches = [ "main" ];
+                      pull_request.branches = [
+                        "main"
+                        "gh/*/*/base"
+                      ];
+                    };
+                    jobs.test = {
+                      "runs-on" = "ubuntu-latest";
+                      steps = with config.devenv.shells.default.github.lib; [
+                        create-github-app-token
+                        checkout
+                        setup-nix
+                        {
+                          run = "nix develop --accept-flake-config --no-pure-eval .#${mkWorkflowRef "matrix.package"} --command devenv test";
+                          "working-directory" = mkWorkflowRef "matrix.package";
+                        }
+                      ];
+                      strategy.matrix.package = [
+                        "algorithm-cc"
+                        "algorithm-elixir"
+                        "algorithm-javascript"
+                        "algorithm-python"
+                      ];
+                    };
+                  };
+                };
+              };
+              algorithm-cc = {
                 enterTest = ''
                   ${lib.getExe pkgs.cmake} \
                     --preset unknown-unknown-gnu \
@@ -83,79 +119,8 @@
                   cmake-format.enable = true;
                 };
               };
-              default = {
-                imports = [
-                  devlib.devenvModules.github
-                ];
-                github.workflows.test = with config.devenv.shells.default.github.actions; {
-                  enable = true;
-                  settings = {
-                    name = "Test";
-                    on = {
-                      push.branches = [ "main" ];
-                      pull_request.branches = [
-                        "main"
-                        "gh/*/*/base"
-                      ];
-                    };
-                    jobs = {
-                      algorithm-cc = {
-                        "runs-on" = "ubuntu-latest";
-                        steps = [
-                          create-github-app-token
-                          checkout
-                          setup-nix
-                          direnv
-                          {
-                            run = "devenv test";
-                            "working-directory" = "algorithm-cc";
-                          }
-                        ];
-                      };
-                      algorithm-javascript = {
-                        "runs-on" = "ubuntu-latest";
-                        steps = [
-                          create-github-app-token
-                          checkout
-                          setup-nix
-                          direnv
-                          {
-                            run = "devenv test";
-                            "working-directory" = "algorithm-javascript";
-                          }
-                        ];
-                      };
-                      algorithm-elixir = {
-                        "runs-on" = "ubuntu-latest";
-                        steps = [
-                          create-github-app-token
-                          checkout
-                          setup-nix
-                          direnv
-                          {
-                            run = "devenv test";
-                            "working-directory" = "algorithm-elixir";
-                          }
-                        ];
-                      };
-                      algorithm-python = {
-                        "runs-on" = "ubuntu-latest";
-                        steps = [
-                          create-github-app-token
-                          checkout
-                          setup-nix
-                          direnv
-                          {
-                            run = "devenv test";
-                            "working-directory" = "algorithm-python";
-                          }
-                        ];
-                      };
-                    };
-                  };
-                };
-              };
-              elixir = {
+
+              algorithm-elixir = {
                 imports = [
                   devlib.devenvModules.elixir
                 ];
@@ -164,7 +129,7 @@
                   ${pkgs.elixir}/bin/mix test
                 '';
               };
-              javascript = {
+              algorithm-javascript = {
                 imports = [
                   devlib.devenvModules.javascript
                 ];
@@ -173,7 +138,7 @@
                   ${pkgs.nodejs}/bin/npm run test
                 '';
               };
-              ocaml = {
+              algorithm-ocaml = {
                 imports = [
                   devlib.devenvModules.ocaml
                 ];
@@ -181,7 +146,7 @@
                   ${lib.getExe pkgs.dune_3} runtest
                 '';
               };
-              python = {
+              algorithm-python = {
                 imports = [
                   devlib.devenvModules.python
                 ];

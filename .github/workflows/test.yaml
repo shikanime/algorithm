@@ -1,5 +1,5 @@
 jobs:
-  algorithm-cc:
+  test:
     runs-on: ubuntu-latest
     steps:
       - id: createGithubAppToken
@@ -14,63 +14,15 @@ jobs:
       - uses: shikanime-studio/setup-nix-action@v1
         with:
           github-token: ${{ steps.createGithubAppToken.outputs.token }}
-      - uses: shikanime-studio/direnv-action@v2
-      - run: devenv test
-        working-directory: algorithm-cc
-  algorithm-elixir:
-    runs-on: ubuntu-latest
-    steps:
-      - id: createGithubAppToken
-        uses: actions/create-github-app-token@v2
-        with:
-          app-id: ${{ vars.OPERATOR_APP_ID }}
-          private-key: ${{ secrets.OPERATOR_PRIVATE_KEY }}
-      - uses: actions/checkout@v6
-        with:
-          fetch-depth: 0
-          token: ${{ steps.createGithubAppToken.outputs.token }}
-      - uses: shikanime-studio/setup-nix-action@v1
-        with:
-          github-token: ${{ steps.createGithubAppToken.outputs.token }}
-      - uses: shikanime-studio/direnv-action@v2
-      - run: devenv test
-        working-directory: algorithm-elixir
-  algorithm-javascript:
-    runs-on: ubuntu-latest
-    steps:
-      - id: createGithubAppToken
-        uses: actions/create-github-app-token@v2
-        with:
-          app-id: ${{ vars.OPERATOR_APP_ID }}
-          private-key: ${{ secrets.OPERATOR_PRIVATE_KEY }}
-      - uses: actions/checkout@v6
-        with:
-          fetch-depth: 0
-          token: ${{ steps.createGithubAppToken.outputs.token }}
-      - uses: shikanime-studio/setup-nix-action@v1
-        with:
-          github-token: ${{ steps.createGithubAppToken.outputs.token }}
-      - uses: shikanime-studio/direnv-action@v2
-      - run: devenv test
-        working-directory: algorithm-javascript
-  algorithm-python:
-    runs-on: ubuntu-latest
-    steps:
-      - id: createGithubAppToken
-        uses: actions/create-github-app-token@v2
-        with:
-          app-id: ${{ vars.OPERATOR_APP_ID }}
-          private-key: ${{ secrets.OPERATOR_PRIVATE_KEY }}
-      - uses: actions/checkout@v6
-        with:
-          fetch-depth: 0
-          token: ${{ steps.createGithubAppToken.outputs.token }}
-      - uses: shikanime-studio/setup-nix-action@v1
-        with:
-          github-token: ${{ steps.createGithubAppToken.outputs.token }}
-      - uses: shikanime-studio/direnv-action@v2
-      - run: devenv test
-        working-directory: algorithm-python
+      - run: nix develop --accept-flake-config --no-pure-eval .#${{ matrix.package }} --command devenv test
+        working-directory: ${{ matrix.package }}
+    strategy:
+      matrix:
+        package:
+          - algorithm-cc
+          - algorithm-elixir
+          - algorithm-javascript
+          - algorithm-python
 name: Test
 'on':
   pull_request:
