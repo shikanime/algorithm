@@ -41,34 +41,48 @@
       perSystem =
         { pkgs, ... }:
         {
-          devenv.shells.default = {
-            imports = [
+          devenv = {
+            modules = [
               devlib.devenvModules.docs
               devlib.devenvModules.formats
-              devlib.devenvModules.github
               devlib.devenvModules.nix
-              devlib.devenvModules.ocaml
-              devlib.devenvModules.python
-              devlib.devenvModules.javascript
-              devlib.devenvModules.elixir
               devlib.devenvModules.shell
               devlib.devenvModules.shikanime
             ];
-            gitignore.templates = [
-              "tt:c"
-              "tt:c++"
-            ];
-            packages = [
-              pkgs.ninja
-              pkgs.gcc
-              pkgs.openssl
-              pkgs.binutils
-              pkgs.cmake
-              pkgs.gtest
-            ];
-            treefmt.config.programs = {
-              clang-format.enable = true;
-              cmake-format.enable = true;
+            shells = {
+              cc = {
+                gitignore.templates = [
+                  "tt:c"
+                  "tt:c++"
+                ];
+                packages = [
+                  pkgs.ninja
+                  pkgs.gcc
+                  pkgs.openssl
+                  pkgs.binutils
+                  pkgs.cmake
+                  pkgs.gtest
+                ];
+                treefmt.config.programs = {
+                  clang-format.enable = true;
+                  cmake-format.enable = true;
+                };
+              };
+              default.imports = [
+                devlib.devenvModules.github
+              ];
+              elixir.imports = [
+                devlib.devenvModules.elixir
+              ];
+              javascript.imports = [
+                devlib.devenvModules.javascript
+              ];
+              ocaml.imports = [
+                devlib.devenvModules.ocaml
+              ];
+              python.imports = [
+                devlib.devenvModules.python
+              ];
             };
           };
         };
