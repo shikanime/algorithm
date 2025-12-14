@@ -10,4 +10,4 @@ def test_solution():
     assert data.val == 2
 
     data = solver.detectCycle(ListNode(1, ListNode(2)))
-    assert data == None
+    assert data is None

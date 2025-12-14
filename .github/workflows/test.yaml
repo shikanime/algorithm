@@ -1,5 +1,5 @@
 jobs:
-  check:
+  test:
     runs-on: ubuntu-latest
     steps:
       - id: createGithubAppToken
@@ -14,8 +14,17 @@ jobs:
       - uses: shikanime-studio/setup-nix-action@v1
         with:
           github-token: ${{ steps.createGithubAppToken.outputs.token }}
-      - run: nix flake check --accept-flake-config --all-systems --no-pure-eval
-name: Check
+      - run: nix develop --accept-flake-config --no-pure-eval .#${{ matrix.package }} --command devenv test
+        working-directory: ${{ matrix.package }}
+    strategy:
+      matrix:
+        package:
+          - algorithm-cc
+          - algorithm-elixir
+          - algorithm-javascript
+          - algorithm-ocaml
+          - algorithm-python
+name: Test
 'on':
   pull_request:
     branches:
@@ -24,4 +33,3 @@ name: Check
   push:
     branches:
       - main
-      - release-*

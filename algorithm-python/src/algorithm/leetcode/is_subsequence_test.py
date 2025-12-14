@@ -3,6 +3,6 @@ from .is_subsequence import Solution
 
 def test_solution():
     solver = Solution()
-    assert solver.isSubsequence("abc", "ahbgdc") == True
-    assert solver.isSubsequence("axc", "ahbgdc") == False
-    assert solver.isSubsequence("b", "abc") == True
+    assert solver.isSubsequence("abc", "ahbgdc")
+    assert not solver.isSubsequence("axc", "ahbgdc")
+    assert solver.isSubsequence("b", "abc")

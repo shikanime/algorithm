@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Shikanime's algorithms sketchbook",
   "scripts": {
-    "test": "jest"
+    "test": "vitest"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,6 @@
   },
   "homepage": "https://github.com/shikanime/algorithm",
   "devDependencies": {
-    "jest": "^29.1.2"
+    "vitest": "^4.0.15"
   }
 }
